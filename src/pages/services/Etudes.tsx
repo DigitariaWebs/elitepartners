@@ -2,7 +2,9 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
-
+import image31 from '/public/31.png';
+import image32 from '/public/32.png';
+import image33 from '/public/33.png';
 const etudes = [
   {
     titre: 'Études de marché',
@@ -15,7 +17,7 @@ const etudes = [
         </ul>
       </>
     ),
-    image: '/public/31.png',
+    image: image31,
   },
   {
     titre: 'Études économiques',
@@ -28,7 +30,7 @@ const etudes = [
         </ul>
       </>
     ),
-    image: '/public/32.png',
+    image: image32,
   },
   {
     titre: 'Évaluations stratégiques',
@@ -41,7 +43,7 @@ const etudes = [
         </ul>
       </>
     ),
-    image: '/public/33.png',
+    image: image33,
   },
 ];
 

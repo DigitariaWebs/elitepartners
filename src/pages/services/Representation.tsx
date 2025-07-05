@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
+import image21 from '/public/21.png';
+import image22 from '/public/22.png';
+import image23 from '/public/23.png';
 
 const representations = [
   {
@@ -15,7 +18,7 @@ const representations = [
         </ul>
       </>
     ),
-    image: '/public/21.png',
+    image: image21,
   },
   {
     titre: 'Représentation locale',
@@ -28,7 +31,7 @@ const representations = [
         </ul>
       </>
     ),
-    image: '/public/22.png',
+    image: image22,
   },
   {
     titre: 'Stratégies de pénétration de marché',
@@ -41,7 +44,7 @@ const representations = [
         </ul>
       </>
     ),
-    image: '/public/23.png',
+    image: image23,
   },
 ];
 
