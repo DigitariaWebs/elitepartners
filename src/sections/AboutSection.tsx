@@ -86,7 +86,7 @@ const AboutSection: React.FC = () => {
           <motion.div variants={itemVariants} className="text-center mb-16">
             <SectionTitle
               title="À propos de nous"
-              subtitle="Découvrez ElitePartners Group SARL, votre partenaire stratégique pour l'excellence en République Démocratique du Congo"
+              subtitle="Découvrez ElitePartners Group SARL, votre partenaire stratégique avec excellence"
             />
           </motion.div>
 

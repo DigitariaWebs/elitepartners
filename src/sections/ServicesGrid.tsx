@@ -51,8 +51,8 @@ const ServicesGrid: React.FC = () => {
         "Conseil en gestion des ressources humaines",
         "Conseil en stratégie et transformation d'entreprise"
       ],
-      color: "blue",
-      gradient: "from-blue-500 to-cyan-500",
+      color: "indigo",
+      gradient: "from-indigo-500 to-blue-500",
       path: "/services/conseil"
     },
     {
@@ -65,7 +65,7 @@ const ServicesGrid: React.FC = () => {
         "Stratégies de pénétration de marché"
       ],
       color: "purple",
-      gradient: "from-purple-500 to-pink-500",
+      gradient: "from-purple-500 to-indigo-500",
       path: "/services/representation"
     },
     {
@@ -77,19 +77,19 @@ const ServicesGrid: React.FC = () => {
         "Études économiques",
         "Évaluations stratégiques"
       ],
-      color: "green",
-      gradient: "from-green-500 to-teal-500",
+      color: "violet",
+      gradient: "from-violet-500 to-purple-500",
       path: "/services/etudes"
     }
   ];
 
   const getColorClasses = (color: string) => {
     const colorMap = {
-      blue: {
-        iconBg: "bg-blue-100 group-hover:bg-blue-200",
-        iconText: "text-blue-600",
-        accent: "text-blue-600",
-        border: "group-hover:border-blue-200"
+      indigo: {
+        iconBg: "bg-indigo-100 group-hover:bg-indigo-200",
+        iconText: "text-indigo-600",
+        accent: "text-indigo-600",
+        border: "group-hover:border-indigo-200"
       },
       purple: {
         iconBg: "bg-purple-100 group-hover:bg-purple-200", 
@@ -97,11 +97,11 @@ const ServicesGrid: React.FC = () => {
         accent: "text-purple-600",
         border: "group-hover:border-purple-200"
       },
-      green: {
-        iconBg: "bg-green-100 group-hover:bg-green-200",
-        iconText: "text-green-600", 
-        accent: "text-green-600",
-        border: "group-hover:border-green-200"
+      violet: {
+        iconBg: "bg-violet-100 group-hover:bg-violet-200",
+        iconText: "text-violet-600", 
+        accent: "text-violet-600",
+        border: "group-hover:border-violet-200"
       }
     };
     return colorMap[color as keyof typeof colorMap];
@@ -111,9 +111,9 @@ const ServicesGrid: React.FC = () => {
     <section ref={ref} className="py-12 sm:py-20 bg-white relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 right-10 w-24 sm:w-32 h-24 sm:h-32 bg-blue-50 rounded-full opacity-60"></div>
+        <div className="absolute top-20 right-10 w-24 sm:w-32 h-24 sm:h-32 bg-indigo-50 rounded-full opacity-60"></div>
         <div className="absolute bottom-20 left-10 w-20 sm:w-24 h-20 sm:h-24 bg-purple-50 rounded-full opacity-60"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 sm:w-40 h-32 sm:h-40 bg-green-50 rounded-full opacity-40"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 sm:w-40 h-32 sm:h-40 bg-violet-50 rounded-full opacity-40"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -158,7 +158,7 @@ const ServicesGrid: React.FC = () => {
                     </div>
 
                     {/* Title */}
-                      <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 group-hover:text-gray-800 transition-colors duration-300">
+                      <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 group-hover:text-gray-800 transition-colors duration-300 font-montserrat">
                       {service.title}
                     </h3>
 
@@ -210,7 +210,7 @@ const ServicesGrid: React.FC = () => {
           {/* CTA Section */}
           <motion.div 
             variants={cardVariants}
-            className="text-center mt-12 sm:mt-16 p-6 sm:p-8 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl border border-gray-100"
+            className="text-center mt-12 sm:mt-16 p-6 sm:p-8 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl border border-gray-100"
           >
             <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
               Besoin d'un service personnalisé ?
@@ -223,7 +223,7 @@ const ServicesGrid: React.FC = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-                className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 sm:px-8 py-2 sm:py-3 rounded-lg text-sm sm:text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center justify-center gap-2"
+                className="w-full sm:w-auto bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 sm:px-8 py-2 sm:py-3 rounded-lg text-sm sm:text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center justify-center gap-2"
             >
                 <Users className="w-4 h-4 sm:w-5 sm:h-5" />
               Discuter de votre projet

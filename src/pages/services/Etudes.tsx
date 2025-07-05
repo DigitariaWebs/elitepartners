@@ -1,77 +1,84 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { ChevronRight, Search, Target, Home } from 'lucide-react';
+import { motion } from 'framer-motion';
 import Button from '@/components/Button';
+import { Link } from 'react-router-dom';
+
+const etudes = [
+  {
+    titre: 'Études de marché',
+    description: (
+      <>
+        <p className="mb-3">Nous analysons les dynamiques du marché pour vous aider à comprendre votre environnement et à identifier les opportunités :</p>
+        <ul className="list-disc pl-5 space-y-2">
+          <li>Analyse de la demande pour évaluer les besoins des consommateurs.</li>
+          <li>Études concurrentielles pour comprendre les forces et faiblesses des acteurs du marché.</li>
+        </ul>
+      </>
+    ),
+    image: '/public/31.png',
+  },
+  {
+    titre: 'Études économiques',
+    description: (
+      <>
+        <p className="mb-3">Nous vous fournissons des analyses économiques détaillées pour guider vos projets à court, moyen et long terme :</p>
+        <ul className="list-disc pl-5 space-y-2">
+          <li>Analyse des tendances sectorielles et macroéconomiques.</li>
+          <li>Études d'impact pour évaluer les effets économiques et sociaux de vos projets.</li>
+        </ul>
+      </>
+    ),
+    image: '/public/32.png',
+  },
+  {
+    titre: 'Évaluations stratégiques',
+    description: (
+      <>
+        <p className="mb-3">Nous réalisons des études approfondies pour évaluer la viabilité de vos projets et initiatives :</p>
+        <ul className="list-disc pl-5 space-y-2">
+          <li>Études de faisabilité technique, financière et opérationnelle.</li>
+          <li>Analyses sectorielles pour identifier les opportunités de croissance et les défis à relever.</li>
+        </ul>
+      </>
+    ),
+    image: '/public/33.png',
+  },
+];
 
 const EtudesPage: React.FC = () => {
   return (
-    <div className="py-12">
-      {/* Breadcrumb */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 mb-8">
-        <div className="flex items-center space-x-2 text-sm text-gray-600">
-          <Link to="/" className="hover:text-blue-600 flex items-center">
-            <Home size={16} className="mr-1" />
-            Accueil
-          </Link>
-          <ChevronRight size={16} />
-          <Link to="/services" className="hover:text-blue-600">Services</Link>
-          <ChevronRight size={16} />
-          <span className="text-gray-900">Études & Recherches</span>
+    <div className="py-12 bg-gradient-to-br from-gray-50 to-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-montserrat">Études & Recherches</h1>
         </div>
-      </div>
-
-      {/* Titre principal */}
-      <div className="text-center mb-12">
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Études & Recherches
-        </h1>
-      </div>
-
-      {/* Contenu principal */}
-      <div className="max-w-4xl mx-auto px-6 lg:px-12">
-        {/* Section 1: Études de marché */}
-        <section className="mb-16">
-          <div className="flex items-center space-x-3 mb-6">
-            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-              <Search className="w-6 h-6 text-green-600" />
-            </div>
-            <h2 className="text-2xl font-bold text-gray-900">
-              Études de marché
-            </h2>
-          </div>
-          
-          <ul className="space-y-3 text-gray-700">
-            <li className="flex items-start">
-              <div className="w-1.5 h-1.5 bg-green-600 rounded-full mt-2 mr-3 flex-shrink-0" />
-              <p>Analyse de la demande pour évaluer les besoins des consommateurs</p>
-            </li>
-            <li className="flex items-start">
-              <div className="w-1.5 h-1.5 bg-green-600 rounded-full mt-2 mr-3 flex-shrink-0" />
-              <p>Études concurrentielles pour comprendre les forces et faiblesses des acteurs du marché</p>
-            </li>
-          </ul>
-        </section>
-
-        {/* Section 2: Objectif général */}
-        <section className="mb-16">
-          <div className="flex items-center space-x-3 mb-6">
-            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-              <Target className="w-6 h-6 text-green-600" />
-            </div>
-            <h2 className="text-2xl font-bold text-gray-900">
-              Objectif général
-            </h2>
-          </div>
-          
-          <div className="prose prose-lg text-gray-700">
-            <p className="leading-relaxed">
-              Fournir des analyses approfondies pour orienter les décisions stratégiques des clients.
-            </p>
-          </div>
-        </section>
-
+        <motion.div className="space-y-16">
+          {etudes.map((e, i) => {
+            const isEven = i % 2 === 0;
+            return (
+              <motion.div
+                key={e.titre}
+                className={`flex flex-col-reverse md:flex-row ${isEven ? '' : 'md:flex-row-reverse'} items-center gap-8 md:gap-8 group`}
+              >
+                {/* Texte */}
+                <div className="w-full md:w-1/2">
+                  <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{e.titre}</h2>
+                  <div className="text-gray-700 text-base md:text-lg leading-relaxed">{e.description}</div>
+                </div>
+                {/* Image */}
+                <div className="w-full md:w-1/2 flex justify-center">
+                  <img
+                    src={e.image}
+                    alt={e.titre}
+                    className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96"
+                  />
+                </div>
+              </motion.div>
+            );
+          })}
+        </motion.div>
         {/* CTA */}
-        <div className="text-center py-8 border-t">
+        <div className="text-center py-8 border-t mt-16">
           <p className="text-gray-600 mb-6">
             Besoin d'une étude de marché ou d'une analyse approfondie pour votre entreprise ?
           </p>

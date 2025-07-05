@@ -1,61 +1,84 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { ChevronRight, Globe, Home } from 'lucide-react';
+import { motion } from 'framer-motion';
 import Button from '@/components/Button';
+import { Link } from 'react-router-dom';
+
+const representations = [
+  {
+    titre: 'Accompagnement administratif et légal',
+    description: (
+      <>
+        <p className="mb-3">Nous gérons les démarches administratives et juridiques nécessaires pour établir votre entreprise en toute conformité :</p>
+        <ul className="list-disc pl-5 space-y-2">
+          <li>Création d'entités légales : Assistance dans l'établissement de votre entreprise en conformité avec les réglementations locales.</li>
+          <li>Gestion des autorisations : Obtention des licences et permis nécessaires pour vos activités.</li>
+        </ul>
+      </>
+    ),
+    image: '/public/21.png',
+  },
+  {
+    titre: 'Représentation locale',
+    description: (
+      <>
+        <p className="mb-3">Nous agissons en tant que représentant local pour défendre vos intérêts auprès des parties prenantes :</p>
+        <ul className="list-disc pl-5 space-y-2">
+          <li>Gestion des relations commerciales et institutionnelles publiques et privées : Agir en tant que représentant local pour défendre vos intérêts auprès des parties prenantes.</li>
+          <li>Soutien logistique : Coordination des opérations administratives et organisationnelles pour simplifier vos démarches.</li>
+        </ul>
+      </>
+    ),
+    image: '/public/22.png',
+  },
+  {
+    titre: 'Stratégies de pénétration de marché',
+    description: (
+      <>
+        <p className="mb-3">Nous élaborons des stratégies adaptées pour maximiser vos chances de succès sur le marché congolais :</p>
+        <ul className="list-disc pl-5 space-y-2">
+          <li>Études de faisabilité : Analyse des opportunités de marché et des risques liés à votre implantation.</li>
+          <li>Développement de plans d'action : Élaboration de stratégies pour conquérir de nouveaux marchés et segments.</li>
+        </ul>
+      </>
+    ),
+    image: '/public/23.png',
+  },
+];
 
 const RepresentationPage: React.FC = () => {
   return (
-    <div className="py-12">
-      {/* Breadcrumb */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 mb-8">
-        <div className="flex items-center space-x-2 text-sm text-gray-600">
-          <Link to="/" className="hover:text-blue-600 flex items-center">
-            <Home size={16} className="mr-1" />
-            Accueil
-          </Link>
-          <ChevronRight size={16} />
-          <Link to="/services" className="hover:text-blue-600">Services</Link>
-          <ChevronRight size={16} />
-          <span className="text-gray-900">Représentation & Accompagnement</span>
+    <div className="py-12 bg-gradient-to-br from-gray-50 to-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-montserrat">Représentation & Accompagnement</h1>
         </div>
-      </div>
-
-      {/* Titre principal */}
-      <div className="text-center mb-12">
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Représentation & Accompagnement
-        </h1>
-      </div>
-
-      {/* Contenu principal */}
-      <div className="max-w-4xl mx-auto px-6 lg:px-12">
-        <section className="mb-16">
-          <div className="flex items-center space-x-3 mb-8">
-            <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-              <Globe className="w-6 h-6 text-purple-600" />
-            </div>
-            <h2 className="text-2xl font-bold text-gray-900">
-              Notre expertise locale à votre service
-            </h2>
-          </div>
-
-          <div className="prose prose-lg max-w-none text-gray-700 space-y-6">
-            <p className="leading-relaxed">
-              Nous facilitons l'implantation et l'expansion des entreprises en République Démocratique du Congo (RDC).
-            </p>
-            
-            <p className="leading-relaxed">
-              S'implanter ou se développer dans un marché complexe comme celui de la RDC nécessite une expertise locale et une compréhension approfondie des enjeux régionaux.
-            </p>
-            
-            <p className="leading-relaxed">
-              ElitePartners Group SARL met son réseau et son savoir-faire au service des entreprises internationales pour garantir leur succès.
-            </p>
-          </div>
-        </section>
-
+        <motion.div className="space-y-16">
+          {representations.map((r, i) => {
+            const isEven = i % 2 === 0;
+            return (
+              <motion.div
+                key={r.titre}
+                className={`flex flex-col-reverse md:flex-row ${isEven ? '' : 'md:flex-row-reverse'} items-center gap-8 md:gap-8 group`}
+              >
+                {/* Texte */}
+                <div className="w-full md:w-1/2">
+                  <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{r.titre}</h2>
+                  <div className="text-gray-700 text-base md:text-lg leading-relaxed">{r.description}</div>
+                </div>
+                {/* Image */}
+                <div className="w-full md:w-1/2 flex justify-center">
+                  <img
+                    src={r.image}
+                    alt={r.titre}
+                    className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96"
+                  />
+                </div>
+              </motion.div>
+            );
+          })}
+        </motion.div>
         {/* CTA */}
-        <div className="text-center py-8 border-t">
+        <div className="text-center py-8 border-t mt-16">
           <p className="text-gray-600 mb-6">
             Prêt à développer votre entreprise en République Démocratique du Congo ?
           </p>

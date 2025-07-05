@@ -12,6 +12,9 @@ const Navbar: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const isHomePage = location.pathname === '/';
+  const isServicesPage = location.pathname === '/services';
+  const isSectorsPage = location.pathname === '/secteurs';
+  const isGradientPage = isServicesPage || isSectorsPage;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -88,22 +91,70 @@ const Navbar: React.FC = () => {
     return location.pathname === path;
   };
 
+  // Determine background styles based on page and scroll state
+  const getNavbarBackground = () => {
+    if (isServicesPage || isSectorsPage) {
+      if (!isScrolled) {
+        // Transparent, flou, texte blanc tant qu'on est sur le hero
+        return 'backdrop-blur-lg bg-transparent text-white';
+      } else {
+        // Dès qu'on scroll, fond blanc, texte foncé, ombre
+        return 'backdrop-blur-lg bg-white/90 text-gray-900 shadow-lg border-b border-gray-200';
+      }
+    } else if (isGradientPage) {
+      return isScrolled 
+        ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white' 
+        : 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white';
+    } else if (isHomePage) {
+      return isScrolled 
+        ? 'bg-white/90 backdrop-blur-md' 
+        : 'bg-transparent';
+    } else {
+      return isScrolled 
+        ? 'bg-white/95 backdrop-blur-md' 
+        : 'bg-white';
+    }
+  };
+
+  // Get text and hover colors based on page
+  const getItemStyles = (isItemActive: boolean) => {
+    if (isServicesPage || isSectorsPage) {
+      if (!isScrolled) {
+        return isItemActive
+          ? 'bg-white/20 text-white font-bold'
+          : 'text-white/90 hover:bg-white/10 hover:text-white';
+      } else {
+        return isItemActive
+          ? 'bg-gray-100 text-blue-700 font-bold'
+          : 'text-gray-900 hover:bg-gray-100 hover:text-blue-700';
+      }
+    } else if (isGradientPage) {
+      return isItemActive
+        ? 'bg-white/20 text-white font-bold'
+        : 'text-white/90 hover:bg-white/10 hover:text-white';
+    } else if (isHomePage && !isScrolled) {
+      return isItemActive
+        ? 'bg-white/20 text-white'
+        : 'text-white/90 hover:bg-white/10 hover:text-white';
+    } else {
+      return isItemActive
+        ? 'bg-blue-50 text-blue-600'
+        : 'text-gray-700 hover:bg-blue-50/50 hover:text-blue-600';
+    }
+  };
+
   return (
     <motion.nav 
       initial={{ y: -100 }}
       animate={{ 
         y: visible ? 0 : -100,
-        backgroundColor: isScrolled 
-          ? isHomePage 
-            ? 'rgba(255, 255, 255, 0.9)' 
-            : 'rgba(255, 255, 255, 0.95)'
-          : 'transparent',
-        backdropFilter: isScrolled ? 'blur(10px)' : 'none',
       }}
       transition={{ duration: 0.3 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        getNavbarBackground()
+      } ${
         isScrolled 
-          ? 'shadow-lg border-b border-gray-100/20' 
+          ? 'shadow-lg border-b border-white/10' 
           : ''
       }`}
     >
@@ -122,7 +173,7 @@ const Navbar: React.FC = () => {
                 alt="Elite Partners Logo"
                 className={`w-auto transition-all duration-300 ${
                   isScrolled ? 'h-10' : 'h-12'
-                }`}
+                } ${(isGradientPage || ((isServicesPage || isSectorsPage) && !isScrolled)) ? 'brightness-0 invert' : ''}`}
               />
             </Link>
           </motion.div>
@@ -135,18 +186,8 @@ const Navbar: React.FC = () => {
                   onClick={() => handleNavigation(item.path)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${
-                    isActive(item.path)
-                      ? isScrolled
-                        ? 'bg-blue-50 text-blue-600'
-                        : isHomePage
-                          ? 'bg-white/20 text-white'
-                          : 'bg-blue-50 text-blue-600'
-                      : isScrolled
-                        ? 'text-gray-700 hover:text-blue-600 hover:bg-blue-50/50'
-                        : isHomePage
-                          ? 'text-white/90 hover:text-white hover:bg-white/10'
-                          : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
+                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 font-montserrat ${
+                    getItemStyles(isActive(item.path))
                   }`}
                 >
                   {item.name}
@@ -161,11 +202,13 @@ const Navbar: React.FC = () => {
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsOpen(!isOpen)}
               className={`p-2 rounded-lg transition-all duration-200 ${
-                isScrolled
-                  ? 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  : isHomePage
-                    ? 'bg-white/10 text-white hover:bg-white/20'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                isGradientPage
+                  ? 'bg-white/10 text-white hover:bg-white/20'
+                  : isScrolled
+                    ? 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    : isHomePage
+                      ? 'bg-white/10 text-white hover:bg-white/20'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -180,38 +223,30 @@ const Navbar: React.FC = () => {
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
           exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden overflow-hidden"
+          transition={{ duration: 0.2 }}
+          className="md:hidden overflow-hidden"
         >
-            <div className={`px-4 py-3 space-y-2 border-t transition-all duration-300 ${
-              isScrolled
+          <div className={`px-4 py-3 space-y-2 border-t transition-all duration-300 ${
+            isGradientPage
+              ? 'bg-gradient-to-r from-indigo-600/95 to-purple-600/95 backdrop-blur-lg border-white/10'
+              : isScrolled
                 ? 'bg-white/95 backdrop-blur-lg border-gray-100'
                 : isHomePage
                   ? 'bg-white/10 backdrop-blur-md border-white/20'
                   : 'bg-white border-gray-100'
           }`}>
             {NAVIGATION_ITEMS.map((item) => (
-                <motion.button
+              <motion.button
                 key={item.name}
-                  onClick={() => handleNavigation(item.path)}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className={`block w-full text-left px-4 py-3 rounded-lg text-base font-semibold transition-all duration-200 ${
-                    isActive(item.path)
-                      ? isScrolled
-                        ? 'bg-blue-50 text-blue-600'
-                        : isHomePage
-                          ? 'bg-white/20 text-white'
-                          : 'bg-blue-50 text-blue-600'
-                      : isScrolled
-                        ? 'text-gray-700 hover:text-blue-600 hover:bg-blue-50/50'
-                        : isHomePage
-                          ? 'text-white/90 hover:text-white hover:bg-white/10'
-                          : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
+                onClick={() => handleNavigation(item.path)}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className={`block w-full text-left px-4 py-3 rounded-lg text-base font-semibold transition-all duration-200 font-montserrat ${
+                  getItemStyles(isActive(item.path))
                 }`}
               >
                 {item.name}
-                </motion.button>
+              </motion.button>
             ))}
           </div>
         </motion.div>

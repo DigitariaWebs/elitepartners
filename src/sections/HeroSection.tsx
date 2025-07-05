@@ -119,7 +119,7 @@ const HeroSection: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              Pour un Business Réussi en RDC
+              Pour un Business réussi
             </motion.span>
           </motion.h1>
         </motion.div>
@@ -133,7 +133,7 @@ const HeroSection: React.FC = () => {
             transition={{ duration: 1, delay: 0.8 }}
           >
             Transformez vos ambitions en succès avec notre expertise en stratégie d'entreprise, 
-            innovation et développement durable en République Démocratique du Congo.
+            innovation et développement durable.
           </motion.p>
         </motion.div>
 
