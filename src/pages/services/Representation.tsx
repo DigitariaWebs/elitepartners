@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
@@ -46,6 +46,7 @@ const representations = [
 ];
 
 const RepresentationPage: React.FC = () => {
+  useEffect(() => { window.scrollTo(0, 0); }, []);
   return (
     <div className="py-12 bg-gradient-to-br from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
