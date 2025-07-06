@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Sprout, Hammer, Briefcase, CheckCircle2, ArrowRight } from 'lucide-react';
 import DefaultLayout from '@/layouts/DefaultLayout';
 import SectionTitle from '@/components/SectionTitle';
 import Button from '@/components/Button';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const secteurImages = [
   '/agricole.png',
@@ -12,97 +13,88 @@ const secteurImages = [
   '/finance.png',
 ];
 
-const secteurs = [
-  {
-    id: 'agricole',
-    title: 'Secteur Agricole',
-    icon: <Sprout className="w-8 h-8 sm:w-10 sm:h-10" />,
-    color: 'green',
-    description: "L'agriculture est un pilier fondamental de l'économie, offrant des opportunités dans l'agroalimentaire, la pêche et l'agriculture industrielle.",
-    sousSecteurs: [
-      'Agroalimentaire',
-      'Agriculture vivrière',
-      'Pêche et aquaculture',
-      'Agriculture industrielle'
-    ]
-  },
-  {
-    id: 'minier',
-    title: 'Secteur Minier',
-    icon: <Hammer className="w-8 h-8 sm:w-10 sm:h-10" />,
-    color: 'indigo',
-    description: "Le secteur minier est au cœur du développement, englobant l'assurance, la fiscalité et la gestion financière des ressources naturelles.",
-    sousSecteurs: [
-      'Assurance minière',
-      'Fiscalité et redevances minières',
-      'Banques d\'investissement spécialisées',
-      'Audit et gestion financière minière'
-    ]
-  },
-  {
-    id: 'financier',
-    title: 'Secteur Financier',
-    icon: <Briefcase className="w-8 h-8 sm:w-10 sm:h-10" />,
-    color: 'purple',
-    description: "Le secteur financier accompagne la croissance à travers l'assurance, la gestion d'actifs et l'audit financier.",
-    sousSecteurs: [
-      'Assurance',
-      'Gestion d\'actifs',
-      'Audit et contrôle financier',
-      'Banques d\'investissement'
-    ]
-  }
-];
-
-const getColorClasses = (color: string) => {
-  const colorMap = {
-    green: {
-      bg: 'bg-green-50',
-      border: 'border-green-100',
-      text: 'text-green-600',
-      hover: 'group-hover:bg-green-100'
-    },
-    indigo: {
-      bg: 'bg-indigo-50',
-      border: 'border-indigo-100',
-      text: 'text-indigo-600',
-      hover: 'group-hover:bg-indigo-100'
-    },
-    purple: {
-      bg: 'bg-purple-50',
-      border: 'border-purple-100',
-      text: 'text-purple-600',
-      hover: 'group-hover:bg-purple-100'
-    }
-  };
-  return colorMap[color as keyof typeof colorMap];
-};
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      duration: 0.5,
-      staggerChildren: 0.2
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5
-    }
-  }
-};
-
 const Secteurs: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { t } = useLanguage();
+  const navigate = useNavigate();
+  
   useEffect(() => { setIsVisible(true); }, []);
+
+  const secteurs = [
+    {
+      id: 'agricole',
+      title: t('sectors.agricultural.title'),
+      icon: <Sprout className="w-8 h-8 sm:w-10 sm:h-10" />,
+      color: 'green',
+      description: t('sectors.agricultural.description'),
+      sousSecteurs: t('sectors.agricultural.subsectors'),
+      link: '/secteurs/agricole',
+    },
+    {
+      id: 'minier',
+      title: t('sectors.mining.title'),
+      icon: <Hammer className="w-8 h-8 sm:w-10 sm:h-10" />,
+      color: 'indigo',
+      description: t('sectors.mining.description'),
+      sousSecteurs: t('sectors.mining.subsectors'),
+      link: '/secteurs/minier',
+    },
+    {
+      id: 'financier',
+      title: t('sectors.financial.title'),
+      icon: <Briefcase className="w-8 h-8 sm:w-10 sm:h-10" />,
+      color: 'purple',
+      description: t('sectors.financial.description'),
+      sousSecteurs: t('sectors.financial.subsectors'),
+      link: '/secteurs/financier',
+    }
+  ];
+
+  const getColorClasses = (color: string) => {
+    const colorMap = {
+      green: {
+        bg: 'bg-green-50',
+        border: 'border-green-100',
+        text: 'text-green-600',
+        hover: 'group-hover:bg-green-100'
+      },
+      indigo: {
+        bg: 'bg-indigo-50',
+        border: 'border-indigo-100',
+        text: 'text-indigo-600',
+        hover: 'group-hover:bg-indigo-100'
+      },
+      purple: {
+        bg: 'bg-purple-50',
+        border: 'border-purple-100',
+        text: 'text-purple-600',
+        hover: 'group-hover:bg-purple-100'
+      }
+    };
+    return colorMap[color as keyof typeof colorMap];
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5
+      }
+    }
+  };
 
   // Animation variants pour le hero
   const containerHeroVariants = {
@@ -175,7 +167,7 @@ const Secteurs: React.FC = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                 Là où l'opportunité rencontre l'expertise
+                {t('sectors.hero.title')}
               </motion.span>
             </motion.h1>
           </motion.div>
@@ -188,7 +180,7 @@ const Secteurs: React.FC = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.8 }}
             >
-               De l'agriculture à la finance en passant par le secteur minier, nous transformons les défis des industries clés en leviers de croissance durable. Découvrez les secteurs où nous faisons la différence.
+              {t('sectors.hero.subtitle')}
             </motion.p>
           </motion.div>
         </motion.div>
@@ -228,100 +220,65 @@ const Secteurs: React.FC = () => {
         </motion.div>
       </section>
 
-      <div className="py-12 sm:py-20 bg-gradient-to-br from-gray-50 to-white">
+      {/* Sectors Content */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Title */}
-          <SectionTitle
-            title="Nos secteurs d'intervention"
-            subtitle="Découvrez les domaines dans lesquels nous mettons notre expertise à votre service"
-            className="mb-16"
-          />
-
-          {/* Secteurs Alternés */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="space-y-16"
+            className="grid grid-cols-1 lg:grid-cols-3 gap-8"
           >
-            {secteurs.map((secteur, i) => {
-              const colors = getColorClasses(secteur.color);
-              const isEven = i % 2 === 0;
+            {secteurs.map((secteur, index) => {
+              const colorClasses = getColorClasses(secteur.color);
               return (
                 <motion.div
                   key={secteur.id}
                   variants={itemVariants}
-                  className={`flex flex-col-reverse md:flex-row ${isEven ? '' : 'md:flex-row-reverse'} items-center gap-8 md:gap-8 group`}
+                  whileHover={{ y: -10, scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                  className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl border ${colorClasses.border} group cursor-pointer`}
+                  onClick={() => secteur.link && navigate(secteur.link)}
+                  style={{ pointerEvents: secteur.link ? 'auto' : 'none', opacity: secteur.link ? 1 : 0.6 }}
                 >
-                  {/* Texte */}
-                  <div className="w-full md:w-1/2">
-                    <div className="flex items-center mb-4">
-                      <div className={`rounded-xl ${colors.bg} ${colors.hover} transition-colors duration-300 p-3`}>
-                        <div className={colors.text}>
-                          {secteur.icon}
-                        </div>
+                  <div className="text-center mb-6">
+                    <div className={`w-16 h-16 ${colorClasses.bg} rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:${colorClasses.hover} transition-colors duration-300`}>
+                      <div className={colorClasses.text}>
+                        {secteur.icon}
                       </div>
-                      <h3 className="text-xl sm:text-2xl font-bold text-gray-900 ml-4 font-montserrat">
-                        {secteur.title}
-                      </h3>
                     </div>
-                    <p className="text-gray-600 mb-4 text-base">{secteur.description}</p>
-                    <ul className="space-y-3">
-                      {secteur.sousSecteurs.map((sousSecteur, index) => (
-                        <motion.li
-                          key={index}
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.1 }}
-                          className="flex items-start space-x-3"
-                        >
-                          <CheckCircle2 className={`w-5 h-5 ${colors.text} mt-0.5 flex-shrink-0`} />
-                          <span className="text-gray-700">{sousSecteur}</span>
-                        </motion.li>
-                      ))}
+                    <h3 className="text-2xl font-bold text-gray-900 mb-3">{secteur.title}</h3>
+                    <p className="text-gray-600 leading-relaxed">{secteur.description}</p>
+                  </div>
+
+                  <div className="space-y-3">
+                    <h4 className="font-semibold text-gray-900 mb-3">{t('common.subsectors')}</h4>
+                    <ul className="space-y-2">
+                      {Array.isArray(secteur.sousSecteurs) ? secteur.sousSecteurs.map((subSecteur, subIndex) => (
+                        <li key={subIndex} className="flex items-center text-gray-600">
+                          <CheckCircle2 className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
+                          <span className="text-sm">{subSecteur}</span>
+                        </li>
+                      )) : null}
                     </ul>
                   </div>
-                  {/* Image */}
-                  <div className="w-full md:w-1/2 flex justify-center">
-                    <img
-                      src={secteurImages[i]}
-                      alt={secteur.title}
-                      className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96"
-                    />
+
+                  <div className="mt-6 pt-6 border-t border-gray-100">
+                    <Button
+                      variant="primary"
+                      size="md"
+                      className={`w-full mt-4 flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold shadow-md hover:from-purple-600 hover:to-blue-600 hover:scale-105 transition-all duration-200 border-0`}
+                    >
+                      <span>{t('common.learnMore')}</span>
+                      <ArrowRight className="w-5 h-5 ml-1 transition-transform duration-200 group-hover:translate-x-1" />
+                    </Button>
                   </div>
                 </motion.div>
               );
             })}
           </motion.div>
-
-          {/* CTA Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-            className="mt-16 text-center"
-          >
-            <div className="max-w-3xl mx-auto bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 sm:p-10">
-              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
-                Besoin d'accompagnement dans votre secteur ?
-              </h3>
-              <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-                Nos experts sont là pour vous accompagner dans vos projets. 
-                Contactez-nous pour discuter de vos besoins spécifiques.
-              </p>
-              <Link to="/#contact">
-                <Button 
-                  size="lg"
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 inline-flex items-center gap-2"
-                >
-                  Nous contacter
-                  <ArrowRight className="w-5 h-5" />
-                </Button>
-              </Link>
-            </div>
-          </motion.div>
         </div>
-      </div>
+      </section>
     </DefaultLayout>
   );
 };

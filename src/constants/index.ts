@@ -5,6 +5,8 @@ export const SITE_CONFIG = {
   author: 'Elite Partners RDC',
 };
 
+// Note: NAVIGATION_ITEMS will be handled by the LanguageContext
+// This is kept for backward compatibility but should be replaced with translations
 export const NAVIGATION_ITEMS = [
   { name: 'Accueil', path: '/' },
   { name: 'Services', path: '/services' },

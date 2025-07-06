@@ -4,23 +4,26 @@ import { Link } from 'react-router-dom';
 import SectionTitle from '@/components/SectionTitle';
 import { Settings, Globe, BarChart3 } from 'lucide-react';
 import Button from '@/components/Button';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const ServicesSection: React.FC = () => {
+  const { t } = useLanguage();
+  
   const services = [
     {
       icon: <Settings className="w-8 h-8" />,
-      title: 'Services-Conseils',
-      description: 'Conseil stratégique et opérationnel pour accompagner les entreprises à relever leurs défis complexes.',
+      title: t('services.section.conseil.title'),
+      description: t('services.section.conseil.description'),
     },
     {
       icon: <Globe className="w-8 h-8" />,
-      title: 'Représentation & Accompagnement',
-      description: "Facilitation de l'implantation et l'expansion des entreprises en République Démocratique du Congo.",
+      title: t('services.section.representation.title'),
+      description: t('services.section.representation.description'),
     },
     {
       icon: <BarChart3 className="w-8 h-8" />,
-      title: 'Études & Recherches',
-      description: 'Analyses claires et pertinentes pour des décisions éclairées et la saisie des meilleures opportunités.',
+      title: t('services.section.etudes.title'),
+      description: t('services.section.etudes.description'),
     },
   ];
 
@@ -28,8 +31,8 @@ const ServicesSection: React.FC = () => {
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle
-          title="Nos Services"
-          subtitle="Des solutions professionnelles adaptées pour votre succès en RDC"
+          title={t('services.section.title')}
+          subtitle={t('services.section.subtitle')}
           className="mb-16"
         />
         
@@ -58,7 +61,7 @@ const ServicesSection: React.FC = () => {
         <div className="text-center">
           <Link to="/services">
             <Button variant="primary" size="lg">
-              Découvrir tous nos services
+              {t('services.section.cta')}
             </Button>
           </Link>
         </div>

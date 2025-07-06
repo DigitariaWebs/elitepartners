@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import DefaultLayout from '@/layouts/DefaultLayout';
 import ServicesGrid from '@/sections/ServicesGrid';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const heroImages = [
   'https://elitepartners-rdc.com/wp-content/uploads/2025/06/2151937275-2.jpg',
@@ -11,6 +12,8 @@ const heroImages = [
 
 const Services: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { t } = useLanguage();
+  
   useEffect(() => { setIsVisible(true); }, []);
 
   // Animation variants pour le hero
@@ -84,7 +87,7 @@ const Services: React.FC = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                 Nos services, votre réussite
+                {t('services.hero.title')}
               </motion.span>
             </motion.h1>
           </motion.div>
@@ -97,7 +100,7 @@ const Services: React.FC = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.8 }}
             >
-              Découvrez comment nos solutions sur-mesure transforment vos défis en opportunités de croissance durable, dans tous les secteurs clés.
+              {t('services.hero.subtitle')}
             </motion.p>
           </motion.div>
         </motion.div>

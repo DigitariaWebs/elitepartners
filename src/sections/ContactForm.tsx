@@ -4,8 +4,10 @@ import Button from '@/components/Button';
 import SectionTitle from '@/components/SectionTitle';
 import { CONTACT_INFO } from '@/constants';
 import { Phone, Mail, MapPin, Linkedin } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const ContactForm: React.FC = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -28,16 +30,18 @@ const ContactForm: React.FC = () => {
   const contactItems = [
     {
       icon: <Phone className="w-6 h-6" />,
-      title: 'Téléphone',
+      title: t('contact.info.phone'),
       content: CONTACT_INFO.phones.map((phone, index) => (
-        <a key={index} href={`tel:${phone}`} className="hover:text-blue-600 transition-colors">
-          {phone}
-        </a>
+        <span key={index} style={{ display: 'block', marginBottom: index < CONTACT_INFO.phones.length - 1 ? 4 : 0 }}>
+          <a href={`tel:${phone}`} className="hover:text-blue-600 transition-colors">
+            {phone}
+          </a>
+        </span>
       )),
     },
     {
       icon: <Mail className="w-6 h-6" />,
-      title: 'Email',
+      title: t('contact.info.email'),
       content: (
         <a href={`mailto:${CONTACT_INFO.email}`} className="hover:text-blue-600 transition-colors">
           {CONTACT_INFO.email}
@@ -46,12 +50,12 @@ const ContactForm: React.FC = () => {
     },
     {
       icon: <MapPin className="w-6 h-6" />,
-      title: 'Adresse',
+      title: t('contact.info.address'),
       content: CONTACT_INFO.address,
     },
     {
       icon: <Linkedin className="w-6 h-6" />,
-      title: 'LinkedIn',
+      title: t('contact.info.linkedin'),
       content: (
         <a href={CONTACT_INFO.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors">
           Elite Partners Group
@@ -64,8 +68,8 @@ const ContactForm: React.FC = () => {
     <section id="contact" className="py-12 sm:py-20 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle
-          title="Contactez-nous"
-          subtitle="Nous sommes là pour répondre à vos questions et vous accompagner dans vos projets"
+          title={t('contact.title')}
+          subtitle={t('contact.subtitle')}
           className="mb-10 sm:mb-16"
         />
         
@@ -77,12 +81,12 @@ const ContactForm: React.FC = () => {
           transition={{ duration: 0.6 }}
             className="bg-white rounded-2xl shadow-xl p-6 sm:p-8"
         >
-            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Envoyez-nous un message</h3>
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">{t('contact.form.title')}</h3>
             <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               <div className="grid grid-cols-1 gap-4 sm:gap-6">
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                    Nom complet
+                    {t('contact.form.name.label')}
               </label>
               <input
                 type="text"
@@ -92,13 +96,13 @@ const ContactForm: React.FC = () => {
                 onChange={handleChange}
                 required
                     className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
-                    placeholder="Votre nom"
+                    placeholder={t('contact.form.name.placeholder')}
               />
             </div>
             
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                Email
+                {t('contact.form.email.label')}
               </label>
               <input
                 type="email"
@@ -108,13 +112,13 @@ const ContactForm: React.FC = () => {
                 onChange={handleChange}
                 required
                     className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
-                    placeholder="votre@email.com"
+                    placeholder={t('contact.form.email.placeholder')}
                   />
                 </div>
 
                 <div>
                   <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
-                    Sujet
+                    {t('contact.form.subject.label')}
                   </label>
                   <input
                     type="text"
@@ -124,13 +128,13 @@ const ContactForm: React.FC = () => {
                     onChange={handleChange}
                     required
                     className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
-                    placeholder="Sujet de votre message"
+                    placeholder={t('contact.form.subject.placeholder')}
               />
             </div>
             
             <div>
               <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                Message
+                {t('contact.form.message.label')}
               </label>
               <textarea
                 id="message"
@@ -140,7 +144,7 @@ const ContactForm: React.FC = () => {
                 rows={4}
                 required
                     className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
-                    placeholder="Votre message..."
+                    placeholder={t('contact.form.message.placeholder')}
               />
                 </div>
             </div>
@@ -152,7 +156,7 @@ const ContactForm: React.FC = () => {
                   variant="primary" 
                   className="w-full sm:w-auto px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base"
                 >
-                Envoyer le message
+                {t('contact.form.submit')}
               </Button>
             </div>
           </form>
@@ -165,7 +169,7 @@ const ContactForm: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="bg-white rounded-2xl shadow-xl p-6 sm:p-8"
           >
-            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Nos coordonnées</h3>
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">{t('contact.info.title')}</h3>
             <div className="space-y-6 sm:space-y-8">
               {contactItems.map((item, index) => (
                 <motion.div

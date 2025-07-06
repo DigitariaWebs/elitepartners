@@ -1,24 +1,33 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { LanguageProvider } from '@/contexts/LanguageContext';
 import Home from '@/pages/Home';
 import Services from '@/pages/Services';
 import Secteurs from '@/pages/Secteurs';
 import ConseilPage from '@/pages/services/Conseil';
 import RepresentationPage from '@/pages/services/Representation';
 import EtudesPage from '@/pages/services/Etudes';
+import AgricoleSubsectors from '@/pages/secteurs/Agricole';
+import MinierSubsectors from '@/pages/secteurs/Minier';
+import FinancierSubsectors from '@/pages/secteurs/Financier';
 
 const AppRouter: React.FC = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/secteurs" element={<Secteurs />} />
-        <Route path="/services/conseil" element={<ConseilPage />} />
-        <Route path="/services/representation" element={<RepresentationPage />} />
-        <Route path="/services/etudes" element={<EtudesPage />} />
-      </Routes>
-    </Router>
+    <LanguageProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/secteurs" element={<Secteurs />} />
+          <Route path="/secteurs/agricole" element={<AgricoleSubsectors />} />
+          <Route path="/secteurs/minier" element={<MinierSubsectors />} />
+          <Route path="/secteurs/financier" element={<FinancierSubsectors />} />
+          <Route path="/services/conseil" element={<ConseilPage />} />
+          <Route path="/services/representation" element={<RepresentationPage />} />
+          <Route path="/services/etudes" element={<EtudesPage />} />
+        </Routes>
+      </Router>
+    </LanguageProvider>
   );
 };
 

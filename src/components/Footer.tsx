@@ -2,20 +2,27 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Mail, Phone, Linkedin, ArrowUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { CONTACT_INFO, NAVIGATION_ITEMS } from '@/constants';
+import { CONTACT_INFO } from '@/constants';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Footer: React.FC = () => {
+  const { t } = useLanguage();
+  
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const currentYear = new Date().getFullYear();
 
-  const services = [
-    'Conseil en stratégie',
-    'Transformation digitale',
-    'Gestion de projet',
-    'Formation professionnelle'
+  const services = t('footer.services.list');
+
+  // Navigation items with translations
+  const navigationItems = [
+    { name: t('nav.home'), path: '/' },
+    { name: t('nav.services'), path: '/services' },
+    { name: t('nav.sectors'), path: '/secteurs' },
+    { name: t('nav.about'), path: '/#about' },
+    { name: t('nav.contact'), path: '/#contact' },
   ];
 
   return (
@@ -44,7 +51,7 @@ const Footer: React.FC = () => {
                   className="h-16 w-auto mb-4"
                 />
                 <p className="text-gray-300 text-sm leading-relaxed">
-                  Elite Partners - Votre partenaire de confiance pour l'excellence et l'innovation en République Démocratique du Congo.
+                  {t('footer.company.description')}
                 </p>
               </div>
               
@@ -68,9 +75,9 @@ const Footer: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <h3 className="text-lg font-semibold mb-6 text-white">Liens Rapides</h3>
+              <h3 className="text-lg font-semibold mb-6 text-white">{t('footer.quicklinks.title')}</h3>
               <ul className="space-y-3">
-                {NAVIGATION_ITEMS.map((link, index) => (
+                {navigationItems.map((link, index) => (
                   <li key={index}>
                     <Link
                       to={link.path}
@@ -89,13 +96,13 @@ const Footer: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <h3 className="text-lg font-semibold mb-6 text-white">Nos Services</h3>
+              <h3 className="text-lg font-semibold mb-6 text-white">{t('footer.services.title')}</h3>
               <ul className="space-y-3">
-                {services.map((service, index) => (
+                {Array.isArray(services) ? services.map((service, index) => (
                   <li key={index}>
                     <span className="text-gray-300 text-sm">{service}</span>
                   </li>
-                ))}
+                )) : null}
               </ul>
             </motion.div>
 
@@ -105,7 +112,7 @@ const Footer: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <h3 className="text-lg font-semibold mb-6 text-white">Contact</h3>
+              <h3 className="text-lg font-semibold mb-6 text-white">{t('footer.contact.title')}</h3>
               <div className="space-y-4">
                 
                 {/* Address */}
@@ -151,7 +158,7 @@ const Footer: React.FC = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <p className="text-gray-400 text-sm">
-                © {currentYear} Elite Partners RDC. Tous droits réservés.
+                {t('footer.copyright')}
               </p>
               
               {/* Back to top button */}

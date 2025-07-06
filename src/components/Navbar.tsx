@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
-import { CONTACT_INFO, NAVIGATION_ITEMS } from '@/constants';
+import { Menu, X, Globe } from 'lucide-react';
+import { CONTACT_INFO } from '@/constants';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,10 +12,19 @@ const Navbar: React.FC = () => {
   const [visible, setVisible] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
+  const { language, setLanguage, t } = useLanguage();
   const isHomePage = location.pathname === '/';
   const isServicesPage = location.pathname === '/services';
   const isSectorsPage = location.pathname === '/secteurs';
   const isGradientPage = isServicesPage || isSectorsPage;
+
+  const navigationItems = [
+    { name: t('nav.home'), path: '/' },
+    { name: t('nav.services'), path: '/services' },
+    { name: t('nav.sectors'), path: '/secteurs' },
+    { name: t('nav.about'), path: '/#about' },
+    { name: t('nav.contact'), path: '/#contact' },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -180,7 +190,7 @@ const Navbar: React.FC = () => {
 
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-6">
-              {NAVIGATION_ITEMS.map((item) => (
+              {navigationItems.map((item) => (
                 <motion.button
                   key={item.name}
                   onClick={() => handleNavigation(item.path)}
@@ -193,6 +203,25 @@ const Navbar: React.FC = () => {
                   {item.name}
                 </motion.button>
               ))}
+              <motion.button
+                onClick={() => setLanguage(language === 'fr' ? 'en' : 'fr')}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-200 font-montserrat flex items-center space-x-1 ${
+                  isServicesPage || isSectorsPage
+                    ? !isScrolled
+                      ? 'text-white/90 hover:bg-white/10 hover:text-white'
+                      : 'text-gray-900 hover:bg-gray-100 hover:text-blue-700'
+                    : isGradientPage
+                      ? 'text-white/90 hover:bg-white/10 hover:text-white'
+                      : isHomePage && !isScrolled
+                        ? 'text-white/90 hover:bg-white/10 hover:text-white'
+                        : 'text-gray-700 hover:bg-blue-50/50 hover:text-blue-600'
+                }`}
+              >
+                <Globe size={16} />
+                <span>{language === 'fr' ? 'EN' : 'FR'}</span>
+              </motion.button>
             </div>
           </div>
 
@@ -235,7 +264,7 @@ const Navbar: React.FC = () => {
                   ? 'bg-white/10 backdrop-blur-md border-white/20'
                   : 'bg-white border-gray-100'
           }`}>
-            {NAVIGATION_ITEMS.map((item) => (
+            {navigationItems.map((item) => (
               <motion.button
                 key={item.name}
                 onClick={() => handleNavigation(item.path)}
@@ -248,6 +277,25 @@ const Navbar: React.FC = () => {
                 {item.name}
               </motion.button>
             ))}
+            <motion.button
+              onClick={() => setLanguage(language === 'fr' ? 'en' : 'fr')}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className={`block w-full text-left px-4 py-3 rounded-lg text-base font-semibold transition-all duration-200 font-montserrat flex items-center space-x-2 ${
+                isServicesPage || isSectorsPage
+                  ? !isScrolled
+                    ? 'text-white/90 hover:bg-white/10 hover:text-white'
+                    : 'text-gray-900 hover:bg-gray-100 hover:text-blue-700'
+                  : isGradientPage
+                    ? 'text-white/90 hover:bg-white/10 hover:text-white'
+                    : isHomePage && !isScrolled
+                      ? 'text-white/90 hover:bg-white/10 hover:text-white'
+                      : 'text-gray-700 hover:bg-blue-50/50 hover:text-blue-600'
+              }`}
+            >
+              <Globe size={16} />
+              <span>{language === 'fr' ? 'English' : 'Français'}</span>
+            </motion.button>
           </div>
         </motion.div>
       )}

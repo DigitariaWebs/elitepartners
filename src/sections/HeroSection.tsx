@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const HeroSection: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     setIsVisible(true);
@@ -103,7 +105,7 @@ const HeroSection: React.FC = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Votre partenaire
+              {t('hero.title.part1')}
             </motion.span>
             <motion.span
               className="block bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
@@ -111,7 +113,7 @@ const HeroSection: React.FC = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Stratégique
+              {t('hero.title.part2')}
             </motion.span>
             <motion.span
               className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl mt-2"
@@ -119,7 +121,7 @@ const HeroSection: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              Pour un Business réussi
+              {t('hero.title.part3')}
             </motion.span>
           </motion.h1>
         </motion.div>
@@ -132,8 +134,7 @@ const HeroSection: React.FC = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
           >
-            Transformez vos ambitions en succès avec notre expertise en stratégie d'entreprise, 
-            innovation et développement durable.
+            {t('hero.subtitle')}
           </motion.p>
         </motion.div>
 
@@ -156,7 +157,7 @@ const HeroSection: React.FC = () => {
                 }
               }}
             >
-              Démarrer maintenant
+              {t('hero.cta.primary')}
             </Button>
           </motion.div>
           
@@ -171,7 +172,7 @@ const HeroSection: React.FC = () => {
               variant="outline" 
                 className="w-full sm:w-auto border-2 border-white text-white hover:bg-white hover:text-gray-900 backdrop-blur-sm bg-white/10 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold"
             >
-              Découvrir nos services
+              {t('hero.cta.secondary')}
             </Button>
             </Link>
           </motion.div>

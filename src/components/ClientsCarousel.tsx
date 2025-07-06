@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const ClientsCarousel: React.FC = () => {
+  const { t } = useLanguage();
   const [isPaused, setIsPaused] = useState(false);
 
   const clients = [
@@ -72,7 +74,7 @@ const ClientsCarousel: React.FC = () => {
           className="text-center mb-12"
         >
           <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 mb-2">
-            Ils nous ont choisi
+            {t('clients.title')}
           </h3>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"></div>
         </motion.div>
@@ -125,7 +127,7 @@ const ClientsCarousel: React.FC = () => {
           className="text-center mt-8"
         >
           <p className="text-sm text-gray-500 max-w-2xl mx-auto">
-            Plus de 50+ entreprises nous font confiance pour leur développement en République Démocratique du Congo
+            {t('clients.subtitle')}
           </p>
         </motion.div>
       </div>
