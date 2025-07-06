@@ -10,7 +10,8 @@ import {
   TrendingUp, 
   FileText, 
   MapPin, 
-  Target 
+  Target,
+  ArrowRight
 } from 'lucide-react';
 import SectionTitle from '@/components/SectionTitle';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -160,8 +161,17 @@ const ServicesGrid: React.FC = () => {
 
                     {/* Description */}
                       <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-4 sm:mb-6">
-                      {service.description}
-                    </p>
+                        {service.description}
+                      </p>
+                      <Link to={service.path} className="block">
+                        <button
+                          className="mt-2 mb-4 flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold shadow-md hover:from-purple-600 hover:to-blue-600 hover:scale-105 transition-all duration-200 px-5 py-2 text-sm sm:text-base border-0"
+                          type="button"
+                        >
+                          <span>{t('common.learnMore')}</span>
+                          <ArrowRight className="w-5 h-5 ml-1 transition-transform duration-200 group-hover:translate-x-1" />
+                        </button>
+                      </Link>
 
                     {/* Features List */}
                       <div className="space-y-2 sm:space-y-3">
