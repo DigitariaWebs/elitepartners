@@ -18,10 +18,10 @@ const translations = {
     'nav.contact': 'Contact',
 
     // Hero Section
-    'hero.title.part1': 'Votre partenaire',
+    'hero.title.part1': 'Leaders du Conseil',
     'hero.title.part2': 'Stratégique',
-    'hero.title.part3': 'Pour un Business réussi',
-    'hero.subtitle': 'Transformez vos ambitions en succès avec notre expertise en stratégie d\'entreprise, innovation et développement durable.',
+    'hero.title.part3': 'en RDC',
+    'hero.subtitle': '15 ans d\'expertise au service de votre expansion en République Démocratique du Congo. Nous transformons les défis complexes en opportunités de croissance durable.',
     'hero.cta.primary': 'Démarrer maintenant',
     'hero.cta.secondary': 'Découvrir nos services',
 
@@ -224,10 +224,10 @@ const translations = {
     'nav.contact': 'Contact',
 
     // Hero Section
-    'hero.title.part1': 'Your Strategic',
-    'hero.title.part2': 'Partner',
-    'hero.title.part3': 'For Business Success',
-    'hero.subtitle': 'Transform your ambitions into success with our expertise in corporate strategy, innovation and sustainable development.',
+    'hero.title.part1': 'Strategic Consulting',
+    'hero.title.part2': 'Leaders',
+    'hero.title.part3': 'in DRC',
+    'hero.subtitle': '15 years of expertise serving your expansion in the Democratic Republic of Congo. We transform complex challenges into sustainable growth opportunities.',
     'hero.cta.primary': 'Get Started Now',
     'hero.cta.secondary': 'Discover Our Services',
 

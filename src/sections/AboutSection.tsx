@@ -71,14 +71,8 @@ const AboutSection: React.FC = () => {
   ];
 
   return (
-    <section id="about" ref={ref} className="py-20 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
-      {/* Background decorations */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-100 rounded-full opacity-20"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-100 rounded-full opacity-20"></div>
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" ref={ref} className="py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -92,126 +86,120 @@ const AboutSection: React.FC = () => {
             />
           </motion.div>
 
-          {/* Main Content Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+          {/* Main Content */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 items-start mb-20">
             
-            {/* Left Column - Image */}
-            <motion.div
-              variants={itemVariants}
-              className="relative"
-            >
-              <div className="relative overflow-hidden rounded-2xl shadow-2xl">
-                <motion.div
-                  className="bg-gradient-to-br from-blue-600 to-purple-600 h-96 flex items-center justify-center"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {/* Logo image from footer */}
-                  <img 
-                    src={CONTACT_INFO.logo}
-                    alt="Elite Partners Logo"
-                    className="h-40 w-auto"
-                  />
-                </motion.div>
-                
-                {/* Floating elements */}
-                <motion.div
-                  className="absolute -top-4 -right-4 w-8 h-8 bg-blue-500 rounded-full"
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-                <motion.div
-                  className="absolute -bottom-4 -left-4 w-6 h-6 bg-purple-500 rounded-full"
-                  animate={{ y: [0, 10, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-                />
+            {/* Left Column - Company Overview */}
+            <motion.div variants={itemVariants} className="lg:col-span-2 space-y-8">
+              <div className="prose prose-lg max-w-none">
+                <h3 className="text-3xl font-bold text-gray-900 mb-6 leading-tight">
+                  {t('about.who.title')}
+                </h3>
+                <p className="text-xl text-gray-700 leading-relaxed mb-6">
+                  {t('about.who.description')}
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                  <div className="border-l-4 border-blue-600 pl-6">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-3">Notre Expertise</h4>
+                    <p className="text-gray-600">Plus de 15 ans d'expérience dans le conseil stratégique et l'accompagnement des entreprises vers l'excellence opérationnelle.</p>
+                  </div>
+                  <div className="border-l-4 border-blue-600 pl-6">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-3">Notre Approche</h4>
+                    <p className="text-gray-600">Une méthodologie éprouvée basée sur l'analyse rigoureuse et la mise en œuvre pragmatique de solutions sur mesure.</p>
+                  </div>
+                </div>
               </div>
             </motion.div>
 
-            {/* Right Column - Content */}
-            <motion.div variants={itemVariants} className="space-y-8">
-              <div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                  {t('about.who.title')}
-                </h3>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  {t('about.who.description')}
-                </p>
+            {/* Right Column - Key Metrics */}
+            <motion.div variants={itemVariants} className="bg-gray-50 rounded-lg p-8">
+              <h4 className="text-xl font-bold text-gray-900 mb-6">En Chiffres</h4>
+              <div className="space-y-6">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-blue-600 mb-2">50+</div>
+                  <div className="text-sm text-gray-600 uppercase tracking-wide">Clients Accompagnés</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-blue-600 mb-2">15</div>
+                  <div className="text-sm text-gray-600 uppercase tracking-wide">Années d'Expérience</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-blue-600 mb-2">3</div>
+                  <div className="text-sm text-gray-600 uppercase tracking-wide">Secteurs d'Activité</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-blue-600 mb-2">95%</div>
+                  <div className="text-sm text-gray-600 uppercase tracking-wide">Taux de Satisfaction</div>
+                </div>
               </div>
             </motion.div>
           </div>
 
-          {/* Cards Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+          {/* Mission & Vision Section */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
             
-            {/* Mission Card */}
+            {/* Mission */}
             <motion.div
               variants={cardVariants}
-              whileHover={{ y: -5, scale: 1.02 }}
-              transition={{ duration: 0.3 }}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl border border-gray-100 relative overflow-hidden group"
+              className="border-l-4 border-blue-600 pl-8"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div className="relative z-10">
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4 group-hover:bg-blue-200 transition-colors duration-300">
-                    <Target className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900">{t('about.mission.title')}</h3>
+              <div className="flex items-start mb-6">
+                <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                  <Target className="w-6 h-6 text-white" />
                 </div>
-                <p className="text-gray-600 leading-relaxed">
-                  {t('about.mission.description')}
-                </p>
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{t('about.mission.title')}</h3>
+                  <div className="w-16 h-1 bg-blue-600 rounded"></div>
+                </div>
               </div>
+              <p className="text-lg text-gray-700 leading-relaxed">
+                {t('about.mission.description')}
+              </p>
             </motion.div>
 
-            {/* Vision Card */}
+            {/* Vision */}
             <motion.div
               variants={cardVariants}
-              whileHover={{ y: -5, scale: 1.02 }}
-              transition={{ duration: 0.3 }}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl border border-gray-100 relative overflow-hidden group"
+              className="border-l-4 border-blue-600 pl-8"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div className="relative z-10">
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mr-4 group-hover:bg-purple-200 transition-colors duration-300">
-                    <Eye className="w-6 h-6 text-purple-600" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900">{t('about.vision.title')}</h3>
+              <div className="flex items-start mb-6">
+                <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                  <Eye className="w-6 h-6 text-white" />
                 </div>
-                <p className="text-gray-600 leading-relaxed">
-                  {t('about.vision.description')}
-                </p>
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{t('about.vision.title')}</h3>
+                  <div className="w-16 h-1 bg-blue-600 rounded"></div>
+                </div>
               </div>
+              <p className="text-lg text-gray-700 leading-relaxed">
+                {t('about.vision.description')}
+              </p>
             </motion.div>
           </div>
 
           {/* Values Section */}
           <motion.div variants={itemVariants}>
-            <div className="text-center mb-12">
+            <div className="text-center mb-16">
               <h3 className="text-3xl font-bold text-gray-900 mb-4">{t('about.values.title')}</h3>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 {t('about.values.description')}
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {valeurs.map((valeur, index) => (
                 <motion.div
                   key={index}
                   variants={cardVariants}
-                  whileHover={{ y: -5, scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
-                  className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl border border-gray-100 text-center group"
+                  className="text-center group"
                 >
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-16 h-16 bg-blue-600 rounded-lg flex items-center justify-center mx-auto mb-6">
                     <div className="text-white">
                       {valeur.icon}
                     </div>
                   </div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-2">{valeur.title}</h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">{valeur.description}</p>
+                  <h4 className="text-xl font-bold text-gray-900 mb-4">{valeur.title}</h4>
+                  <p className="text-gray-600 leading-relaxed">{valeur.description}</p>
                 </motion.div>
               ))}
             </div>

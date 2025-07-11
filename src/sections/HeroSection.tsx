@@ -41,7 +41,7 @@ const HeroSection: React.FC = () => {
 
   return (
     <section className="relative min-h-[100vh] flex items-center justify-center overflow-hidden py-20 px-4">
-      {/* Background Image with Parallax Effect */}
+      {/* Background Video with Parallax Effect */}
       <motion.div
         variants={imageVariants}
         initial="hidden"
@@ -49,9 +49,12 @@ const HeroSection: React.FC = () => {
         className="absolute inset-0 z-0"
       >
         <div className="absolute inset-0 bg-black/60 z-10"></div>
-        <motion.img
-          src="/home images/a-professional-portrait-photograph-showc_T4WBGdZ8QHGxhxXJOCKFJw_w6Rmz9tRQBablPo2Mv7t2g.jpeg"
-          alt="Professional Business"
+        <motion.video
+          src="https://videos.pexels.com/video-files/8123971/8123971-hd_1920_1080_30fps.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
           className="w-full h-full object-cover"
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
