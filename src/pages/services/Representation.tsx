@@ -1,113 +1,137 @@
-import React, { useEffect } from 'react';
-import { motion } from 'framer-motion';
-import Button from '@/components/Button';
+import React from 'react';
+import DefaultLayout from '@/layouts/DefaultLayout';
 import { Link } from 'react-router-dom';
-import { useLanguage } from '@/contexts/LanguageContext';
-import image21 from '/public/21.png';
-import image22 from '/public/22.png';
-import image23 from '/public/23.png';
+import { FaArrowRight } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
-const RepresentationPage: React.FC = () => {
-  const { t } = useLanguage();
-  
-  useEffect(() => { window.scrollTo(0, 0); }, []);
+const cardVariants = {
+  offscreen: {
+    y: 50,
+    opacity: 0,
+  },
+  onscreen: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      bounce: 0.4,
+      duration: 0.8,
+    }
+  }
+};
 
-  // Helper function to get translation as array
-  const getTranslationArray = (key: string): string[] => {
-    const translation = t(key);
-    return Array.isArray(translation) ? translation : [];
-  };
-
-  const representations = [
-    {
-      titre: t('representation.admin.title'),
-      description: (
-        <>
-          <p className="mb-3">{t('representation.admin.description')}</p>
-          <ul className="list-disc pl-5 space-y-2">
-            {getTranslationArray('representation.admin.bullets').map((bullet: string, index: number) => (
-              <li key={index}>{bullet}</li>
-            ))}
-          </ul>
-        </>
-      ),
-      image: image21,
-    },
-    {
-      titre: t('representation.local.title'),
-      description: (
-        <>
-          <p className="mb-3">{t('representation.local.description')}</p>
-          <ul className="list-disc pl-5 space-y-2">
-            {getTranslationArray('representation.local.bullets').map((bullet: string, index: number) => (
-              <li key={index}>{bullet}</li>
-            ))}
-          </ul>
-        </>
-      ),
-      image: image22,
-    },
-    {
-      titre: t('representation.market.title'),
-      description: (
-        <>
-          <p className="mb-3">{t('representation.market.description')}</p>
-          <ul className="list-disc pl-5 space-y-2">
-            {getTranslationArray('representation.market.bullets').map((bullet: string, index: number) => (
-              <li key={index}>{bullet}</li>
-            ))}
-          </ul>
-        </>
-      ),
-      image: image23,
-    },
-  ];
-
-  return (
-    <div className="py-12 bg-gradient-to-br from-gray-50 to-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-montserrat">{t('representation.title')}</h1>
-        </div>
-        <motion.div className="space-y-16">
-          {representations.map((r, i) => {
-            const isEven = i % 2 === 0;
-            return (
-              <motion.div
-                key={r.titre}
-                className={`flex flex-col-reverse md:flex-row ${isEven ? '' : 'md:flex-row-reverse'} items-center gap-8 md:gap-8 group`}
-              >
-                {/* Texte */}
-                <div className="w-full md:w-1/2">
-                  <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{r.titre}</h2>
-                  <div className="text-gray-700 text-base md:text-lg leading-relaxed">{r.description}</div>
-                </div>
-                {/* Image */}
-                <div className="w-full md:w-1/2 flex justify-center">
-                  <img
-                    src={r.image}
-                    alt={r.titre}
-                    className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96"
-                  />
-                </div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
-        {/* CTA */}
-        <div className="text-center py-8 border-t mt-16">
-          <p className="text-gray-600 mb-6">
-            {t('representation.cta.text')}
-          </p>
-          <Link to="/#contact">
-            <Button variant="primary" size="lg">
-              {t('representation.cta.button')}
-            </Button>
-          </Link>
-        </div>
-      </div>
+const ServiceCard = ({ title, description, link, imageUrl, bgColorClass, textColorClass, buttonBgClass, buttonTextColorClass }) => (
+  <motion.div 
+    className={`rounded-xl shadow-lg overflow-hidden h-full flex flex-col ${bgColorClass}`}
+    variants={cardVariants}
+    whileHover={{ y: -8, transition: { type: 'spring', stiffness: 300 } }}
+  >
+    <img src={imageUrl} alt={title} className="w-full h-48 object-cover"/>
+    <div className="p-6 flex flex-col flex-grow">
+      <h3 className={`text-xl font-bold mb-2 ${textColorClass}`}>{title}</h3>
+      <p className={`mb-4 flex-grow ${textColorClass} opacity-90`}>{description}</p>
+      <Link to={link} className="mt-auto">
+        <button className={`font-bold py-2 px-6 rounded-lg flex items-center gap-2 transition-all duration-300 ${buttonBgClass} ${buttonTextColorClass} hover:opacity-90`}>
+          En savoir plus <FaArrowRight />
+        </button>
+      </Link>
     </div>
+  </motion.div>
+);
+
+const RepresentationIndexPage: React.FC = () => {
+  return (
+    <DefaultLayout>
+      <div className="bg-gray-50">
+        {/* Header */}
+        <header className="text-center py-16 md:py-24 bg-white">
+          <div className="container mx-auto px-4">
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-4xl md:text-5xl font-bold text-gray-800"
+            >
+              Représentation & Accompagnement
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-lg text-gray-600 mt-4 max-w-3xl mx-auto"
+            >
+              Votre partenaire de confiance pour établir et développer votre présence en République Démocratique du Congo. Nous transformons les défis en opportunités.
+            </motion.p>
+          </div>
+        </header>
+
+        {/* Services Grid */}
+        <main className="py-16 md:py-20">
+          <motion.div 
+            className="container mx-auto px-4"
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ staggerChildren: 0.2 }}
+          >
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+              <ServiceCard 
+                title="Accompagnement Administratif & Légal"
+                description="Assurez votre conformité et naviguez sereinement dans le paysage réglementaire congolais."
+                link="/services/representation/administratif"
+                imageUrl="/imgsec/10.png"
+                bgColorClass="bg-blue-900"
+                textColorClass="text-white"
+                buttonBgClass="bg-white"
+                buttonTextColorClass="text-blue-600"
+              />
+              <ServiceCard 
+                title="Représentation Locale"
+                description="Devenez un acteur local fort grâce à notre présence et notre réseau sur le terrain."
+                link="/services/representation/locale"
+                imageUrl="/imgsec/6.png"
+                bgColorClass="bg-purple-900"
+                textColorClass="text-white"
+                buttonBgClass="bg-white"
+                buttonTextColorClass="text-purple-600"
+              />
+              <ServiceCard 
+                title="Pénétration de Marché"
+                description="Entrez sur le marché avec une stratégie gagnante, de l'étude à la première vente."
+                link="/services/representation/penetration-marche"
+                imageUrl="/imgsec/12.png"
+                bgColorClass="bg-teal-900"
+                textColorClass="text-white"
+                buttonBgClass="bg-white"
+                buttonTextColorClass="text-teal-600"
+              />
+            </div>
+          </motion.div>
+        </main>
+
+        {/* CTA Section */}
+        <section className="bg-white py-20">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">
+              Prêt à développer votre entreprise en République Démocratique du Congo ?
+            </h2>
+            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+              Notre équipe d'experts est prête à vous accompagner. Planifions ensemble votre succès.
+            </p>
+            <Link to="/#contact">
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-blue-600 text-white font-bold py-4 px-10 rounded-lg hover:bg-blue-700 transition-shadow duration-300 shadow-lg hover:shadow-xl"
+              >
+                Contactez-nous
+              </motion.button>
+            </Link>
+          </div>
+        </section>
+      </div>
+    </DefaultLayout>
   );
 };
 
-export default RepresentationPage; 
+export default RepresentationIndexPage; 

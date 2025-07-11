@@ -15,6 +15,9 @@ import StrategiquesPage from '@/pages/services/Strategiques';
 import AgricoleSubsectors from '@/pages/secteurs/Agricole';
 import MinierSubsectors from '@/pages/secteurs/Minier';
 import FinancierSubsectors from '@/pages/secteurs/Financier';
+import AdministratifPage from '@/pages/services/representation/administratif';
+import LocalePage from '@/pages/services/representation/locale';
+import PenetrationMarchePage from '@/pages/services/representation/penetration-marche';
 
 const AppRouter: React.FC = () => {
   return (
@@ -32,6 +35,9 @@ const AppRouter: React.FC = () => {
           <Route path="/services/conseil/strategie" element={<StrategiePage />} />
           <Route path="/services/conseil/rh" element={<RHPage />} />
           <Route path="/services/representation" element={<RepresentationPage />} />
+          <Route path="/services/representation/administratif" element={<AdministratifPage />} />
+          <Route path="/services/representation/locale" element={<LocalePage />} />
+          <Route path="/services/representation/penetration-marche" element={<PenetrationMarchePage />} />
           <Route path="/services/etudes" element={<EtudesPage />} />
           <Route path="/services/economique" element={<EconomiquePage />} />
           <Route path="/services/strategiques" element={<StrategiquesPage />} />
