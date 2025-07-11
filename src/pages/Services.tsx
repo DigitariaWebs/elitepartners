@@ -45,9 +45,14 @@ const Services: React.FC = () => {
           variants={imageHeroVariants}
           initial="hidden"
           animate="visible"
-          className="absolute inset-0 z-0 flex w-full h-full"
+          className="absolute inset-0 z-0 w-full h-full"
         >
-          <div className="flex w-full h-full">
+          {/* Mobile: une seule image */}
+          <div className="flex w-full h-full sm:hidden">
+            <img src={heroImages[0]} alt="Service 1" className="w-full h-full object-cover" />
+          </div>
+          {/* Desktop/tablette: 3 images côte à côte */}
+          <div className="hidden sm:flex w-full h-full">
             <img src={heroImages[0]} alt="Service 1" className="w-1/3 h-full object-cover" />
             <img src={heroImages[1]} alt="Service 2" className="w-1/3 h-full object-cover" />
             <img src={heroImages[2]} alt="Service 3" className="w-1/3 h-full object-cover" />

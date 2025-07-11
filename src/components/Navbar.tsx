@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X, Globe, Briefcase, Users, BookOpen } from 'lucide-react';
 import { CONTACT_INFO } from '@/constants';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -17,6 +17,112 @@ const Navbar: React.FC = () => {
   const isServicesPage = location.pathname === '/services';
   const isSectorsPage = location.pathname === '/secteurs';
   const isGradientPage = isServicesPage || isSectorsPage;
+
+  // Ajout d'un état pour le survol du menu Services (desktop)
+  const [servicesMenuOpen, setServicesMenuOpen] = useState(false);
+
+  // Sous-menus pour Services
+  // Couleurs et icônes pour chaque colonne
+  const servicesSubmenus = [
+    {
+      title: t('services.section.conseil.title'),
+      color: 'text-blue-700',
+      border: 'border-blue-700',
+      icon: <Briefcase className="inline-block mr-2 text-blue-700" size={20} />,
+      items: [
+        { label: 'Conseil fiscal et conformité réglementaire', path: '/services/conseil/fiscal' },
+        { label: 'Conseil en Gestion des Ressources humaines', path: '/services/conseil/rh' },
+        { label: 'Conseil en Stratégie et Transformation d’Entreprise', path: '/services/conseil/strategie' },
+      ],
+    },
+    {
+      title: t('services.section.representation.title'),
+      color: 'text-purple-700',
+      border: 'border-purple-700',
+      icon: <Users className="inline-block mr-2 text-purple-700" size={20} />,
+      items: [
+        { label: 'Accompagnement administratif et légal', path: '/services/representation#admin' },
+        { label: 'Représentation locale', path: '/services/representation#locale' },
+        { label: 'Stratégies de pénétration de marché', path: '/services/representation#marche' },
+      ],
+    },
+    {
+      title: t('services.section.etudes.title'),
+      color: 'text-cyan-800',
+      border: 'border-cyan-800',
+      icon: <BookOpen className="inline-block mr-2 text-cyan-800" size={20} />,
+      items: [
+        { label: 'Études de marché', path: '/services/etudes#marche' },
+        { label: 'Études économiques', path: '/services/etudes#eco' },
+        { label: 'Évaluations stratégiques', path: '/services/etudes#eval' },
+      ],
+    },
+  ];
+
+  // Ajout d'un état pour le survol du menu Secteur (desktop)
+  const [sectorsMenuOpen, setSectorsMenuOpen] = useState(false);
+
+  const sectorsSubmenus = [
+    {
+      title: 'Agricole',
+      color: 'text-green-700',
+      border: 'border-green-700',
+      items: [
+        { label: 'Agroalimentaire', path: '/secteurs/agricole/agroalimentaire' },
+        { label: 'Agriculture vivrière', path: '/secteurs/agricole/vivriere' },
+        { label: 'Pêche et aquaculture', path: '/secteurs/agricole/peche' },
+        { label: 'Agriculture industrielle', path: '/secteurs/agricole/industrielle' },
+      ],
+    },
+    {
+      title: 'Minier',
+      color: 'text-yellow-700',
+      border: 'border-yellow-700',
+      items: [
+        { label: 'Assurance minière', path: '/secteurs/minier/assurance' },
+        { label: 'Fiscalité et redevances minières', path: '/secteurs/minier/fiscalite' },
+        { label: 'Banques d’investissement spécialisées', path: '/secteurs/minier/banques' },
+        { label: 'Audit et gestion financière minière', path: '/secteurs/minier/audit' },
+      ],
+    },
+    {
+      title: 'Financier',
+      color: 'text-blue-900',
+      border: 'border-blue-900',
+      items: [
+        { label: 'Assurance', path: '/secteurs/financier/assurance' },
+        { label: 'Gestion d’actifs', path: '/secteurs/financier/actifs' },
+        { label: 'Audit et contrôle financier', path: '/secteurs/financier/audit' },
+        { label: 'Banques d’inv', path: '/secteurs/financier/banques' },
+      ],
+    },
+  ];
+
+  // Ajout d'un état pour le survol du menu À propos (desktop)
+  const [aboutMenuOpen, setAboutMenuOpen] = useState(false);
+
+  const aboutSubmenus = [
+    {
+      title: 'À propos',
+      color: 'text-blue-700',
+      border: 'border-blue-700',
+      items: [
+        { label: 'Mission', path: '/about/mission' },
+        { label: 'Vision', path: '/about/vision' },
+        { label: 'Valeurs', path: '/about/valeurs' },
+      ],
+    },
+    {
+      title: 'Projets',
+      color: 'text-purple-700',
+      border: 'border-purple-700',
+      items: [
+        { label: 'AgroBusiness', path: '/about/projets/agrobusiness' },
+        { label: 'Business Intelligence', path: '/about/projets/bi' },
+        { label: 'Banques d’investissement spécialisées', path: '/about/projets/banques' },
+      ],
+    },
+  ];
 
   const navigationItems = [
     { name: t('nav.home'), path: '/' },
@@ -190,19 +296,74 @@ const Navbar: React.FC = () => {
 
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-6">
-              {navigationItems.map((item) => (
-                <motion.button
-                  key={item.name}
-                  onClick={() => handleNavigation(item.path)}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 font-montserrat ${
-                    getItemStyles(isActive(item.path))
-                  }`}
-                >
-                  {item.name}
-                </motion.button>
-              ))}
+              {navigationItems.map((item) =>
+                item.name === t('nav.services') ? (
+                  <div
+                    key={item.name}
+                    className="relative group"
+                    onMouseEnter={() => setServicesMenuOpen(true)}
+                    onMouseLeave={() => setServicesMenuOpen(false)}
+                  >
+                    <motion.button
+                      onClick={() => handleNavigation(item.path)}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 font-montserrat flex items-center ${getItemStyles(isActive(item.path))}`}
+                    >
+                      {item.name}
+                      <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                    </motion.button>
+                  </div>
+                ) : (
+                  item.name === t('nav.sectors') ? (
+                    <div
+                      key={item.name}
+                      className="relative group"
+                      onMouseEnter={() => setSectorsMenuOpen(true)}
+                      onMouseLeave={() => setSectorsMenuOpen(false)}
+                    >
+                      <motion.button
+                        onClick={() => handleNavigation(item.path)}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 font-montserrat flex items-center ${getItemStyles(isActive(item.path))}`}
+                      >
+                        {item.name}
+                        <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                      </motion.button>
+                    </div>
+                  ) : (
+                    item.name === t('nav.about') ? (
+                      <div
+                        key={item.name}
+                        className="relative group"
+                        onMouseEnter={() => setAboutMenuOpen(true)}
+                        onMouseLeave={() => setAboutMenuOpen(false)}
+                      >
+                        <motion.button
+                          onClick={() => handleNavigation(item.path)}
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 font-montserrat flex items-center ${getItemStyles(isActive(item.path))}`}
+                        >
+                          {item.name}
+                          <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                        </motion.button>
+                      </div>
+                    ) : (
+                      <motion.button
+                        key={item.name}
+                        onClick={() => handleNavigation(item.path)}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 font-montserrat ${getItemStyles(isActive(item.path))}`}
+                      >
+                        {item.name}
+                      </motion.button>
+                    )
+                  )
+                )
+              )}
               <motion.button
                 onClick={() => setLanguage(language === 'fr' ? 'en' : 'fr')}
                 whileHover={{ scale: 1.05 }}
@@ -246,6 +407,129 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
+      {/* MEGA MENU ENFANT DIRECT DU NAV */}
+      <AnimatePresence>
+        {servicesMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ duration: 0.18 }}
+            className="absolute left-0 right-0 top-full w-screen max-w-none z-50
+              bg-white text-gray-900 shadow-2xl border-b border-gray-100
+              py-10"
+            onMouseEnter={() => setServicesMenuOpen(true)}
+            onMouseLeave={() => setServicesMenuOpen(false)}
+          >
+            <div className="max-w-7xl mx-auto px-4 md:px-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-12 w-full">
+                {servicesSubmenus.map((col) => (
+                  <div key={col.title} className="min-w-0">
+                    <div className={`font-bold mb-2 text-lg ${col.color}`}>{col.title}</div>
+                    <div className={`h-1 w-10 mb-4 rounded ${col.border} bg-current`}></div>
+                    <ul className="space-y-2">
+                      {col.items.map((sub) => (
+                        <li key={sub.label}>
+                          <Link
+                            to={sub.path}
+                            className="block px-0 py-1 text-base text-gray-700 hover:text-blue-700 hover:underline transition"
+                            onClick={() => setServicesMenuOpen(false)}
+                          >
+                            {sub.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* MEGA MENU SECTEUR ENFANT DIRECT DU NAV */}
+      <AnimatePresence>
+        {sectorsMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ duration: 0.18 }}
+            className="absolute left-0 right-0 top-full w-screen max-w-none z-50
+              bg-white text-gray-900 shadow-2xl border-b border-gray-100
+              py-10"
+            onMouseEnter={() => setSectorsMenuOpen(true)}
+            onMouseLeave={() => setSectorsMenuOpen(false)}
+          >
+            <div className="max-w-7xl mx-auto px-4 md:px-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-12 w-full">
+                {sectorsSubmenus.map((col) => (
+                  <div key={col.title} className="min-w-0">
+                    <div className={`font-bold mb-2 text-lg ${col.color}`}>{col.title}</div>
+                    <div className={`h-1 w-10 mb-4 rounded ${col.border} bg-current`}></div>
+                    <ul className="space-y-2">
+                      {col.items.map((sub) => (
+                        <li key={sub.label}>
+                          <Link
+                            to={sub.path}
+                            className="block px-0 py-1 text-base text-gray-700 hover:text-blue-700 hover:underline transition"
+                            onClick={() => setSectorsMenuOpen(false)}
+                          >
+                            {sub.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* MEGA MENU ABOUT ENFANT DIRECT DU NAV */}
+      <AnimatePresence>
+        {aboutMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ duration: 0.18 }}
+            className="absolute left-0 right-0 top-full w-screen max-w-none z-50
+              bg-white text-gray-900 shadow-2xl border-b border-gray-100
+              py-10"
+            onMouseEnter={() => setAboutMenuOpen(true)}
+            onMouseLeave={() => setAboutMenuOpen(false)}
+          >
+            <div className="max-w-4xl mx-auto px-4 md:px-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full">
+                {aboutSubmenus.map((col) => (
+                  <div key={col.title} className="min-w-0">
+                    <div className={`font-bold mb-2 text-lg ${col.color}`}>{col.title}</div>
+                    <div className={`h-1 w-10 mb-4 rounded ${col.border} bg-current`}></div>
+                    <ul className="space-y-2">
+                      {col.items.map((sub) => (
+                        <li key={sub.label}>
+                          <Link
+                            to={sub.path}
+                            className="block px-0 py-1 text-base text-gray-700 hover:text-blue-700 hover:underline transition"
+                            onClick={() => setAboutMenuOpen(false)}
+                          >
+                            {sub.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <AnimatePresence>
       {isOpen && (
         <motion.div
@@ -264,19 +548,154 @@ const Navbar: React.FC = () => {
                   ? 'bg-white/10 backdrop-blur-md border-white/20'
                   : 'bg-white border-gray-100'
           }`}>
-            {navigationItems.map((item) => (
-              <motion.button
-                key={item.name}
-                onClick={() => handleNavigation(item.path)}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className={`block w-full text-left px-4 py-3 rounded-lg text-base font-semibold transition-all duration-200 font-montserrat ${
-                  getItemStyles(isActive(item.path))
-                }`}
-              >
-                {item.name}
-              </motion.button>
-            ))}
+            {navigationItems.map((item) =>
+              item.name === t('nav.services') ? (
+                <div key={item.name} className="w-full">
+                  <motion.button
+                    onClick={() => setServicesMenuOpen((open) => !open)}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className={`block w-full text-left px-4 py-3 rounded-lg text-base font-semibold transition-all duration-200 font-montserrat flex items-center justify-between ${getItemStyles(isActive(item.path))}`}
+                  >
+                    <span>{item.name}</span>
+                    <svg className={`ml-2 w-4 h-4 transform transition-transform ${servicesMenuOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                  </motion.button>
+                  <AnimatePresence>
+                    {servicesMenuOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.18 }}
+                        className="pl-4 pb-2"
+                      >
+                        <div className="flex flex-col gap-6">
+                          {servicesSubmenus.map((col) => (
+                            <div key={col.title} className="mb-2">
+                              <div className={`flex items-center font-bold mb-1 text-base ${col.color}`}>{col.icon}{col.title}</div>
+                              <div className={`h-1 w-10 mb-3 rounded ${col.border} bg-current`}></div>
+                              <ul className="space-y-1">
+                                {col.items.map((sub) => (
+                                  <li key={sub.label}>
+                                    <Link
+                                      to={sub.path}
+                                      className="block px-0 py-1 text-sm text-gray-700 hover:text-blue-700 hover:underline transition"
+                                      onClick={() => setIsOpen(false)}
+                                    >
+                                      {sub.label}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : item.name === t('nav.sectors') ? (
+                <div key={item.name} className="w-full">
+                  <motion.button
+                    onClick={() => setSectorsMenuOpen((open) => !open)}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className={`block w-full text-left px-4 py-3 rounded-lg text-base font-semibold transition-all duration-200 font-montserrat flex items-center justify-between ${getItemStyles(isActive(item.path))}`}
+                  >
+                    <span>{item.name}</span>
+                    <svg className={`ml-2 w-4 h-4 transform transition-transform ${sectorsMenuOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                  </motion.button>
+                  <AnimatePresence>
+                    {sectorsMenuOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.18 }}
+                        className="pl-4 pb-2"
+                      >
+                        <div className="flex flex-col gap-6">
+                          {sectorsSubmenus.map((col) => (
+                            <div key={col.title} className="mb-2">
+                              <div className={`flex items-center font-bold mb-1 text-base ${col.color}`}>{col.title}</div>
+                              <div className={`h-1 w-10 mb-3 rounded ${col.border} bg-current`}></div>
+                              <ul className="space-y-1">
+                                {col.items.map((sub) => (
+                                  <li key={sub.label}>
+                                    <Link
+                                      to={sub.path}
+                                      className="block px-0 py-1 text-sm text-gray-700 hover:text-blue-700 hover:underline transition"
+                                      onClick={() => setIsOpen(false)}
+                                    >
+                                      {sub.label}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : item.name === t('nav.about') ? (
+                <div key={item.name} className="w-full">
+                  <motion.button
+                    onClick={() => setAboutMenuOpen((open) => !open)}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className={`block w-full text-left px-4 py-3 rounded-lg text-base font-semibold transition-all duration-200 font-montserrat flex items-center justify-between ${getItemStyles(isActive(item.path))}`}
+                  >
+                    <span>{item.name}</span>
+                    <svg className={`ml-2 w-4 h-4 transform transition-transform ${aboutMenuOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                  </motion.button>
+                  <AnimatePresence>
+                    {aboutMenuOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.18 }}
+                        className="pl-4 pb-2"
+                      >
+                        <div className="flex flex-col gap-6">
+                          {aboutSubmenus.map((col) => (
+                            <div key={col.title} className="mb-2">
+                              <div className={`flex items-center font-bold mb-1 text-base ${col.color}`}>{col.title}</div>
+                              <div className={`h-1 w-10 mb-3 rounded ${col.border} bg-current`}></div>
+                              <ul className="space-y-1">
+                                {col.items.map((sub) => (
+                                  <li key={sub.label}>
+                                    <Link
+                                      to={sub.path}
+                                      className="block px-0 py-1 text-sm text-gray-700 hover:text-blue-700 hover:underline transition"
+                                      onClick={() => setIsOpen(false)}
+                                    >
+                                      {sub.label}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : (
+                <motion.button
+                  key={item.name}
+                  onClick={() => handleNavigation(item.path)}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`block w-full text-left px-4 py-3 rounded-lg text-base font-semibold transition-all duration-200 font-montserrat ${getItemStyles(isActive(item.path))}`}
+                >
+                  {item.name}
+                </motion.button>
+              )
+            )}
             <motion.button
               onClick={() => setLanguage(language === 'fr' ? 'en' : 'fr')}
               whileHover={{ scale: 1.02 }}
