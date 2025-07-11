@@ -218,7 +218,8 @@ const Navbar: React.FC = () => {
         // Navbar dégradé bleu, texte blanc, pas d'ombre, pas de transparence
         return 'bg-gradient-to-r from-blue-600 to-blue-800 text-white';
       } else {
-        return 'bg-white/90 text-blue-800 shadow-lg border-b border-gray-200';
+        // Fond bleu après scroll
+        return 'bg-blue-800 text-white shadow-lg border-b border-blue-900';
       }
     }
     if (isServicesPage || isSectorsPage || isRepresentationServicePage) {
@@ -226,8 +227,8 @@ const Navbar: React.FC = () => {
         // Transparent, flou, texte blanc tant qu'on est sur le hero
         return 'backdrop-blur-lg bg-transparent text-white';
       } else {
-        // Dès qu'on scroll, fond blanc, texte foncé, ombre
-        return 'backdrop-blur-lg bg-white/90 text-gray-900 shadow-lg border-b border-gray-200';
+        // Fond bleu après scroll
+        return 'bg-blue-800 text-white shadow-lg border-b border-blue-900';
       }
     } else if (isGradientPage) {
       return isScrolled 
@@ -235,11 +236,11 @@ const Navbar: React.FC = () => {
         : 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white';
     } else if (isHomePage) {
       return isScrolled 
-        ? 'bg-white/90 backdrop-blur-md' 
+        ? 'bg-blue-800 text-white' 
         : 'bg-transparent';
     } else {
       return isScrolled 
-        ? 'bg-white/95 backdrop-blur-md' 
+        ? 'bg-blue-800 text-white' 
         : 'bg-white';
     }
   };
@@ -253,8 +254,8 @@ const Navbar: React.FC = () => {
           : 'text-white hover:bg-white/10 hover:text-white';
       } else {
         return isItemActive
-          ? 'bg-gray-100 text-blue-700 font-bold'
-          : 'text-gray-900 hover:bg-gray-100 hover:text-blue-700';
+          ? 'bg-blue-900 text-white font-bold'
+          : 'text-white hover:bg-blue-900 hover:text-white';
       }
     }
     if (isServicesPage || isSectorsPage || isRepresentationServicePage) {
@@ -264,8 +265,8 @@ const Navbar: React.FC = () => {
           : 'text-white/90 hover:bg-white/10 hover:text-white';
       } else {
         return isItemActive
-          ? 'bg-gray-100 text-blue-700 font-bold'
-          : 'text-gray-900 hover:bg-gray-100 hover:text-blue-700';
+          ? 'bg-blue-900 text-white font-bold'
+          : 'text-white hover:bg-blue-900 hover:text-white';
       }
     } else if (isGradientPage) {
       return isItemActive
@@ -275,6 +276,10 @@ const Navbar: React.FC = () => {
       return isItemActive
         ? 'bg-white/20 text-white'
         : 'text-white/90 hover:bg-white/10 hover:text-white';
+    } else if (isHomePage && isScrolled) {
+      return isItemActive
+        ? 'bg-blue-900 text-white font-bold'
+        : 'text-white hover:bg-blue-900 hover:text-white';
     } else {
       return isItemActive
         ? 'bg-blue-50 text-blue-600'
