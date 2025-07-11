@@ -159,6 +159,7 @@ const translations = {
 
     // Etudes Service Page
     'etudes.title': 'Études & Recherches',
+    'etudes.subtitle': 'Des études approfondies pour des décisions éclairées',
     'etudes.market.title': 'Études de marché',
     'etudes.market.description': 'Nous analysons les dynamiques du marché pour vous aider à comprendre votre environnement et à identifier les opportunités :',
     'etudes.market.bullets': [
@@ -179,6 +180,7 @@ const translations = {
     ],
     'etudes.cta.text': 'Besoin d\'une étude de marché ou d\'une analyse approfondie pour votre entreprise ?',
     'etudes.cta.button': 'Contactez-nous',
+    'etudes.cta.title': 'Prêt à démarrer votre projet ?',
 
     // Footer
     'footer.company.description': 'Elite Partners - Votre partenaire de confiance pour l\'excellence et l\'innovation en République Démocratique du Congo.',
@@ -365,6 +367,7 @@ const translations = {
 
     // Etudes Service Page
     'etudes.title': 'Studies & Research',
+    'etudes.subtitle': 'In-depth studies for informed decisions',
     'etudes.market.title': 'Market Studies',
     'etudes.market.description': 'We analyze market dynamics to help you understand your environment and identify opportunities:',
     'etudes.market.bullets': [
@@ -385,6 +388,7 @@ const translations = {
     ],
     'etudes.cta.text': 'Need a market study or in-depth analysis for your company?',
     'etudes.cta.button': 'Contact Us',
+    'etudes.cta.title': 'Ready to start your project?',
 
     // Footer
     'footer.company.description': 'Elite Partners - Your trusted partner for excellence and innovation in the Democratic Republic of Congo.',

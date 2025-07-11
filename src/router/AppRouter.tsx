@@ -10,6 +10,8 @@ import EtudesPage from '@/pages/services/Etudes';
 import FiscalPage from '@/pages/services/Fiscal';
 import StrategiePage from '@/pages/services/Strategie';
 import RHPage from '@/pages/services/RH';
+import EconomiquePage from '@/pages/services/Economique';
+import StrategiquesPage from '@/pages/services/Strategiques';
 import AgricoleSubsectors from '@/pages/secteurs/Agricole';
 import MinierSubsectors from '@/pages/secteurs/Minier';
 import FinancierSubsectors from '@/pages/secteurs/Financier';
@@ -31,6 +33,8 @@ const AppRouter: React.FC = () => {
           <Route path="/services/conseil/rh" element={<RHPage />} />
           <Route path="/services/representation" element={<RepresentationPage />} />
           <Route path="/services/etudes" element={<EtudesPage />} />
+          <Route path="/services/economique" element={<EconomiquePage />} />
+          <Route path="/services/strategiques" element={<StrategiquesPage />} />
         </Routes>
       </Router>
     </LanguageProvider>
