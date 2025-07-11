@@ -17,6 +17,9 @@ const Navbar: React.FC = () => {
   const isServicesPage = location.pathname === '/services';
   const isSectorsPage = location.pathname === '/secteurs';
   const isGradientPage = isServicesPage || isSectorsPage;
+  const isFiscalPage = location.pathname === '/services/conseil/fiscal';
+  const isRHPage = location.pathname === '/services/conseil/rh';
+  const isStrategiePage = location.pathname === '/services/conseil/strategie';
 
   // Ajout d'un état pour le survol du menu Services (desktop)
   const [servicesMenuOpen, setServicesMenuOpen] = useState(false);
@@ -209,6 +212,14 @@ const Navbar: React.FC = () => {
 
   // Determine background styles based on page and scroll state
   const getNavbarBackground = () => {
+    if (isFiscalPage || isRHPage || isStrategiePage) {
+      if (!isScrolled) {
+        // Navbar dégradé bleu, texte blanc, pas d'ombre, pas de transparence
+        return 'bg-gradient-to-r from-blue-600 to-blue-800 text-white';
+      } else {
+        return 'bg-white/90 text-blue-800 shadow-lg border-b border-gray-200';
+      }
+    }
     if (isServicesPage || isSectorsPage) {
       if (!isScrolled) {
         // Transparent, flou, texte blanc tant qu'on est sur le hero
@@ -234,6 +245,17 @@ const Navbar: React.FC = () => {
 
   // Get text and hover colors based on page
   const getItemStyles = (isItemActive: boolean) => {
+    if (isFiscalPage || isRHPage || isStrategiePage) {
+      if (!isScrolled) {
+        return isItemActive
+          ? 'bg-white/20 text-white font-bold'
+          : 'text-white hover:bg-white/10 hover:text-white';
+      } else {
+        return isItemActive
+          ? 'bg-gray-100 text-blue-700 font-bold'
+          : 'text-gray-900 hover:bg-gray-100 hover:text-blue-700';
+      }
+    }
     if (isServicesPage || isSectorsPage) {
       if (!isScrolled) {
         return isItemActive
@@ -540,13 +562,19 @@ const Navbar: React.FC = () => {
           className="md:hidden overflow-hidden"
         >
           <div className={`px-4 py-3 space-y-2 border-t transition-all duration-300 ${
-            isGradientPage
-              ? 'bg-gradient-to-r from-indigo-600/95 to-purple-600/95 backdrop-blur-lg border-white/10'
-              : isScrolled
-                ? 'bg-white/95 backdrop-blur-lg border-gray-100'
-                : isHomePage
-                  ? 'bg-white/10 backdrop-blur-md border-white/20'
-                  : 'bg-white border-gray-100'
+            isStrategiePage && !isScrolled
+              ? 'bg-gradient-to-r from-blue-600 to-blue-800 text-white'
+              : isRHPage && !isScrolled
+                ? 'bg-gradient-to-r from-blue-600 to-blue-800 text-white'
+                : isFiscalPage && !isScrolled
+                  ? 'bg-gradient-to-r from-blue-600 to-blue-800 text-white'
+                  : isGradientPage
+                    ? 'bg-gradient-to-r from-indigo-600/95 to-purple-600/95 backdrop-blur-lg border-white/10'
+                    : isScrolled
+                      ? 'bg-white/95 backdrop-blur-lg border-gray-100'
+                      : isHomePage
+                        ? 'bg-white/10 backdrop-blur-md border-white/20'
+                        : 'bg-white border-gray-100'
           }`}>
             {navigationItems.map((item) =>
               item.name === t('nav.services') ? (
@@ -701,15 +729,21 @@ const Navbar: React.FC = () => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className={`block w-full text-left px-4 py-3 rounded-lg text-base font-semibold transition-all duration-200 font-montserrat flex items-center space-x-2 ${
-                isServicesPage || isSectorsPage
-                  ? !isScrolled
-                    ? 'text-white/90 hover:bg-white/10 hover:text-white'
-                    : 'text-gray-900 hover:bg-gray-100 hover:text-blue-700'
-                  : isGradientPage
-                    ? 'text-white/90 hover:bg-white/10 hover:text-white'
-                    : isHomePage && !isScrolled
-                      ? 'text-white/90 hover:bg-white/10 hover:text-white'
-                      : 'text-gray-700 hover:bg-blue-50/50 hover:text-blue-600'
+                isStrategiePage && !isScrolled
+                  ? 'bg-white text-white hover:bg-blue-100'
+                  : isRHPage && !isScrolled
+                    ? 'bg-white text-white hover:bg-blue-100'
+                    : isFiscalPage && !isScrolled
+                      ? 'bg-white text-white hover:bg-blue-100'
+                      : isServicesPage || isSectorsPage
+                        ? !isScrolled
+                          ? 'text-white/90 hover:bg-white/10 hover:text-white'
+                          : 'text-gray-900 hover:bg-gray-100 hover:text-blue-700'
+                        : isGradientPage
+                          ? 'text-white/90 hover:bg-white/10 hover:text-white'
+                          : isHomePage && !isScrolled
+                            ? 'text-white/90 hover:bg-white/10 hover:text-white'
+                            : 'text-gray-700 hover:bg-blue-50/50 hover:text-blue-600'
               }`}
             >
               <Globe size={16} />
