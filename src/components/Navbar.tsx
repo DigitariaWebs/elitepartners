@@ -17,6 +17,7 @@ const Navbar: React.FC = () => {
   const isServicesPage = location.pathname === '/services';
   const isSectorsPage = location.pathname === '/secteurs';
   const isGradientPage = isServicesPage || isSectorsPage;
+  const isRepresentationServicePage = location.pathname.startsWith('/services/representation/');
 
   // Ajout d'un état pour le survol du menu Services (desktop)
   const [servicesMenuOpen, setServicesMenuOpen] = useState(false);
@@ -41,9 +42,9 @@ const Navbar: React.FC = () => {
       border: 'border-purple-700',
       icon: <Users className="inline-block mr-2 text-purple-700" size={20} />,
       items: [
-        { label: 'Accompagnement administratif et légal', path: '/services/representation#admin' },
-        { label: 'Représentation locale', path: '/services/representation#locale' },
-        { label: 'Stratégies de pénétration de marché', path: '/services/representation#marche' },
+        { label: 'Accompagnement administratif et légal', path: '/services/representation/administratif' },
+        { label: 'Représentation locale', path: '/services/representation/locale' },
+        { label: 'Stratégies de pénétration de marché', path: '/services/representation/penetration-marche' },
       ],
     },
     {
@@ -209,7 +210,7 @@ const Navbar: React.FC = () => {
 
   // Determine background styles based on page and scroll state
   const getNavbarBackground = () => {
-    if (isServicesPage || isSectorsPage) {
+    if (isServicesPage || isSectorsPage || isRepresentationServicePage) {
       if (!isScrolled) {
         // Transparent, flou, texte blanc tant qu'on est sur le hero
         return 'backdrop-blur-lg bg-transparent text-white';
@@ -234,7 +235,7 @@ const Navbar: React.FC = () => {
 
   // Get text and hover colors based on page
   const getItemStyles = (isItemActive: boolean) => {
-    if (isServicesPage || isSectorsPage) {
+    if (isServicesPage || isSectorsPage || isRepresentationServicePage) {
       if (!isScrolled) {
         return isItemActive
           ? 'bg-white/20 text-white font-bold'
@@ -289,7 +290,7 @@ const Navbar: React.FC = () => {
                 alt="Elite Partners Logo"
                 className={`w-auto transition-all duration-300 ${
                   isScrolled ? 'h-10' : 'h-12'
-                } ${(isGradientPage || ((isServicesPage || isSectorsPage) && !isScrolled)) ? 'brightness-0 invert' : ''}`}
+                } ${(isGradientPage || ((isServicesPage || isSectorsPage || isRepresentationServicePage) && !isScrolled)) ? 'brightness-0 invert' : ''}`}
               />
             </Link>
           </motion.div>
@@ -369,7 +370,7 @@ const Navbar: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className={`px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-200 font-montserrat flex items-center space-x-1 ${
-                  isServicesPage || isSectorsPage
+                  isServicesPage || isSectorsPage || isRepresentationServicePage
                     ? !isScrolled
                       ? 'text-white/90 hover:bg-white/10 hover:text-white'
                       : 'text-gray-900 hover:bg-gray-100 hover:text-blue-700'
@@ -392,7 +393,7 @@ const Navbar: React.FC = () => {
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsOpen(!isOpen)}
               className={`p-2 rounded-lg transition-all duration-200 ${
-                isGradientPage
+                isGradientPage || (isRepresentationServicePage && !isScrolled)
                   ? 'bg-white/10 text-white hover:bg-white/20'
                   : isScrolled
                     ? 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -540,7 +541,7 @@ const Navbar: React.FC = () => {
           className="md:hidden overflow-hidden"
         >
           <div className={`px-4 py-3 space-y-2 border-t transition-all duration-300 ${
-            isGradientPage
+            isGradientPage || (isRepresentationServicePage && !isScrolled)
               ? 'bg-gradient-to-r from-indigo-600/95 to-purple-600/95 backdrop-blur-lg border-white/10'
               : isScrolled
                 ? 'bg-white/95 backdrop-blur-lg border-gray-100'
@@ -701,10 +702,10 @@ const Navbar: React.FC = () => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className={`block w-full text-left px-4 py-3 rounded-lg text-base font-semibold transition-all duration-200 font-montserrat flex items-center space-x-2 ${
-                isServicesPage || isSectorsPage
+                isServicesPage || isSectorsPage || isRepresentationServicePage
                   ? !isScrolled
-                    ? 'text-white/90 hover:bg-white/10 hover:text-white'
-                    : 'text-gray-900 hover:bg-gray-100 hover:text-blue-700'
+                      ? 'text-white/90 hover:bg-white/10 hover:text-white'
+                      : 'text-gray-900 hover:bg-gray-100 hover:text-blue-700'
                   : isGradientPage
                     ? 'text-white/90 hover:bg-white/10 hover:text-white'
                     : isHomePage && !isScrolled
