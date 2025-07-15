@@ -18,6 +18,27 @@ import FinancierSubsectors from '@/pages/secteurs/Financier';
 import AdministratifPage from '@/pages/services/representation/administratif';
 import LocalePage from '@/pages/services/representation/locale';
 import PenetrationMarchePage from '@/pages/services/representation/penetration-marche';
+import MarchePage from '@/pages/services/etudes/marche';
+import EtudesEconomiquePage from '@/pages/services/etudes/economique';
+import StrategiquePage from '@/pages/services/etudes/strategique';
+
+// Agriculture subsector pages
+import AgroalimentairePage from '@/pages/secteurs/agricole/agroalimentaire';
+import VivrierePage from '@/pages/secteurs/agricole/vivriere';
+import PechePage from '@/pages/secteurs/agricole/peche';
+import IndustriellePage from '@/pages/secteurs/agricole/industrielle';
+
+// Mining subsector pages
+import ExplorationPage from '@/pages/secteurs/minier/exploration';
+import ExploitationPage from '@/pages/secteurs/minier/exploitation';
+import TransformationPage from '@/pages/secteurs/minier/transformation';
+import CommercePage from '@/pages/secteurs/minier/commerce';
+
+// Financial subsector pages
+import BanquesPage from '@/pages/secteurs/financier/banques';
+import AssurancePage from '@/pages/secteurs/financier/assurance';
+import InvestissementPage from '@/pages/secteurs/financier/investissement';
+import FintechPage from '@/pages/secteurs/financier/fintech';
 
 const AppRouter: React.FC = () => {
   return (
@@ -39,8 +60,29 @@ const AppRouter: React.FC = () => {
           <Route path="/services/representation/locale" element={<LocalePage />} />
           <Route path="/services/representation/penetration-marche" element={<PenetrationMarchePage />} />
           <Route path="/services/etudes" element={<EtudesPage />} />
+          <Route path="/services/etudes/marche" element={<MarchePage />} />
+          <Route path="/services/etudes/economique" element={<EtudesEconomiquePage />} />
+          <Route path="/services/etudes/strategique" element={<StrategiquePage />} />
           <Route path="/services/economique" element={<EconomiquePage />} />
           <Route path="/services/strategiques" element={<StrategiquesPage />} />
+          
+          {/* Agriculture subsector routes */}
+          <Route path="/secteurs/agricole/agroalimentaire" element={<AgroalimentairePage />} />
+          <Route path="/secteurs/agricole/vivriere" element={<VivrierePage />} />
+          <Route path="/secteurs/agricole/peche" element={<PechePage />} />
+          <Route path="/secteurs/agricole/industrielle" element={<IndustriellePage />} />
+          
+          {/* Mining subsector routes */}
+          <Route path="/secteurs/minier/exploration" element={<ExplorationPage />} />
+          <Route path="/secteurs/minier/exploitation" element={<ExploitationPage />} />
+          <Route path="/secteurs/minier/transformation" element={<TransformationPage />} />
+          <Route path="/secteurs/minier/commerce" element={<CommercePage />} />
+          
+          {/* Financial subsector routes */}
+          <Route path="/secteurs/financier/banques" element={<BanquesPage />} />
+          <Route path="/secteurs/financier/assurance" element={<AssurancePage />} />
+          <Route path="/secteurs/financier/investissement" element={<InvestissementPage />} />
+          <Route path="/secteurs/financier/fintech" element={<FintechPage />} />
         </Routes>
       </Router>
     </LanguageProvider>

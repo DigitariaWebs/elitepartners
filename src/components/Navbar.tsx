@@ -18,9 +18,13 @@ const Navbar: React.FC = () => {
   const isSectorsPage = location.pathname === '/secteurs';
   const isGradientPage = isServicesPage || isSectorsPage;
   const isRepresentationServicePage = location.pathname.startsWith('/services/representation/');
+  const isEtudesServicePage = location.pathname.startsWith('/services/etudes/');
   const isFiscalPage = location.pathname === '/services/conseil/fiscal';
   const isRHPage = location.pathname === '/services/conseil/rh';
   const isStrategiePage = location.pathname === '/services/conseil/strategie';
+  const isSubsectorPage = location.pathname.startsWith('/secteurs/agricole/') || 
+                          location.pathname.startsWith('/secteurs/minier/') || 
+                          location.pathname.startsWith('/secteurs/financier/');
 
   // Ajout d'un état pour le survol du menu Services (desktop)
   const [servicesMenuOpen, setServicesMenuOpen] = useState(false);
@@ -56,9 +60,9 @@ const Navbar: React.FC = () => {
       border: 'border-cyan-800',
       icon: <BookOpen className="inline-block mr-2 text-cyan-800" size={20} />,
       items: [
-        { label: 'Études de marché', path: '/services/etudes#marche' },
-        { label: 'Études économiques', path: '/services/economique' },
-        { label: 'Évaluations stratégiques', path: '/services/strategiques' },
+        { label: 'Études de marché', path: '/services/etudes/marche' },
+        { label: 'Études économiques et financières', path: '/services/etudes/economique' },
+        { label: 'Études stratégiques et organisationnelles', path: '/services/etudes/strategique' },
       ],
     },
   ];
@@ -83,10 +87,10 @@ const Navbar: React.FC = () => {
       color: 'text-yellow-700',
       border: 'border-yellow-700',
       items: [
-        { label: 'Assurance minière', path: '/secteurs/minier/assurance' },
-        { label: 'Fiscalité et redevances minières', path: '/secteurs/minier/fiscalite' },
-        { label: 'Banques d’investissement spécialisées', path: '/secteurs/minier/banques' },
-        { label: 'Audit et gestion financière minière', path: '/secteurs/minier/audit' },
+        { label: 'Exploration minière', path: '/secteurs/minier/exploration' },
+        { label: 'Exploitation minière', path: '/secteurs/minier/exploitation' },
+        { label: 'Transformation et métallurgie', path: '/secteurs/minier/transformation' },
+        { label: 'Commerce et négoce', path: '/secteurs/minier/commerce' },
       ],
     },
     {
@@ -94,10 +98,10 @@ const Navbar: React.FC = () => {
       color: 'text-blue-900',
       border: 'border-blue-900',
       items: [
+        { label: 'Secteur bancaire', path: '/secteurs/financier/banques' },
         { label: 'Assurance', path: '/secteurs/financier/assurance' },
-        { label: 'Gestion d’actifs', path: '/secteurs/financier/actifs' },
-        { label: 'Audit et contrôle financier', path: '/secteurs/financier/audit' },
-        { label: 'Banques d’inv', path: '/secteurs/financier/banques' },
+        { label: 'Investissement et gestion d\'actifs', path: '/secteurs/financier/investissement' },
+        { label: 'Fintech et innovation', path: '/secteurs/financier/fintech' },
       ],
     },
   ];
@@ -213,7 +217,7 @@ const Navbar: React.FC = () => {
 
   // Determine background styles based on page and scroll state
   const getNavbarBackground = () => {
-    if (isFiscalPage || isRHPage || isStrategiePage) {
+    if (isFiscalPage || isRHPage || isStrategiePage || isEtudesServicePage || isSubsectorPage) {
       if (!isScrolled) {
         // Navbar dégradé bleu, texte blanc, pas d'ombre, pas de transparence
         return 'bg-gradient-to-r from-blue-600 to-blue-800 text-white';
@@ -247,7 +251,7 @@ const Navbar: React.FC = () => {
 
   // Get text and hover colors based on page
   const getItemStyles = (isItemActive: boolean) => {
-    if (isFiscalPage || isRHPage || isStrategiePage) {
+    if (isFiscalPage || isRHPage || isStrategiePage || isEtudesServicePage || isSubsectorPage) {
       if (!isScrolled) {
         return isItemActive
           ? 'bg-white/20 text-white font-bold'
@@ -317,7 +321,7 @@ const Navbar: React.FC = () => {
                 alt="Elite Partners Logo"
                 className={`w-auto transition-all duration-300 ${
                   isScrolled ? 'h-10' : 'h-12'
-                } ${(isGradientPage || ((isServicesPage || isSectorsPage || isRepresentationServicePage) && !isScrolled)) ? 'brightness-0 invert' : ''}`}
+                } ${(isGradientPage || ((isServicesPage || isSectorsPage || isRepresentationServicePage || isSubsectorPage) && !isScrolled)) ? 'brightness-0 invert' : ''}`}
               />
             </Link>
           </motion.div>
@@ -397,7 +401,7 @@ const Navbar: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className={`px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-200 font-montserrat flex items-center space-x-1 ${
-                  isServicesPage || isSectorsPage || isRepresentationServicePage
+                  isServicesPage || isSectorsPage || isRepresentationServicePage || isSubsectorPage
                     ? !isScrolled
                       ? 'text-white/90 hover:bg-white/10 hover:text-white'
                       : 'text-gray-900 hover:bg-gray-100 hover:text-blue-700'
@@ -420,7 +424,7 @@ const Navbar: React.FC = () => {
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsOpen(!isOpen)}
               className={`p-2 rounded-lg transition-all duration-200 ${
-                isGradientPage || (isRepresentationServicePage && !isScrolled)
+                isGradientPage || ((isRepresentationServicePage || isSubsectorPage) && !isScrolled)
                   ? 'bg-white/10 text-white hover:bg-white/20'
                   : isScrolled
                     ? 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -568,12 +572,8 @@ const Navbar: React.FC = () => {
           className="md:hidden overflow-hidden"
         >
           <div className={`px-4 py-3 space-y-2 border-t transition-all duration-300 ${
-            isStrategiePage && !isScrolled
+            (isStrategiePage || isRHPage || isFiscalPage || isEtudesServicePage || isSubsectorPage) && !isScrolled
               ? 'bg-gradient-to-r from-blue-600 to-blue-800 text-white'
-              : isRHPage && !isScrolled
-                ? 'bg-gradient-to-r from-blue-600 to-blue-800 text-white'
-                : isFiscalPage && !isScrolled
-                  ? 'bg-gradient-to-r from-blue-600 to-blue-800 text-white'
                   : isGradientPage
                     ? 'bg-gradient-to-r from-indigo-600/95 to-purple-600/95 backdrop-blur-lg border-white/10'
                     : isScrolled
@@ -690,12 +690,8 @@ const Navbar: React.FC = () => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className={`block w-full text-left px-4 py-3 rounded-lg text-base font-semibold transition-all duration-200 font-montserrat flex items-center space-x-2 ${
-                isStrategiePage && !isScrolled
+                (isStrategiePage || isRHPage || isFiscalPage || isEtudesServicePage || isSubsectorPage) && !isScrolled
                   ? 'bg-white text-white hover:bg-blue-100'
-                  : isRHPage && !isScrolled
-                    ? 'bg-white text-white hover:bg-blue-100'
-                    : isFiscalPage && !isScrolled
-                      ? 'bg-white text-white hover:bg-blue-100'
                       : isServicesPage || isSectorsPage || isRepresentationServicePage
                         ? !isScrolled
                           ? 'text-white/90 hover:bg-white/10 hover:text-white'

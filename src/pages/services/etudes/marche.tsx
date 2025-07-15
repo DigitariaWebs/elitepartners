@@ -4,12 +4,11 @@ import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
-
-// Professional business and legal images from Unsplash
-const heroImage = 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80';
-const businessCreationImage = 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80';
-const legalComplianceImage = 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80';
-const permitsLicensesImage = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80';
+// Professional market research images from Unsplash
+const heroImage = 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80';
+const marketAnalysisImage = 'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80';
+const customerResearchImage = 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80';
+const strategicRecommendationsImage = 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80';
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 40 },
@@ -20,7 +19,7 @@ const sectionVariants = {
   })
 };
 
-const AdministratifPage: React.FC = () => {
+const MarchePage: React.FC = () => {
   useEffect(() => { window.scrollTo(0, 0); }, []);
   return (
     <div className="bg-gradient-to-br from-gray-50 to-white min-h-screen flex flex-col justify-between">
@@ -31,14 +30,14 @@ const AdministratifPage: React.FC = () => {
           {/* Texte */}
           <div className="w-full md:w-1/2 text-white">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight font-montserrat">
-              Accompagnement Administratif<br />& Légal Expert
+              Études de Marché<br />Stratégiques
             </h1>
             <p className="mb-8 text-base md:text-lg font-normal">
-              Transformez vos ambitions en succès avec notre expertise en conformité administrative et légale en RDC. Nous gérons toutes les démarches pour que vous puissiez vous concentrer sur votre développement.
+              Comprenez votre marché, identifiez les opportunités et prenez des décisions éclairées grâce à nos études de marché approfondies. Notre expertise vous aide à minimiser les risques et maximiser votre potentiel de croissance.
             </p>
             <Link to="/#contact">
               <Button size="lg" variant="primary" className="bg-white text-blue-800 font-bold px-8 py-3 shadow-md hover:bg-gray-100">
-                Planifier une consultation
+                Demander une étude personnalisée
               </Button>
             </Link>
           </div>
@@ -46,7 +45,7 @@ const AdministratifPage: React.FC = () => {
           <div className="w-full md:w-1/2 flex justify-center">
             <img
               src={heroImage}
-              alt="Accompagnement administratif et légal"
+              alt="Études de marché stratégiques"
               className="rounded-2xl shadow-xl object-cover w-full max-w-md h-64 md:h-80 lg:h-96"
               style={{ background: '#e5e7eb' }}
             />
@@ -61,7 +60,7 @@ const AdministratifPage: React.FC = () => {
       </section>
       <div className="flex-1">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          {/* Création d'entreprise */}
+          {/* Analyse de marché */}
           <motion.div
             className="flex flex-col md:flex-row items-center gap-8 md:gap-12 mb-16"
             initial="hidden"
@@ -71,22 +70,22 @@ const AdministratifPage: React.FC = () => {
             custom={1}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={businessCreationImage} alt="Création d'entreprise" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={marketAnalysisImage} alt="Analyse de marché approfondie" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Création d'entreprise clé en main</h1>
-              <p className="text-gray-700 text-base md:text-lg mb-3">De la conception à l'immatriculation, nous gérons l'ensemble du processus :</p>
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Analyse de marché approfondie</h1>
+              <p className="text-gray-700 text-base md:text-lg mb-3">Nous analysons votre marché cible pour vous fournir des insights précieux :</p>
               <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Choix de la forme juridique optimale</li>
-                <li>Rédaction des statuts et actes constitutifs</li>
-                <li>Enregistrement au registre du commerce</li>
-                <li>Obtention du numéro d'identification nationale</li>
-                <li>Ouverture de compte bancaire professionnel</li>
+                <li>Évaluation de la taille du marché et du potentiel de croissance</li>
+                <li>Analyse de la concurrence et positionnement stratégique</li>
+                <li>Identification des segments de clientèle les plus porteurs</li>
+                <li>Étude des tendances et évolutions du secteur</li>
+                <li>Analyse des barrières à l'entrée et facteurs de succès</li>
               </ul>
             </div>
           </motion.div>
 
-          {/* Permis et licences */}
+          {/* Recherche comportementale */}
           <motion.div
             className="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12 mb-16"
             initial="hidden"
@@ -96,22 +95,22 @@ const AdministratifPage: React.FC = () => {
             custom={2}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={permitsLicensesImage} alt="Permis et licences" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={customerResearchImage} alt="Recherche comportementale client" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Permis et licences sectorielles</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Facilitation de l'obtention de toutes les autorisations nécessaires :</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Recherche comportementale client</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">Comprenez les motivations et comportements de vos clients :</p>
               <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Licences d'exploitation minière et forestière</li>
-                <li>Autorisations sectorielles (banque, assurance, télécoms)</li>
-                <li>Permis environnementaux et d'impact</li>
-                <li>Certificats de conformité et de qualité</li>
-                <li>Renouvellement et suivi des autorisations</li>
+                <li>Enquêtes et interviews approfondies avec les consommateurs</li>
+                <li>Analyse des habitudes d'achat et processus décisionnels</li>
+                <li>Étude de satisfaction et fidélisation client</li>
+                <li>Mapping du parcours client et points de contact</li>
+                <li>Tests de concept et validation d'idées produit/service</li>
               </ul>
             </div>
           </motion.div>
 
-          {/* Conformité juridique */}
+          {/* Recommandations stratégiques */}
           <motion.div
             className="flex flex-col md:flex-row items-center gap-8 md:gap-12 mb-16"
             initial="hidden"
@@ -121,17 +120,17 @@ const AdministratifPage: React.FC = () => {
             custom={3}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={legalComplianceImage} alt="Conformité juridique" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={strategicRecommendationsImage} alt="Recommandations stratégiques" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Conformité juridique continue</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Assistance permanente pour garantir votre conformité :</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Recommandations stratégiques</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">Des insights transformés en actions concrètes :</p>
               <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Veille réglementaire et législative</li>
-                <li>Mise à jour des statuts et documents légaux</li>
-                <li>Représentation légale auprès des autorités</li>
-                <li>Gestion des assemblées et conseils d'administration</li>
-                <li>Accompagnement en cas de contrôle ou audit</li>
+                <li>Stratégies d'entrée sur le marché et expansion</li>
+                <li>Positionnement optimal et proposition de valeur</li>
+                <li>Recommandations de prix et modèles économiques</li>
+                <li>Plans d'action marketing et communication</li>
+                <li>Feuille de route pour la mise en œuvre</li>
               </ul>
             </div>
           </motion.div>
@@ -145,7 +144,7 @@ const AdministratifPage: React.FC = () => {
             variants={sectionVariants}
             custom={4}
           >
-            <p className="text-gray-600 mb-6 text-xl font-semibold">Prêt à sécuriser votre conformité ?</p>
+            <p className="text-gray-600 mb-6 text-xl font-semibold">Prêt à explorer votre marché ?</p>
             <Link to="/#contact">
               <Button
                 variant="primary"
@@ -163,4 +162,4 @@ const AdministratifPage: React.FC = () => {
   );
 };
 
-export default AdministratifPage;
+export default MarchePage;

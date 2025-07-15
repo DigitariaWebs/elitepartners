@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 
-// Professional market penetration images from Unsplash
-const heroImage = 'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80';
-const marketResearchImage = 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80';
-const goToMarketStrategyImage = 'https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80';
-const partnershipResearchImage = 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80';
+// Professional African fishing and aquaculture images from Unsplash
+const heroImage = 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80';
+const fishingTechniquesImage = 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80';
+const aquacultureImage = 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2076&q=80';
+const fishProcessingImage = 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80';
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 40 },
@@ -20,25 +20,25 @@ const sectionVariants = {
   })
 };
 
-const PenetrationMarchePage: React.FC = () => {
+const PechePage: React.FC = () => {
   useEffect(() => { window.scrollTo(0, 0); }, []);
   return (
     <div className="bg-gradient-to-br from-gray-50 to-white min-h-screen flex flex-col justify-between">
       <Navbar />
       {/* HERO SECTION */}
-      <section className="relative w-full bg-gradient-to-r from-teal-600 to-teal-800 py-20 md:py-32 lg:py-40 px-4 overflow-hidden">
+      <section className="relative w-full bg-gradient-to-r from-blue-600 to-cyan-700 py-20 md:py-32 lg:py-40 px-4 overflow-hidden">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-16">
           {/* Texte */}
           <div className="w-full md:w-1/2 text-white">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight font-montserrat">
-              Stratégies de Pénétration<br />de Marché
+              Pêche et Aquaculture<br />en RDC
             </h1>
             <p className="mb-8 text-base md:text-lg font-normal">
-              Convertissez le potentiel du marché congolais en succès commercial tangible. Notre approche basée sur les données et l'expertise locale vous garantit une entrée sur le marché optimisée et rentable.
+              Exploitez durablement les immenses ressources halieutiques de la RDC. Nous accompagnons le développement de la pêche artisanale et industrielle ainsi que l'aquaculture moderne pour renforcer la sécurité alimentaire et créer des emplois.
             </p>
             <Link to="/#contact">
-              <Button size="lg" variant="primary" className="bg-white text-teal-800 font-bold px-8 py-3 shadow-md hover:bg-gray-100">
-                Définir votre stratégie
+              <Button size="lg" variant="primary" className="bg-white text-cyan-800 font-bold px-8 py-3 shadow-md hover:bg-gray-100">
+                Développer votre activité halieutique
               </Button>
             </Link>
           </div>
@@ -46,7 +46,7 @@ const PenetrationMarchePage: React.FC = () => {
           <div className="w-full md:w-1/2 flex justify-center">
             <img
               src={heroImage}
-              alt="Stratégies de pénétration de marché"
+              alt="Pêche et aquaculture en RDC"
               className="rounded-2xl shadow-xl object-cover w-full max-w-md h-64 md:h-80 lg:h-96"
               style={{ background: '#e5e7eb' }}
             />
@@ -61,7 +61,7 @@ const PenetrationMarchePage: React.FC = () => {
       </section>
       <div className="flex-1">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          {/* Études de marché */}
+          {/* Techniques de pêche durables */}
           <motion.div
             className="flex flex-col md:flex-row items-center gap-8 md:gap-12 mb-16"
             initial="hidden"
@@ -71,22 +71,22 @@ const PenetrationMarchePage: React.FC = () => {
             custom={1}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={marketResearchImage} alt="Études de marché approfondies" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={fishingTechniquesImage} alt="Techniques de pêche durables" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Études de marché approfondies</h1>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Analyses rigoureuses pour identifier les opportunités et minimiser les risques :</p>
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Modernisation des techniques de pêche</h1>
+              <p className="text-gray-700 text-base md:text-lg mb-3">Améliorez vos rendements tout en préservant l'écosystème :</p>
               <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Analyse de la taille et du potentiel du marché</li>
-                <li>Cartographie de la concurrence directe et indirecte</li>
-                <li>Étude des comportements et préférences consommateurs</li>
-                <li>Identification des barrières à l'entrée</li>
-                <li>Évaluation des canaux de distribution optimaux</li>
+                <li>Introduction d'équipements de pêche modernes et sélectifs</li>
+                <li>Formation aux techniques de pêche responsable</li>
+                <li>Gestion durable des stocks halieutiques</li>
+                <li>Amélioration des embarcations et motorisation</li>
+                <li>Systèmes de géolocalisation et détection de bancs</li>
               </ul>
             </div>
           </motion.div>
 
-          {/* Stratégie Go-to-Market */}
+          {/* Développement de l'aquaculture */}
           <motion.div
             className="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12 mb-16"
             initial="hidden"
@@ -96,22 +96,22 @@ const PenetrationMarchePage: React.FC = () => {
             custom={2}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={goToMarketStrategyImage} alt="Stratégie Go-to-Market" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={aquacultureImage} alt="Développement aquaculture" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Stratégie Go-to-Market personnalisée</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Plan d'action sur-mesure pour un lancement réussi :</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Aquaculture intensive et extensive</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">Développez une production piscicole rentable et durable :</p>
               <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Positionnement optimal et proposition de valeur</li>
-                <li>Stratégie de prix adaptée au marché local</li>
-                <li>Plan de communication et marketing digital</li>
-                <li>Roadmap de lancement par phases</li>
-                <li>Définition des KPIs et métriques de succès</li>
+                <li>Conception et construction d'étangs d'aquaculture</li>
+                <li>Sélection d'espèces adaptées au climat local</li>
+                <li>Gestion de l'alimentation et nutrition piscicole</li>
+                <li>Contrôle sanitaire et prévention des maladies</li>
+                <li>Aquaculture intégrée (riz-poisson, maraîchage-pisciculture)</li>
               </ul>
             </div>
           </motion.div>
 
-          {/* Recherche de partenaires */}
+          {/* Transformation et valorisation */}
           <motion.div
             className="flex flex-col md:flex-row items-center gap-8 md:gap-12 mb-16"
             initial="hidden"
@@ -121,17 +121,17 @@ const PenetrationMarchePage: React.FC = () => {
             custom={3}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={partnershipResearchImage} alt="Recherche de partenaires stratégiques" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={fishProcessingImage} alt="Transformation du poisson" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Recherche de partenaires stratégiques</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Identification et mise en relation avec les acteurs clés :</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Transformation et commercialisation</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">Valorisez vos captures et productions piscicoles :</p>
               <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Sourcing de distributeurs et agents commerciaux</li>
-                <li>Identification de partenaires technologiques</li>
-                <li>Mise en relation avec des investisseurs locaux</li>
-                <li>Facilitation des négociations et accords</li>
-                <li>Due diligence sur les partenaires potentiels</li>
+                <li>Techniques de conservation et transformation du poisson</li>
+                <li>Mise en place de chaînes de froid</li>
+                <li>Développement de produits à valeur ajoutée</li>
+                <li>Organisation de circuits de commercialisation</li>
+                <li>Certification qualité et normes sanitaires</li>
               </ul>
             </div>
           </motion.div>
@@ -145,14 +145,14 @@ const PenetrationMarchePage: React.FC = () => {
             variants={sectionVariants}
             custom={4}
           >
-            <p className="text-gray-600 mb-6 text-xl font-semibold">Prêt à conquérir le marché congolais ?</p>
+            <p className="text-gray-600 mb-6 text-xl font-semibold">Prêt à développer votre activité halieutique ?</p>
             <Link to="/#contact">
               <Button
                 variant="primary"
                 size="lg"
                 className="transition-transform duration-200 hover:scale-105 hover:shadow-lg"
               >
-                ÉVALUER MON POTENTIEL
+                LANCER VOTRE PROJET PÊCHE
               </Button>
             </Link>
           </motion.div>
@@ -163,4 +163,4 @@ const PenetrationMarchePage: React.FC = () => {
   );
 };
 
-export default PenetrationMarchePage;
+export default PechePage;
