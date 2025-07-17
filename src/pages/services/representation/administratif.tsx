@@ -4,6 +4,7 @@ import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // Professional business and legal images from Unsplash
 const heroImage = 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80';
@@ -20,7 +21,16 @@ const sectionVariants = {
   })
 };
 
+// Helper function to render bullet lists
+const renderBullets = (bullets: string[]) => {
+  return bullets.map((bullet, index) => (
+    <li key={index} className="text-gray-700 text-base md:text-lg">{bullet}</li>
+  ));
+};
+
 const AdministratifPage: React.FC = () => {
+  const { t } = useLanguage();
+  
   useEffect(() => { window.scrollTo(0, 0); }, []);
   return (
     <div className="bg-gradient-to-br from-gray-50 to-white min-h-screen flex flex-col justify-between">
@@ -31,14 +41,14 @@ const AdministratifPage: React.FC = () => {
           {/* Texte */}
           <div className="w-full md:w-1/2 text-white">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight font-montserrat">
-              Accompagnement Administratif<br />& Légal Expert
+              {t('services.representation.administratif.hero.title')}
             </h1>
             <p className="mb-8 text-base md:text-lg font-normal">
-              Transformez vos ambitions en succès avec notre expertise en conformité administrative et légale en RDC. Nous gérons toutes les démarches pour que vous puissiez vous concentrer sur votre développement.
+              {t('services.representation.administratif.hero.subtitle')}
             </p>
             <Link to="/#contact">
-              <Button size="lg" variant="primary" className="bg-white text-blue-800 font-bold px-8 py-3 shadow-md hover:bg-gray-100">
-                Planifier une consultation
+              <Button size="lg" variant="outline" className="border-2 border-white text-white font-bold px-8 py-3 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 hover:bg-white hover:text-blue-900">
+                {t('services.representation.administratif.hero.cta')}
               </Button>
             </Link>
           </div>
@@ -46,7 +56,7 @@ const AdministratifPage: React.FC = () => {
           <div className="w-full md:w-1/2 flex justify-center">
             <img
               src={heroImage}
-              alt="Accompagnement administratif et légal"
+              alt={t('services.representation.administratif.hero.title')}
               className="rounded-2xl shadow-xl object-cover w-full max-w-md h-64 md:h-80 lg:h-96"
               style={{ background: '#e5e7eb' }}
             />
@@ -71,17 +81,13 @@ const AdministratifPage: React.FC = () => {
             custom={1}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={businessCreationImage} alt="Création d'entreprise" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={businessCreationImage} alt={t('services.representation.administratif.creation.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Création d'entreprise clé en main</h1>
-              <p className="text-gray-700 text-base md:text-lg mb-3">De la conception à l'immatriculation, nous gérons l'ensemble du processus :</p>
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('services.representation.administratif.creation.title')}</h1>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('services.representation.administratif.creation.subtitle')}</p>
               <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Choix de la forme juridique optimale</li>
-                <li>Rédaction des statuts et actes constitutifs</li>
-                <li>Enregistrement au registre du commerce</li>
-                <li>Obtention du numéro d'identification nationale</li>
-                <li>Ouverture de compte bancaire professionnel</li>
+                {renderBullets(t('services.representation.administratif.creation.bullets'))}
               </ul>
             </div>
           </motion.div>
@@ -96,17 +102,13 @@ const AdministratifPage: React.FC = () => {
             custom={2}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={permitsLicensesImage} alt="Permis et licences" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={permitsLicensesImage} alt={t('services.representation.administratif.permis.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Permis et licences sectorielles</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Facilitation de l'obtention de toutes les autorisations nécessaires :</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('services.representation.administratif.permis.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('services.representation.administratif.permis.subtitle')}</p>
               <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Licences d'exploitation minière et forestière</li>
-                <li>Autorisations sectorielles (banque, assurance, télécoms)</li>
-                <li>Permis environnementaux et d'impact</li>
-                <li>Certificats de conformité et de qualité</li>
-                <li>Renouvellement et suivi des autorisations</li>
+                {renderBullets(t('services.representation.administratif.permis.bullets'))}
               </ul>
             </div>
           </motion.div>
@@ -121,17 +123,13 @@ const AdministratifPage: React.FC = () => {
             custom={3}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={legalComplianceImage} alt="Conformité juridique" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={legalComplianceImage} alt={t('services.representation.administratif.conformite.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Conformité juridique continue</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Assistance permanente pour garantir votre conformité :</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('services.representation.administratif.conformite.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('services.representation.administratif.conformite.subtitle')}</p>
               <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Veille réglementaire et législative</li>
-                <li>Mise à jour des statuts et documents légaux</li>
-                <li>Représentation légale auprès des autorités</li>
-                <li>Gestion des assemblées et conseils d'administration</li>
-                <li>Accompagnement en cas de contrôle ou audit</li>
+                {renderBullets(t('services.representation.administratif.conformite.bullets'))}
               </ul>
             </div>
           </motion.div>
@@ -145,14 +143,14 @@ const AdministratifPage: React.FC = () => {
             variants={sectionVariants}
             custom={4}
           >
-            <p className="text-gray-600 mb-6 text-xl font-semibold">Prêt à sécuriser votre conformité ?</p>
+            <p className="text-gray-600 mb-6 text-xl font-semibold">{t('services.representation.administratif.cta.title')}</p>
             <Link to="/#contact">
               <Button
                 variant="primary"
                 size="lg"
                 className="transition-transform duration-200 hover:scale-105 hover:shadow-lg"
               >
-                CONTACTEZ-NOUS
+                {t('services.representation.administratif.cta.button')}
               </Button>
             </Link>
           </motion.div>

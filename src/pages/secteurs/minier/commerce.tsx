@@ -37,8 +37,8 @@ const CommercePage: React.FC = () => {
               Optimisez la commercialisation de vos ressources minérales sur les marchés internationaux. Nous maîtrisons les complexités du négoce minier pour maximiser vos revenus tout en respectant les standards de traçabilité et conformité.
             </p>
             <Link to="/#contact">
-              <Button size="lg" variant="primary" className="bg-white text-rose-800 font-bold px-8 py-3 shadow-md hover:bg-gray-100">
-                Optimiser vos ventes
+              <Button size="lg" variant="outline" className="border-2 border-white text-white font-bold px-8 py-3 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 hover:bg-white hover:text-orange-900">
+                Développer votre commerce minier
               </Button>
             </Link>
           </div>

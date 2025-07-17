@@ -4,6 +4,7 @@ import { LanguageProvider } from '@/contexts/LanguageContext';
 import Home from '@/pages/Home';
 import Services from '@/pages/Services';
 import Secteurs from '@/pages/Secteurs';
+import About from '@/pages/About';
 import ConseilPage from '@/pages/services/Conseil';
 import RepresentationPage from '@/pages/services/Representation';
 import EtudesPage from '@/pages/services/Etudes';
@@ -39,6 +40,10 @@ import BanquesPage from '@/pages/secteurs/financier/banques';
 import AssurancePage from '@/pages/secteurs/financier/assurance';
 import InvestissementPage from '@/pages/secteurs/financier/investissement';
 import FintechPage from '@/pages/secteurs/financier/fintech';
+import ProjectPage from '@/pages/projects/ProjectPage';
+import AgroBusinessPage from '@/pages/projects/AgroBusiness';
+import BusinessIntelligencePage from '@/pages/projects/BusinessIntelligence';
+import SpecializedInvestmentBanksPage from '@/pages/projects/SpecializedInvestmentBanks';
 
 const AppRouter: React.FC = () => {
   return (
@@ -46,6 +51,7 @@ const AppRouter: React.FC = () => {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/secteurs" element={<Secteurs />} />
           <Route path="/secteurs/agricole" element={<AgricoleSubsectors />} />
@@ -83,6 +89,12 @@ const AppRouter: React.FC = () => {
           <Route path="/secteurs/financier/assurance" element={<AssurancePage />} />
           <Route path="/secteurs/financier/investissement" element={<InvestissementPage />} />
           <Route path="/secteurs/financier/fintech" element={<FintechPage />} />
+          
+          {/* Project routes */}
+          <Route path="/projects/agrobusiness" element={<AgroBusinessPage />} />
+          <Route path="/projects/business-intelligence" element={<BusinessIntelligencePage />} />
+          <Route path="/projects/specialized-investment-banks" element={<SpecializedInvestmentBanksPage />} />
+          <Route path="/projects/:projectSlug" element={<ProjectPage />} />
         </Routes>
       </Router>
     </LanguageProvider>

@@ -4,10 +4,8 @@ import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
+import { useLanguage } from '@/contexts/LanguageContext';
 import image12 from './12.png';
-
-
-
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 40 },
@@ -19,6 +17,14 @@ const sectionVariants = {
 };
 
 const StrategiePage: React.FC = () => {
+  const { t } = useLanguage();
+  
+  // Helper function to get translation as array
+  const getTranslationArray = (key: string): string[] => {
+    const translation = t(key);
+    return Array.isArray(translation) ? translation : [];
+  };
+
   useEffect(() => { window.scrollTo(0, 0); }, []);
   const heroImage = '/start.jpg';
   return (
@@ -30,14 +36,14 @@ const StrategiePage: React.FC = () => {
           {/* Texte */}
           <div className="w-full md:w-1/2 text-white">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight font-montserrat">
-              Déployez votre stratégie d’entreprise<br />avec nos experts !
+              {t('services.strategie.hero.title')}
             </h1>
             <p className="mb-8 text-base md:text-lg font-normal">
-              Bénéficiez d’un accompagnement sur-mesure pour définir, piloter et transformer votre stratégie. Nos consultants vous aident à anticiper les défis et à saisir les opportunités pour une croissance durable.
+              {t('services.strategie.hero.subtitle')}
             </p>
             <Link to="/#contact">
-              <Button size="lg" variant="primary" className="bg-white text-blue-800 font-bold px-8 py-3 shadow-md hover:bg-gray-100">
-                Demander un diagnostic stratégique
+              <Button size="lg" variant="outline" className="border-2 border-white text-white font-bold px-8 py-3 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 hover:bg-white hover:text-blue-900">
+                {t('services.strategie.hero.cta')}
               </Button>
             </Link>
           </div>
@@ -70,19 +76,18 @@ const StrategiePage: React.FC = () => {
             custom={1}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={image12} alt="Conseil en stratégie et transformation" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={image12} alt={t('services.strategie.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Conseil en stratégie et transformation</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Nous vous accompagnons dans la définition et la mise en œuvre de votre stratégie :</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('services.strategie.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('services.strategie.subtitle')}</p>
               <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Élaboration de stratégies de croissance, d’expansion ou de diversification.</li>
-                <li>Optimisation des processus opérationnels pour améliorer l’efficacité.</li>
-                <li>Transformation organisationnelle pour s’adapter aux défis économiques et technologiques.</li>
-                <li>Gestion du changement et accompagnement des équipes.</li>
+                {getTranslationArray('services.strategie.bullets').map((bullet: string, index: number) => (
+                  <li key={index}>{bullet}</li>
+                ))}
               </ul>
-              <h3 className="text-lg font-bold font-montserrat mt-6 mb-2">Gestion des risques</h3>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Nous identifions, évaluons et élaborons des plans de gestion pour les risques financiers, stratégiques et opérationnels afin de garantir la pérennité et la résilience de votre entreprise.</p>
+              <h3 className="text-lg font-bold font-montserrat mt-6 mb-2">{t('services.strategie.risk.title')}</h3>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('services.strategie.risk.subtitle')}</p>
             </div>
           </motion.div>
           {/* CTA */}
@@ -94,14 +99,14 @@ const StrategiePage: React.FC = () => {
             variants={sectionVariants}
             custom={2}
           >
-            <p className="text-gray-600 mb-6 text-xl font-semibold">Vous souhaitez transformer votre entreprise ?</p>
+            <p className="text-gray-600 mb-6 text-xl font-semibold">{t('services.strategie.cta.title')}</p>
             <Link to="/#contact">
               <Button
                 variant="primary"
                 size="lg"
                 className="transition-transform duration-200 hover:scale-105 hover:shadow-lg"
               >
-                Contactez-nous
+                {t('services.strategie.cta.button')}
               </Button>
             </Link>
           </motion.div>

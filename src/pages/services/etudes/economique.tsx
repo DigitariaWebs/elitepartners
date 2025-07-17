@@ -4,6 +4,8 @@ import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
+import { useLanguage } from '@/contexts/LanguageContext';
+
 // Professional financial and economic analysis images from Unsplash
 const heroImage = 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80';
 const feasibilityAnalysisImage = 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2011&q=80';
@@ -19,7 +21,16 @@ const sectionVariants = {
   })
 };
 
+// Helper function to render bullet lists
+const renderBullets = (bullets: string[]) => {
+  return bullets.map((bullet, index) => (
+    <li key={index} className="text-gray-700 text-base md:text-lg">{bullet}</li>
+  ));
+};
+
 const EconomiquePage: React.FC = () => {
+  const { t } = useLanguage();
+  
   useEffect(() => { window.scrollTo(0, 0); }, []);
   return (
     <div className="bg-gradient-to-br from-gray-50 to-white min-h-screen flex flex-col justify-between">
@@ -30,14 +41,14 @@ const EconomiquePage: React.FC = () => {
           {/* Texte */}
           <div className="w-full md:w-1/2 text-white">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight font-montserrat">
-              Études Économiques<br />et Financières
+              {t('services.etudes.economique.hero.title')}
             </h1>
             <p className="mb-8 text-base md:text-lg font-normal">
-              Analysez la viabilité économique de vos projets et optimisez vos performances financières. Nos études approfondies vous donnent les clés pour prendre des décisions d'investissement éclairées et sécuriser votre avenir financier.
+              {t('services.etudes.economique.hero.subtitle')}
             </p>
             <Link to="/#contact">
-              <Button size="lg" variant="primary" className="bg-white text-green-800 font-bold px-8 py-3 shadow-md hover:bg-gray-100">
-                Demander une analyse financière
+              <Button size="lg" variant="outline" className="border-2 border-white text-white font-bold px-8 py-3 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 hover:bg-white hover:text-green-900">
+                {t('services.etudes.economique.hero.cta')}
               </Button>
             </Link>
           </div>
@@ -45,7 +56,7 @@ const EconomiquePage: React.FC = () => {
           <div className="w-full md:w-1/2 flex justify-center">
             <img
               src={heroImage}
-              alt="Études économiques et financières"
+              alt={t('services.etudes.economique.hero.title')}
               className="rounded-2xl shadow-xl object-cover w-full max-w-md h-64 md:h-80 lg:h-96"
               style={{ background: '#e5e7eb' }}
             />
@@ -70,17 +81,13 @@ const EconomiquePage: React.FC = () => {
             custom={1}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={feasibilityAnalysisImage} alt="Analyse de faisabilité économique" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={feasibilityAnalysisImage} alt={t('services.etudes.economique.faisabilite.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Analyse de faisabilité économique</h1>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Évaluez la viabilité de vos projets avant investissement :</p>
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('services.etudes.economique.faisabilite.title')}</h1>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('services.etudes.economique.faisabilite.subtitle')}</p>
               <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Études de rentabilité et calcul du retour sur investissement (ROI)</li>
-                <li>Analyse coûts-bénéfices détaillée et scenarios multiples</li>
-                <li>Évaluation des risques financiers et stratégies de mitigation</li>
-                <li>Modélisation financière et projections sur 3-5 ans</li>
-                <li>Analyse de sensibilité et tests de stress</li>
+                {renderBullets(t('services.etudes.economique.faisabilite.bullets'))}
               </ul>
             </div>
           </motion.div>
@@ -95,17 +102,13 @@ const EconomiquePage: React.FC = () => {
             custom={2}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={valuationImage} alt="Valorisation d'entreprise" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={valuationImage} alt={t('services.etudes.economique.valorisation.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Valorisation d'entreprise</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Déterminez la juste valeur de votre entreprise :</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('services.etudes.economique.valorisation.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('services.etudes.economique.valorisation.subtitle')}</p>
               <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Évaluation par multiples comparables du secteur</li>
-                <li>Méthode des flux de trésorerie actualisés (DCF)</li>
-                <li>Analyse patrimoniale et valeur de liquidation</li>
-                <li>Évaluation pour cession, acquisition ou levée de fonds</li>
-                <li>Audit financier et due diligence</li>
+                {renderBullets(t('services.etudes.economique.valorisation.bullets'))}
               </ul>
             </div>
           </motion.div>
@@ -120,17 +123,13 @@ const EconomiquePage: React.FC = () => {
             custom={3}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={optimizationImage} alt="Optimisation financière" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={optimizationImage} alt={t('services.etudes.economique.optimisation.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Optimisation financière</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Améliorez vos performances financières :</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('services.etudes.economique.optimisation.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('services.etudes.economique.optimisation.subtitle')}</p>
               <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Optimisation de la structure de financement</li>
-                <li>Gestion du besoin en fonds de roulement</li>
-                <li>Stratégies de réduction des coûts opérationnels</li>
-                <li>Amélioration de la rentabilité par segment d'activité</li>
-                <li>Planification budgétaire et contrôle de gestion</li>
+                {renderBullets(t('services.etudes.economique.optimisation.bullets'))}
               </ul>
             </div>
           </motion.div>
@@ -144,14 +143,14 @@ const EconomiquePage: React.FC = () => {
             variants={sectionVariants}
             custom={4}
           >
-            <p className="text-gray-600 mb-6 text-xl font-semibold">Besoin d'une analyse économique approfondie ?</p>
+            <p className="text-gray-600 mb-6 text-xl font-semibold">{t('services.etudes.economique.cta.title')}</p>
             <Link to="/#contact">
               <Button
                 variant="primary"
                 size="lg"
                 className="transition-transform duration-200 hover:scale-105 hover:shadow-lg"
               >
-                PLANIFIEZ UNE CONSULTATION
+                {t('services.etudes.economique.cta.button')}
               </Button>
             </Link>
           </motion.div>

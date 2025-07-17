@@ -16,7 +16,9 @@ const Navbar: React.FC = () => {
   const isHomePage = location.pathname === '/';
   const isServicesPage = location.pathname === '/services';
   const isSectorsPage = location.pathname === '/secteurs';
-  const isGradientPage = isServicesPage || isSectorsPage;
+  const isAboutPage = location.pathname === '/about' || location.pathname.startsWith('/about#');
+  const isProjectPage = location.pathname.startsWith('/projects/');
+  const isGradientPage = isServicesPage || isSectorsPage || isProjectPage;
   const isRepresentationServicePage = location.pathname.startsWith('/services/representation/');
   const isEtudesServicePage = location.pathname.startsWith('/services/etudes/');
   const isFiscalPage = location.pathname === '/services/conseil/fiscal';
@@ -26,6 +28,16 @@ const Navbar: React.FC = () => {
                           location.pathname.startsWith('/secteurs/minier/') || 
                           location.pathname.startsWith('/secteurs/financier/');
 
+  // Détection spécifique des pages de secteurs
+  const isAgricolePage = location.pathname.startsWith('/secteurs/agricole/');
+  const isMinierPage = location.pathname.startsWith('/secteurs/minier/');
+  const isFinancierPage = location.pathname.startsWith('/secteurs/financier/');
+
+  // Détection spécifique des pages de services
+  const isConseilPage = location.pathname.startsWith('/services/conseil/');
+  const isRepresentationPage = location.pathname.startsWith('/services/representation/');
+  const isEtudesPage = location.pathname.startsWith('/services/etudes/');
+
   // Ajout d'un état pour le survol du menu Services (desktop)
   const [servicesMenuOpen, setServicesMenuOpen] = useState(false);
 
@@ -34,35 +46,35 @@ const Navbar: React.FC = () => {
   const servicesSubmenus = [
     {
       title: t('services.section.conseil.title'),
-      color: 'text-blue-700',
-      border: 'border-blue-700',
-      icon: <Briefcase className="inline-block mr-2 text-blue-700" size={20} />,
+      color: 'text-orange-300',
+      border: 'border-orange-300',
+      icon: <Briefcase className="inline-block mr-2 text-orange-300" size={20} />,
       items: [
-        { label: 'Conseil fiscal et conformité réglementaire', path: '/services/conseil/fiscal' },
-        { label: 'Conseil en Gestion des Ressources humaines', path: '/services/conseil/rh' },
+        { label: t('nav.services.conseil.fiscal'), path: '/services/conseil/fiscal' },
+        { label: t('nav.services.conseil.rh'), path: '/services/conseil/rh' },
         { label: 'Conseil en Stratégie et Transformation d’Entreprise', path: '/services/conseil/strategie' },
       ],
     },
     {
       title: t('services.section.representation.title'),
-      color: 'text-purple-700',
-      border: 'border-purple-700',
-      icon: <Users className="inline-block mr-2 text-purple-700" size={20} />,
+      color: 'text-orange-300',
+      border: 'border-orange-300',
+      icon: <Users className="inline-block mr-2 text-orange-300" size={20} />,
       items: [
-        { label: 'Accompagnement administratif et légal', path: '/services/representation/administratif' },
-        { label: 'Représentation locale', path: '/services/representation/locale' },
-        { label: 'Stratégies de pénétration de marché', path: '/services/representation/penetration-marche' },
+        { label: t('nav.services.representation.administratif'), path: '/services/representation/administratif' },
+        { label: t('nav.services.representation.locale'), path: '/services/representation/locale' },
+        { label: t('nav.services.representation.penetration'), path: '/services/representation/penetration-marche' },
       ],
     },
     {
       title: t('services.section.etudes.title'),
-      color: 'text-cyan-800',
-      border: 'border-cyan-800',
-      icon: <BookOpen className="inline-block mr-2 text-cyan-800" size={20} />,
+      color: 'text-orange-300',
+      border: 'border-orange-300',
+      icon: <BookOpen className="inline-block mr-2 text-orange-300" size={20} />,
       items: [
-        { label: 'Études de marché', path: '/services/etudes/marche' },
-        { label: 'Études économiques et financières', path: '/services/etudes/economique' },
-        { label: 'Études stratégiques et organisationnelles', path: '/services/etudes/strategique' },
+        { label: t('nav.services.etudes.marche'), path: '/services/etudes/marche' },
+        { label: t('nav.services.etudes.economique'), path: '/services/etudes/economique' },
+        { label: t('nav.services.etudes.strategique'), path: '/services/etudes/strategique' },
       ],
     },
   ];
@@ -72,36 +84,36 @@ const Navbar: React.FC = () => {
 
   const sectorsSubmenus = [
     {
-      title: 'Agricole',
-      color: 'text-green-700',
-      border: 'border-green-700',
+      title: t('nav.sectors.agricole.title'),
+      color: 'text-yellow-300',
+      border: 'border-yellow-300',
       items: [
-        { label: 'Agroalimentaire', path: '/secteurs/agricole/agroalimentaire' },
-        { label: 'Agriculture vivrière', path: '/secteurs/agricole/vivriere' },
-        { label: 'Pêche et aquaculture', path: '/secteurs/agricole/peche' },
-        { label: 'Agriculture industrielle', path: '/secteurs/agricole/industrielle' },
+        { label: t('nav.sectors.agricole.agroalimentaire'), path: '/secteurs/agricole/agroalimentaire' },
+        { label: t('nav.sectors.agricole.vivriere'), path: '/secteurs/agricole/vivriere' },
+        { label: t('nav.sectors.agricole.peche'), path: '/secteurs/agricole/peche' },
+        { label: t('nav.sectors.agricole.industrielle'), path: '/secteurs/agricole/industrielle' },
       ],
     },
     {
-      title: 'Minier',
-      color: 'text-yellow-700',
-      border: 'border-yellow-700',
+      title: t('nav.sectors.minier.title'),
+      color: 'text-yellow-300',
+      border: 'border-yellow-300',
       items: [
-        { label: 'Exploration minière', path: '/secteurs/minier/exploration' },
-        { label: 'Exploitation minière', path: '/secteurs/minier/exploitation' },
-        { label: 'Transformation et métallurgie', path: '/secteurs/minier/transformation' },
-        { label: 'Commerce et négoce', path: '/secteurs/minier/commerce' },
+        { label: t('nav.sectors.minier.exploration'), path: '/secteurs/minier/exploration' },
+        { label: t('nav.sectors.minier.exploitation'), path: '/secteurs/minier/exploitation' },
+        { label: t('nav.sectors.minier.transformation'), path: '/secteurs/minier/transformation' },
+        { label: t('nav.sectors.minier.commerce'), path: '/secteurs/minier/commerce' },
       ],
     },
     {
-      title: 'Financier',
-      color: 'text-blue-900',
-      border: 'border-blue-900',
+      title: t('nav.sectors.financier.title'),
+      color: 'text-yellow-300',
+      border: 'border-yellow-300',
       items: [
-        { label: 'Secteur bancaire', path: '/secteurs/financier/banques' },
-        { label: 'Assurance', path: '/secteurs/financier/assurance' },
-        { label: 'Investissement et gestion d\'actifs', path: '/secteurs/financier/investissement' },
-        { label: 'Fintech et innovation', path: '/secteurs/financier/fintech' },
+        { label: t('nav.sectors.financier.banques'), path: '/secteurs/financier/banques' },
+        { label: t('nav.sectors.financier.assurance'), path: '/secteurs/financier/assurance' },
+        { label: t('nav.sectors.financier.investissement'), path: '/secteurs/financier/investissement' },
+        { label: t('nav.sectors.financier.fintech'), path: '/secteurs/financier/fintech' },
       ],
     },
   ];
@@ -111,23 +123,23 @@ const Navbar: React.FC = () => {
 
   const aboutSubmenus = [
     {
-      title: 'À propos',
-      color: 'text-blue-700',
-      border: 'border-blue-700',
+      title: t('nav.about.about.title'),
+      color: 'text-purple-300',
+      border: 'border-purple-300',
       items: [
-        { label: 'Mission', path: '/about/mission' },
-        { label: 'Vision', path: '/about/vision' },
-        { label: 'Valeurs', path: '/about/valeurs' },
+        { label: t('nav.about.mission'), path: '/about#mission' },
+        { label: t('nav.about.vision'), path: '/about#vision' },
+        { label: t('nav.about.valeurs'), path: '/about#valeurs' },
       ],
     },
     {
-      title: 'Projets',
-      color: 'text-purple-700',
-      border: 'border-purple-700',
+      title: t('nav.about.projets.title'),
+      color: 'text-purple-300',
+      border: 'border-purple-300',
       items: [
-        { label: 'AgroBusiness', path: '/about/projets/agrobusiness' },
-        { label: 'Business Intelligence', path: '/about/projets/bi' },
-        { label: 'Banques d’investissement spécialisées', path: '/about/projets/banques' },
+                    { label: t('nav.about.projets.agrobusiness'), path: '/projects/agrobusiness' },
+            { label: t('nav.about.projets.bi'), path: '/projects/business-intelligence' },
+            { label: t('nav.about.projets.banques'), path: '/projects/specialized-investment-banks' },
       ],
     },
   ];
@@ -136,7 +148,7 @@ const Navbar: React.FC = () => {
     { name: t('nav.home'), path: '/' },
     { name: t('nav.services'), path: '/services' },
     { name: t('nav.sectors'), path: '/secteurs' },
-    { name: t('nav.about'), path: '/#about' },
+    { name: t('nav.about'), path: '/about' },
     { name: t('nav.contact'), path: '/#contact' },
   ];
 
@@ -217,41 +229,94 @@ const Navbar: React.FC = () => {
 
   // Determine background styles based on page and scroll state
   const getNavbarBackground = () => {
-    if (isFiscalPage || isRHPage || isStrategiePage || isEtudesServicePage || isSubsectorPage) {
-      if (!isScrolled) {
-        // Navbar dégradé bleu, texte blanc, pas d'ombre, pas de transparence
-        return 'bg-gradient-to-r from-blue-600 to-blue-800 text-white';
-      } else {
-        // Fond bleu après scroll
-        return 'bg-blue-800 text-white shadow-lg border-b border-blue-900';
-      }
+    // Fonction pour obtenir la couleur du hero selon la page exacte
+    const getHeroColor = () => {
+      const path = location.pathname;
+      
+      // Page À propos (avec ou sans ancres) - Couleur adaptée à la section hero
+      if (path === '/about' || path.startsWith('/about#')) return 'from-violet-600 to-violet-800';
+      
+      // Pages de secteurs agricole
+      if (path === '/secteurs/agricole/agroalimentaire') return 'from-green-600 to-green-800';
+      if (path === '/secteurs/agricole/vivriere') return 'from-amber-600 to-amber-800';
+      if (path === '/secteurs/agricole/peche') return 'from-blue-600 to-cyan-700';
+      if (path === '/secteurs/agricole/industrielle') return 'from-emerald-600 to-emerald-800';
+      
+      // Pages de secteurs minier
+      if (path === '/secteurs/minier/exploration') return 'from-orange-600 to-orange-800';
+      if (path === '/secteurs/minier/exploitation') return 'from-slate-700 to-slate-900';
+      if (path === '/secteurs/minier/transformation') return 'from-indigo-600 to-indigo-800';
+      if (path === '/secteurs/minier/commerce') return 'from-rose-600 to-rose-800';
+      
+      // Pages de secteurs financier
+      if (path === '/secteurs/financier/banques') return 'from-blue-700 to-blue-900';
+      if (path === '/secteurs/financier/assurance') return 'from-purple-700 to-purple-900';
+      if (path === '/secteurs/financier/investissement') return 'from-emerald-700 to-emerald-900';
+      if (path === '/secteurs/financier/fintech') return 'from-cyan-700 to-cyan-900';
+      
+      // Pages de services conseil
+      if (path === '/services/conseil/fiscal') return 'from-blue-600 to-blue-800';
+      if (path === '/services/conseil/rh') return 'from-blue-600 to-blue-800';
+      if (path === '/services/conseil/strategie') return 'from-blue-600 to-blue-800';
+      
+      // Pages de services représentation
+      if (path === '/services/representation/administratif') return 'from-blue-600 to-blue-800';
+      if (path === '/services/representation/locale') return 'from-purple-600 to-purple-800';
+      if (path === '/services/representation/penetration-marche') return 'from-teal-600 to-teal-800';
+      
+      // Pages de services études
+      if (path === '/services/etudes/marche') return 'from-blue-600 to-blue-800';
+      if (path === '/services/etudes/economique') return 'from-green-600 to-green-800';
+      if (path === '/services/etudes/strategique') return 'from-purple-600 to-purple-800';
+      
+      // Pages de projets
+      if (path === '/projects/agrobusiness') return 'from-green-600 to-green-800';
+      if (path === '/projects/business-intelligence') return 'from-blue-600 to-blue-800';
+      if (path === '/projects/specialized-investment-banks') return 'from-purple-600 to-purple-800';
+      
+      // Pages générales
+      if (path === '/services') return 'transparent';
+      if (path === '/secteurs') return 'transparent';
+      if (path === '/') return 'transparent';
+      
+      // Par défaut
+      return 'from-blue-600 to-blue-800';
+    };
+
+    const heroColor = getHeroColor();
+    
+    // Si c'est la page d'accueil et pas de scroll, transparent
+    if (isHomePage && !isScrolled) {
+      return 'bg-transparent';
     }
-    if (isServicesPage || isSectorsPage || isRepresentationServicePage) {
-      if (!isScrolled) {
-        // Transparent, flou, texte blanc tant qu'on est sur le hero
-        return 'backdrop-blur-lg bg-transparent text-white';
-      } else {
-        // Fond bleu après scroll
-        return 'bg-blue-800 text-white shadow-lg border-b border-blue-900';
-      }
-    } else if (isGradientPage) {
-      return isScrolled 
-        ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white' 
-        : 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white';
-    } else if (isHomePage) {
-      return isScrolled 
-        ? 'bg-blue-800 text-white' 
-        : 'bg-transparent';
-    } else {
-      return isScrolled 
-        ? 'bg-blue-800 text-white' 
-        : 'bg-white';
+    
+    // Si c'est la page des secteurs ou services, toujours transparent pour utiliser le hero comme background
+    if (isSectorsPage || isServicesPage) {
+      return 'bg-transparent';
     }
+    
+    // Sinon, utiliser la couleur du hero
+    if (heroColor === 'transparent') {
+      return isScrolled ? 'bg-blue-800 text-white shadow-lg border-b border-blue-900' : 'bg-transparent';
+    }
+    
+    return `bg-gradient-to-r ${heroColor} text-white${isScrolled ? ' shadow-lg border-b border-gray-800' : ''}`;
   };
 
   // Get text and hover colors based on page
   const getItemStyles = (isItemActive: boolean) => {
-    if (isFiscalPage || isRHPage || isStrategiePage || isEtudesServicePage || isSubsectorPage) {
+    if (isAboutPage) {
+      if (!isScrolled) {
+        return isItemActive
+          ? 'bg-white/20 text-white font-bold'
+          : 'text-white hover:bg-white/10 hover:text-white';
+      } else {
+        return isItemActive
+          ? 'bg-violet-900 text-white font-bold'
+          : 'text-white hover:bg-violet-900 hover:text-white';
+      }
+    }
+    if (isFiscalPage || isRHPage || isStrategiePage || isEtudesServicePage || isSubsectorPage || isProjectPage) {
       if (!isScrolled) {
         return isItemActive
           ? 'bg-white/20 text-white font-bold'
@@ -288,6 +353,246 @@ const Navbar: React.FC = () => {
       return isItemActive
         ? 'bg-blue-50 text-blue-600'
         : 'text-gray-700 hover:bg-blue-50/50 hover:text-blue-600';
+    }
+  };
+
+  // Get mobile-specific background styles for better visibility
+  const getMobileBackground = () => {
+    // Fonction pour obtenir la couleur du hero selon la page exacte (version mobile plus foncée)
+    const getMobileHeroColor = () => {
+      const path = location.pathname;
+      
+      // Page À propos (avec ou sans ancres) - Couleur adaptée à la section hero (version mobile plus foncée)
+      if (path === '/about' || path.startsWith('/about#')) return 'from-violet-700 to-violet-900';
+      
+      // Pages de secteurs agricole
+      if (path === '/secteurs/agricole/agroalimentaire') return 'from-green-700 to-green-900';
+      if (path === '/secteurs/agricole/vivriere') return 'from-amber-700 to-amber-900';
+      if (path === '/secteurs/agricole/peche') return 'from-blue-700 to-cyan-800';
+      if (path === '/secteurs/agricole/industrielle') return 'from-emerald-700 to-emerald-900';
+      
+      // Pages de secteurs minier
+      if (path === '/secteurs/minier/exploration') return 'from-orange-700 to-orange-900';
+      if (path === '/secteurs/minier/exploitation') return 'from-slate-800 to-slate-950';
+      if (path === '/secteurs/minier/transformation') return 'from-indigo-700 to-indigo-900';
+      if (path === '/secteurs/minier/commerce') return 'from-rose-700 to-rose-900';
+      
+      // Pages de secteurs financier
+      if (path === '/secteurs/financier/banques') return 'from-blue-800 to-blue-950';
+      if (path === '/secteurs/financier/assurance') return 'from-purple-800 to-purple-950';
+      if (path === '/secteurs/financier/investissement') return 'from-emerald-800 to-emerald-950';
+      if (path === '/secteurs/financier/fintech') return 'from-cyan-800 to-cyan-950';
+      
+      // Pages de services conseil
+      if (path === '/services/conseil/fiscal') return 'from-blue-700 to-blue-900';
+      if (path === '/services/conseil/rh') return 'from-blue-700 to-blue-900';
+      if (path === '/services/conseil/strategie') return 'from-blue-700 to-blue-900';
+      
+      // Pages de services représentation
+      if (path === '/services/representation/administratif') return 'from-blue-700 to-blue-900';
+      if (path === '/services/representation/locale') return 'from-purple-700 to-purple-900';
+      if (path === '/services/representation/penetration-marche') return 'from-teal-700 to-teal-900';
+      
+      // Pages de services études
+      if (path === '/services/etudes/marche') return 'from-blue-700 to-blue-900';
+      if (path === '/services/etudes/economique') return 'from-green-700 to-green-900';
+      if (path === '/services/etudes/strategique') return 'from-purple-700 to-purple-900';
+      
+      // Pages de projets
+      if (path === '/projects/agrobusiness') return 'from-green-700 to-green-900';
+      if (path === '/projects/business-intelligence') return 'from-blue-700 to-blue-900';
+      if (path === '/projects/specialized-investment-banks') return 'from-purple-700 to-purple-900';
+      
+      // Pages générales
+      if (path === '/services') return 'from-indigo-600 to-purple-600';
+      if (path === '/secteurs') return 'transparent';
+      if (path === '/') return 'transparent';
+      
+      // Par défaut
+      return 'from-blue-700 to-blue-900';
+    };
+
+    const heroColor = getMobileHeroColor();
+    
+    // Si c'est la page d'accueil et pas de scroll, semi-transparent
+    if (isHomePage && !isScrolled) {
+      return 'bg-blue-800/90 backdrop-blur-lg text-white';
+    }
+    
+    // Si c'est la page des secteurs, toujours transparent pour utiliser le hero comme background
+    if (isSectorsPage) {
+      return 'bg-transparent';
+    }
+    
+    // Sinon, utiliser la couleur du hero
+    if (heroColor === 'transparent') {
+      return isScrolled ? 'bg-blue-900 text-white' : 'bg-blue-800/90 backdrop-blur-lg text-white';
+    }
+    
+    return `bg-gradient-to-r ${heroColor} text-white shadow-lg border-gray-800`;
+  };
+
+  // Get mobile-specific item styles for better contrast
+  const getMobileItemStyles = (isItemActive: boolean) => {
+    if (isAboutPage) {
+      if (!isScrolled) {
+        return isItemActive
+          ? 'bg-white/25 text-white font-bold border-l-4 border-white'
+          : 'text-white hover:bg-white/15 hover:text-white';
+      } else {
+        return isItemActive
+          ? 'bg-violet-800 text-white font-bold border-l-4 border-white'
+          : 'text-white hover:bg-violet-800 hover:text-white';
+      }
+    }
+    if (isFiscalPage || isRHPage || isStrategiePage || isEtudesServicePage || isSubsectorPage) {
+      if (!isScrolled) {
+        return isItemActive
+          ? 'bg-white/25 text-white font-bold border-l-4 border-white'
+          : 'text-white hover:bg-white/15 hover:text-white';
+      } else {
+        return isItemActive
+          ? 'bg-blue-800 text-white font-bold border-l-4 border-white'
+          : 'text-white hover:bg-blue-800 hover:text-white';
+      }
+    }
+    if (isServicesPage || isSectorsPage || isRepresentationServicePage) {
+      if (!isScrolled) {
+        return isItemActive
+          ? 'bg-white/25 text-white font-bold border-l-4 border-white'
+          : 'text-white hover:bg-white/15 hover:text-white';
+      } else {
+        return isItemActive
+          ? 'bg-blue-800 text-white font-bold border-l-4 border-white'
+          : 'text-white hover:bg-blue-800 hover:text-white';
+      }
+    } else if (isGradientPage) {
+      return isItemActive
+        ? 'bg-white/25 text-white font-bold border-l-4 border-white'
+        : 'text-white hover:bg-white/15 hover:text-white';
+    } else if (isHomePage && !isScrolled) {
+      return isItemActive
+        ? 'bg-white/25 text-white font-bold border-l-4 border-white'
+        : 'text-white hover:bg-white/15 hover:text-white';
+    } else if (isHomePage && isScrolled) {
+      return isItemActive
+        ? 'bg-blue-800 text-white font-bold border-l-4 border-white'
+        : 'text-white hover:bg-blue-800 hover:text-white';
+    } else {
+      return isItemActive
+        ? 'bg-blue-100 text-blue-700 font-bold border-l-4 border-blue-600'
+        : 'text-gray-800 hover:bg-blue-50 hover:text-blue-700';
+    }
+  };
+
+  // Get mobile hamburger button styles based on hero section color
+  const getMobileHamburgerButtonStyles = () => {
+    const path = location.pathname;
+    
+    // Fonction pour obtenir la couleur du hero selon la page exacte
+    const getHeroColor = () => {
+      // Page À propos (avec ou sans ancres)
+      if (path === '/about' || path.startsWith('/about#')) return 'violet';
+      
+      // Pages de secteurs agricole
+      if (path === '/secteurs/agricole/agroalimentaire') return 'green';
+      if (path === '/secteurs/agricole/vivriere') return 'amber';
+      if (path === '/secteurs/agricole/peche') return 'blue';
+      if (path === '/secteurs/agricole/industrielle') return 'emerald';
+      
+      // Pages de secteurs minier
+      if (path === '/secteurs/minier/exploration') return 'orange';
+      if (path === '/secteurs/minier/exploitation') return 'slate';
+      if (path === '/secteurs/minier/transformation') return 'indigo';
+      if (path === '/secteurs/minier/commerce') return 'rose';
+      
+      // Pages de secteurs financier
+      if (path === '/secteurs/financier/banques') return 'blue';
+      if (path === '/secteurs/financier/assurance') return 'purple';
+      if (path === '/secteurs/financier/investissement') return 'emerald';
+      if (path === '/secteurs/financier/fintech') return 'cyan';
+      
+      // Pages de services conseil
+      if (path === '/services/conseil/fiscal') return 'blue';
+      if (path === '/services/conseil/rh') return 'blue';
+      if (path === '/services/conseil/strategie') return 'blue';
+      
+      // Pages de services représentation
+      if (path === '/services/representation/administratif') return 'blue';
+      if (path === '/services/representation/locale') return 'purple';
+      if (path === '/services/representation/penetration-marche') return 'teal';
+      
+      // Pages de services études
+      if (path === '/services/etudes/marche') return 'blue';
+      if (path === '/services/etudes/economique') return 'green';
+      if (path === '/services/etudes/strategique') return 'purple';
+      
+      // Pages générales
+      if (path === '/services') return 'indigo';
+      if (path === '/secteurs') return 'indigo';
+      if (path === '/') return 'transparent';
+      
+      // Par défaut
+      return 'blue';
+    };
+
+    const heroColor = getHeroColor();
+    
+    // Si c'est la page d'accueil et pas de scroll, semi-transparent
+    if (isHomePage && !isScrolled) {
+      return 'bg-white/20 text-white hover:bg-white/30';
+    }
+    
+    // Sinon, utiliser la couleur du hero
+    if (heroColor === 'transparent') {
+      return isScrolled ? 'bg-blue-800 text-white hover:bg-blue-700' : 'bg-white/20 text-white hover:bg-white/30';
+    }
+    
+    // Mapping des couleurs vers les classes Tailwind
+    const colorMap: { [key: string]: string } = {
+      violet: isScrolled ? 'bg-violet-800 text-white hover:bg-violet-700' : 'bg-white/20 text-white hover:bg-white/30',
+      green: isScrolled ? 'bg-green-800 text-white hover:bg-green-700' : 'bg-white/20 text-white hover:bg-white/30',
+      amber: isScrolled ? 'bg-amber-800 text-white hover:bg-amber-700' : 'bg-white/20 text-white hover:bg-white/30',
+      blue: isScrolled ? 'bg-blue-800 text-white hover:bg-blue-700' : 'bg-white/20 text-white hover:bg-white/30',
+      emerald: isScrolled ? 'bg-emerald-800 text-white hover:bg-emerald-700' : 'bg-white/20 text-white hover:bg-white/30',
+      orange: isScrolled ? 'bg-orange-800 text-white hover:bg-orange-700' : 'bg-white/20 text-white hover:bg-white/30',
+      slate: isScrolled ? 'bg-slate-800 text-white hover:bg-slate-700' : 'bg-white/20 text-white hover:bg-white/30',
+      indigo: isScrolled ? 'bg-indigo-800 text-white hover:bg-indigo-700' : 'bg-white/20 text-white hover:bg-white/30',
+      rose: isScrolled ? 'bg-rose-800 text-white hover:bg-rose-700' : 'bg-white/20 text-white hover:bg-white/30',
+      purple: isScrolled ? 'bg-purple-800 text-white hover:bg-purple-700' : 'bg-white/20 text-white hover:bg-white/30',
+      cyan: isScrolled ? 'bg-cyan-800 text-white hover:bg-cyan-700' : 'bg-white/20 text-white hover:bg-white/30',
+      teal: isScrolled ? 'bg-teal-800 text-white hover:bg-teal-700' : 'bg-white/20 text-white hover:bg-white/30',
+    };
+    
+    return colorMap[heroColor] || colorMap.blue;
+  };
+
+  // Get mobile-specific language button styles for better visibility
+  const getMobileLanguageButtonStyles = () => {
+    if (isAboutPage) {
+      return 'text-white hover:bg-white/15 hover:text-white border-l-4 border-transparent hover:border-white/30';
+    }
+    if (isFiscalPage || isRHPage || isStrategiePage || isEtudesServicePage || isSubsectorPage) {
+      if (!isScrolled) {
+        return 'text-white hover:bg-white/15 hover:text-white border-l-4 border-transparent hover:border-white/30';
+      } else {
+        return 'text-white hover:bg-blue-800 hover:text-white border-l-4 border-transparent hover:border-white/30';
+      }
+    }
+    if (isServicesPage || isSectorsPage || isRepresentationServicePage) {
+      if (!isScrolled) {
+        return 'text-white hover:bg-white/15 hover:text-white border-l-4 border-transparent hover:border-white/30';
+      } else {
+        return 'text-white hover:bg-blue-800 hover:text-white border-l-4 border-transparent hover:border-white/30';
+      }
+    } else if (isGradientPage) {
+      return 'text-white hover:bg-white/15 hover:text-white border-l-4 border-transparent hover:border-white/30';
+    } else if (isHomePage && !isScrolled) {
+      return 'text-white hover:bg-white/15 hover:text-white border-l-4 border-transparent hover:border-white/30';
+    } else if (isHomePage && isScrolled) {
+      return 'text-white hover:bg-blue-800 hover:text-white border-l-4 border-transparent hover:border-white/30';
+    } else {
+      return 'text-gray-800 hover:bg-blue-50 hover:text-blue-700 border-l-4 border-transparent hover:border-blue-300';
     }
   };
 
@@ -401,15 +706,17 @@ const Navbar: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className={`px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-200 font-montserrat flex items-center space-x-1 ${
-                  isServicesPage || isSectorsPage || isRepresentationServicePage || isSubsectorPage
-                    ? !isScrolled
-                      ? 'text-white/90 hover:bg-white/10 hover:text-white'
-                      : 'text-gray-900 hover:bg-gray-100 hover:text-blue-700'
-                    : isGradientPage
-                      ? 'text-white/90 hover:bg-white/10 hover:text-white'
-                      : isHomePage && !isScrolled
+                  isAboutPage
+                    ? 'text-white hover:bg-white/10 hover:text-white' // always white on about
+                    : isServicesPage || isSectorsPage || isRepresentationServicePage || isSubsectorPage
+                      ? !isScrolled
                         ? 'text-white/90 hover:bg-white/10 hover:text-white'
-                        : 'text-gray-700 hover:bg-blue-50/50 hover:text-blue-600'
+                        : 'text-gray-900 hover:bg-gray-100 hover:text-blue-700'
+                      : isGradientPage
+                        ? 'text-white/90 hover:bg-white/10 hover:text-white'
+                        : isHomePage && !isScrolled
+                          ? 'text-white/90 hover:bg-white/10 hover:text-white'
+                          : 'text-gray-700 hover:bg-blue-50/50 hover:text-blue-600'
                 }`}
               >
                 <Globe size={16} />
@@ -423,15 +730,7 @@ const Navbar: React.FC = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsOpen(!isOpen)}
-              className={`p-2 rounded-lg transition-all duration-200 ${
-                isGradientPage || ((isRepresentationServicePage || isSubsectorPage) && !isScrolled)
-                  ? 'bg-white/10 text-white hover:bg-white/20'
-                  : isScrolled
-                    ? 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                    : isHomePage
-                      ? 'bg-white/10 text-white hover:bg-white/20'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
+              className={`p-2 rounded-lg transition-all duration-200 ${getMobileHamburgerButtonStyles()}`}
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </motion.button>
@@ -447,7 +746,7 @@ const Navbar: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.18 }}
-            className="absolute left-0 right-0 top-full w-screen max-w-none z-50
+            className="hidden md:block absolute left-0 right-0 top-full w-screen max-w-none z-50
               bg-white text-gray-900 shadow-2xl border-b border-gray-100
               py-10"
             onMouseEnter={() => setServicesMenuOpen(true)}
@@ -457,7 +756,7 @@ const Navbar: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-12 w-full">
                 {servicesSubmenus.map((col) => (
                   <div key={col.title} className="min-w-0">
-                    <div className={`font-bold mb-2 text-lg ${col.color}`}>{col.title}</div>
+                    <div className={`font-bold mb-2 text-lg ${col.color} md:text-gradient`}>{col.title}</div>
                     <div className={`h-1 w-10 mb-4 rounded ${col.border} bg-current`}></div>
                     <ul className="space-y-2">
                       {col.items.map((sub) => (
@@ -488,7 +787,7 @@ const Navbar: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.18 }}
-            className="absolute left-0 right-0 top-full w-screen max-w-none z-50
+            className="hidden md:block absolute left-0 right-0 top-full w-screen max-w-none z-50
               bg-white text-gray-900 shadow-2xl border-b border-gray-100
               py-10"
             onMouseEnter={() => setSectorsMenuOpen(true)}
@@ -498,7 +797,7 @@ const Navbar: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-12 w-full">
                 {sectorsSubmenus.map((col) => (
                   <div key={col.title} className="min-w-0">
-                    <div className={`font-bold mb-2 text-lg ${col.color}`}>{col.title}</div>
+                    <div className={`font-bold mb-2 text-lg ${col.color} md:text-gradient`}>{col.title}</div>
                     <div className={`h-1 w-10 mb-4 rounded ${col.border} bg-current`}></div>
                     <ul className="space-y-2">
                       {col.items.map((sub) => (
@@ -529,7 +828,7 @@ const Navbar: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.18 }}
-            className="absolute left-0 right-0 top-full w-screen max-w-none z-50
+            className="hidden md:block absolute left-0 right-0 top-full w-screen max-w-none z-50
               bg-white text-gray-900 shadow-2xl border-b border-gray-100
               py-10"
             onMouseEnter={() => setAboutMenuOpen(true)}
@@ -539,7 +838,7 @@ const Navbar: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full">
                 {aboutSubmenus.map((col) => (
                   <div key={col.title} className="min-w-0">
-                    <div className={`font-bold mb-2 text-lg ${col.color}`}>{col.title}</div>
+                    <div className={`font-bold mb-2 text-lg ${col.color} md:text-gradient`}>{col.title}</div>
                     <div className={`h-1 w-10 mb-4 rounded ${col.border} bg-current`}></div>
                     <ul className="space-y-2">
                       {col.items.map((sub) => (
@@ -572,15 +871,7 @@ const Navbar: React.FC = () => {
           className="md:hidden overflow-hidden"
         >
           <div className={`px-4 py-3 space-y-2 border-t transition-all duration-300 ${
-            (isStrategiePage || isRHPage || isFiscalPage || isEtudesServicePage || isSubsectorPage) && !isScrolled
-              ? 'bg-gradient-to-r from-blue-600 to-blue-800 text-white'
-                  : isGradientPage
-                    ? 'bg-gradient-to-r from-indigo-600/95 to-purple-600/95 backdrop-blur-lg border-white/10'
-                    : isScrolled
-                      ? 'bg-white/95 backdrop-blur-lg border-gray-100'
-                      : isHomePage
-                        ? 'bg-white/10 backdrop-blur-md border-white/20'
-                        : 'bg-white border-gray-100'
+            getMobileBackground()
           }`}>
             {navigationItems.map((item) =>
               item.name === t('nav.services') ? (
@@ -589,7 +880,7 @@ const Navbar: React.FC = () => {
                     onClick={() => setServicesMenuOpen((open) => !open)}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className={`block w-full text-left px-4 py-3 rounded-lg text-base font-semibold transition-all duration-200 font-montserrat flex items-center justify-between ${getItemStyles(isActive(item.path))}`}
+                    className={`block w-full text-left px-4 py-3 rounded-lg text-base font-semibold transition-all duration-200 font-montserrat flex items-center justify-between ${getMobileItemStyles(isActive(item.path))}`}
                   >
                     <span>{item.name}</span>
                     <svg className={`ml-2 w-4 h-4 transform transition-transform ${servicesMenuOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
@@ -613,7 +904,7 @@ const Navbar: React.FC = () => {
                                   <li key={sub.label}>
                                     <Link
                                       to={sub.path}
-                                      className="block px-0 py-1 text-sm text-gray-700 hover:text-blue-700 hover:underline transition"
+                                      className="block px-0 py-1 text-sm text-white/90 hover:text-white hover:underline transition"
                                       onClick={() => setIsOpen(false)}
                                     >
                                       {sub.label}
@@ -634,7 +925,7 @@ const Navbar: React.FC = () => {
                     onClick={() => setSectorsMenuOpen((open) => !open)}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className={`block w-full text-left px-4 py-3 rounded-lg text-base font-semibold transition-all duration-200 font-montserrat flex items-center justify-between ${getItemStyles(isActive(item.path))}`}
+                    className={`block w-full text-left px-4 py-3 rounded-lg text-base font-semibold transition-all duration-200 font-montserrat flex items-center justify-between ${getMobileItemStyles(isActive(item.path))}`}
                   >
                     <span>{item.name}</span>
                     <svg className={`ml-2 w-4 h-4 transform transition-transform ${sectorsMenuOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
@@ -658,7 +949,52 @@ const Navbar: React.FC = () => {
                                   <li key={sub.label}>
                                     <Link
                                       to={sub.path}
-                                      className="block px-0 py-1 text-sm text-gray-700 hover:text-blue-700 hover:underline transition"
+                                      className="block px-0 py-1 text-sm text-white/90 hover:text-white hover:underline transition"
+                                      onClick={() => setIsOpen(false)}
+                                    >
+                                      {sub.label}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : item.name === t('nav.about') ? (
+                <div key={item.name} className="w-full">
+                  <motion.button
+                    onClick={() => setAboutMenuOpen((open) => !open)}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className={`block w-full text-left px-4 py-3 rounded-lg text-base font-semibold transition-all duration-200 font-montserrat flex items-center justify-between ${getMobileItemStyles(isActive(item.path))}`}
+                  >
+                    <span>{item.name}</span>
+                    <svg className={`ml-2 w-4 h-4 transform transition-transform ${aboutMenuOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                  </motion.button>
+                  <AnimatePresence>
+                    {aboutMenuOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.18 }}
+                        className="pl-4 pb-2"
+                      >
+                        <div className="flex flex-col gap-6">
+                          {aboutSubmenus.map((col) => (
+                            <div key={col.title} className="mb-2">
+                              <div className={`flex items-center font-bold mb-1 text-base ${col.color}`}>{col.title}</div>
+                              <div className={`h-1 w-10 mb-3 rounded ${col.border} bg-current`}></div>
+                              <ul className="space-y-1">
+                                {col.items.map((sub) => (
+                                  <li key={sub.label}>
+                                    <Link
+                                      to={sub.path}
+                                      className="block px-0 py-1 text-sm text-white/90 hover:text-white hover:underline transition"
                                       onClick={() => setIsOpen(false)}
                                     >
                                       {sub.label}
@@ -679,7 +1015,7 @@ const Navbar: React.FC = () => {
                   onClick={() => handleNavigation(item.path)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`block w-full text-left px-4 py-3 rounded-lg text-base font-semibold transition-all duration-200 font-montserrat ${getItemStyles(isActive(item.path))}`}
+                  className={`block w-full text-left px-4 py-3 rounded-lg text-base font-semibold transition-all duration-200 font-montserrat ${getMobileItemStyles(isActive(item.path))}`}
                 >
                   <span>{item.name}</span>
                 </motion.button>
@@ -689,19 +1025,7 @@ const Navbar: React.FC = () => {
               onClick={() => setLanguage(language === 'fr' ? 'en' : 'fr')}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className={`block w-full text-left px-4 py-3 rounded-lg text-base font-semibold transition-all duration-200 font-montserrat flex items-center space-x-2 ${
-                (isStrategiePage || isRHPage || isFiscalPage || isEtudesServicePage || isSubsectorPage) && !isScrolled
-                  ? 'bg-white text-white hover:bg-blue-100'
-                      : isServicesPage || isSectorsPage || isRepresentationServicePage
-                        ? !isScrolled
-                          ? 'text-white/90 hover:bg-white/10 hover:text-white'
-                          : 'text-gray-900 hover:bg-gray-100 hover:text-blue-700'
-                        : isGradientPage
-                          ? 'text-white/90 hover:bg-white/10 hover:text-white'
-                          : isHomePage && !isScrolled
-                            ? 'text-white/90 hover:bg-white/10 hover:text-white'
-                            : 'text-gray-700 hover:bg-blue-50/50 hover:text-blue-600'
-              }`}
+              className={`block w-full text-left px-4 py-3 rounded-lg text-base font-semibold transition-all duration-200 font-montserrat flex items-center space-x-2 ${getMobileLanguageButtonStyles()}`}
             >
               <Globe size={16} />
               <span>{language === 'fr' ? 'English' : 'Français'}</span>

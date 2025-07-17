@@ -21,10 +21,10 @@ const StrategiquesPage: React.FC = () => {
             aux défis actuels de nos clients, centrée sur la qualité, l'innovation et la proximité client.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+            <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-2 border-blue-600 hover:border-blue-700">
               Découvrir nos services
             </button>
-            <button className="bg-transparent border-2 border-blue-700 text-blue-700 hover:bg-blue-50 hover:text-blue-900 px-8 py-3 rounded-lg font-semibold transition-colors">
+            <button className="bg-white border-2 border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
               Prendre rendez-vous
             </button>
           </div>

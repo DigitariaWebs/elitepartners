@@ -4,6 +4,7 @@ import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // Professional African banking images from Unsplash
 const heroImage = 'https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80';
@@ -21,7 +22,18 @@ const sectionVariants = {
 };
 
 const BanquesPage: React.FC = () => {
+  const { t } = useLanguage();
+  
   useEffect(() => { window.scrollTo(0, 0); }, []);
+  
+  const renderBulletList = (bullets: string[]) => (
+    <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
+      {bullets.map((bullet, index) => (
+        <li key={index}>{bullet}</li>
+      ))}
+    </ul>
+  );
+
   return (
     <div className="bg-gradient-to-br from-gray-50 to-white min-h-screen flex flex-col justify-between">
       <Navbar />
@@ -31,14 +43,14 @@ const BanquesPage: React.FC = () => {
           {/* Texte */}
           <div className="w-full md:w-1/2 text-white">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight font-montserrat">
-              Secteur Bancaire<br />et Financement
+              {t('sectors.financier.banques.hero.title')}
             </h1>
             <p className="mb-8 text-base md:text-lg font-normal">
-              Développez un système bancaire moderne et inclusif en RDC. Nous accompagnons les institutions financières dans leur transformation digitale, expansion de services et conformité réglementaire pour stimuler l'inclusion financière et le développement économique.
+              {t('sectors.financier.banques.hero.subtitle')}
             </p>
             <Link to="/#contact">
-              <Button size="lg" variant="primary" className="bg-white text-blue-800 font-bold px-8 py-3 shadow-md hover:bg-gray-100">
-                Moderniser vos services bancaires
+              <Button size="lg" variant="outline" className="border-2 border-white text-white font-bold px-8 py-3 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 hover:bg-white hover:text-blue-900">
+                {t('sectors.financier.banques.hero.cta')}
               </Button>
             </Link>
           </div>
@@ -46,7 +58,7 @@ const BanquesPage: React.FC = () => {
           <div className="w-full md:w-1/2 flex justify-center">
             <img
               src={heroImage}
-              alt="Secteur bancaire en RDC"
+              alt={t('sectors.financier.banques.hero.title')}
               className="rounded-2xl shadow-xl object-cover w-full max-w-md h-64 md:h-80 lg:h-96"
               style={{ background: '#e5e7eb' }}
             />
@@ -71,18 +83,12 @@ const BanquesPage: React.FC = () => {
             custom={1}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={digitalBankingImage} alt="Transformation digitale bancaire" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={digitalBankingImage} alt={t('sectors.financier.banques.innovation.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Innovation et transformation digitale</h1>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Modernisez vos services bancaires avec les dernières technologies :</p>
-              <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Développement de plateformes de banking mobile</li>
-                <li>Implémentation de solutions de paiement digital</li>
-                <li>Blockchain et cryptomonnaies pour les transferts</li>
-                <li>Intelligence artificielle pour l'analyse de crédit</li>
-                <li>API banking et écosystème fintech</li>
-              </ul>
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.financier.banques.innovation.title')}</h1>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.financier.banques.innovation.subtitle')}</p>
+              {renderBulletList(t('sectors.financier.banques.innovation.bullets'))}
             </div>
           </motion.div>
 
@@ -96,18 +102,12 @@ const BanquesPage: React.FC = () => {
             custom={2}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={corporateBankingImage} alt="Banking d'entreprise" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={corporateBankingImage} alt={t('sectors.financier.banques.entreprises.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Services bancaires aux entreprises</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Solutions complètes pour accompagner le développement des entreprises :</p>
-              <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Financement des PME et microentreprises</li>
-                <li>Crédits commerciaux et lignes de crédit</li>
-                <li>Trade finance et lettres de crédit</li>
-                <li>Gestion de trésorerie et cash management</li>
-                <li>Services de change et couverture de risque</li>
-              </ul>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.financier.banques.entreprises.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.financier.banques.entreprises.subtitle')}</p>
+              {renderBulletList(t('sectors.financier.banques.entreprises.bullets'))}
             </div>
           </motion.div>
 
@@ -121,18 +121,12 @@ const BanquesPage: React.FC = () => {
             custom={3}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={riskManagementImage} alt="Gestion des risques bancaires" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={riskManagementImage} alt={t('sectors.financier.banques.risques.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Gestion des risques et conformité</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Renforcez votre cadre de gestion des risques et de conformité :</p>
-              <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Mise en place de systèmes de scoring crédit</li>
-                <li>Compliance anti-blanchiment (AML/CFT)</li>
-                <li>Gestion des risques opérationnels et de marché</li>
-                <li>Reporting réglementaire et supervision bancaire</li>
-                <li>Formation du personnel aux nouvelles réglementations</li>
-              </ul>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.financier.banques.risques.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.financier.banques.risques.subtitle')}</p>
+              {renderBulletList(t('sectors.financier.banques.risques.bullets'))}
             </div>
           </motion.div>
 
@@ -145,14 +139,14 @@ const BanquesPage: React.FC = () => {
             variants={sectionVariants}
             custom={4}
           >
-            <p className="text-gray-600 mb-6 text-xl font-semibold">Prêt à révolutionner vos services bancaires ?</p>
+            <p className="text-gray-600 mb-6 text-xl font-semibold">{t('sectors.financier.banques.cta.title')}</p>
             <Link to="/#contact">
               <Button
                 variant="primary"
                 size="lg"
                 className="transition-transform duration-200 hover:scale-105 hover:shadow-lg"
               >
-                TRANSFORMER VOTRE BANQUE
+                {t('sectors.financier.banques.cta.button')}
               </Button>
             </Link>
           </motion.div>

@@ -4,6 +4,7 @@ import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // Professional local representation images from Unsplash
 const heroImage = 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2084&q=80';
@@ -20,7 +21,16 @@ const sectionVariants = {
   })
 };
 
+// Helper function to render bullet lists
+const renderBullets = (bullets: string[]) => {
+  return bullets.map((bullet, index) => (
+    <li key={index} className="text-gray-700 text-base md:text-lg">{bullet}</li>
+  ));
+};
+
 const LocalePage: React.FC = () => {
+  const { t } = useLanguage();
+  
   useEffect(() => { window.scrollTo(0, 0); }, []);
   return (
     <div className="bg-gradient-to-br from-gray-50 to-white min-h-screen flex flex-col justify-between">
@@ -31,14 +41,14 @@ const LocalePage: React.FC = () => {
           {/* Texte */}
           <div className="w-full md:w-1/2 text-white">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight font-montserrat">
-              Représentation Locale<br />Stratégique
+              {t('services.representation.locale.hero.title')}
             </h1>
             <p className="mb-8 text-base md:text-lg font-normal">
-              Établissez une présence forte et crédible sur le marché congolais. Nous devenons l'extension de votre équipe pour défendre vos intérêts avec professionnalisme et intégrité.
+              {t('services.representation.locale.hero.subtitle')}
             </p>
             <Link to="/#contact">
-              <Button size="lg" variant="primary" className="bg-white text-purple-800 font-bold px-8 py-3 shadow-md hover:bg-gray-100">
-                Discuter de votre représentation
+              <Button size="lg" variant="outline" className="border-2 border-white text-white font-bold px-8 py-3 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 hover:bg-white hover:text-purple-900">
+                {t('services.representation.locale.hero.cta')}
               </Button>
             </Link>
           </div>
@@ -46,7 +56,7 @@ const LocalePage: React.FC = () => {
           <div className="w-full md:w-1/2 flex justify-center">
             <img
               src={heroImage}
-              alt="Représentation locale stratégique"
+              alt={t('services.representation.locale.hero.title')}
               className="rounded-2xl shadow-xl object-cover w-full max-w-md h-64 md:h-80 lg:h-96"
               style={{ background: '#e5e7eb' }}
             />
@@ -71,17 +81,13 @@ const LocalePage: React.FC = () => {
             custom={1}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={commercialRepresentationImage} alt="Représentation commerciale" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={commercialRepresentationImage} alt={t('services.representation.locale.commerciale.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Représentation commerciale active</h1>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Nous agissons en votre nom pour développer vos relations d'affaires :</p>
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('services.representation.locale.commerciale.title')}</h1>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('services.representation.locale.commerciale.subtitle')}</p>
               <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Gestion des relations clients et partenaires locaux</li>
-                <li>Prospection et développement commercial</li>
-                <li>Participation aux événements sectoriels</li>
-                <li>Suivi et fidélisation de la clientèle</li>
-                <li>Reporting détaillé des activités commerciales</li>
+                {renderBullets(t('services.representation.locale.commerciale.bullets'))}
               </ul>
             </div>
           </motion.div>
@@ -96,17 +102,13 @@ const LocalePage: React.FC = () => {
             custom={2}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={negotiationContractsImage} alt="Négociation et contrats" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={negotiationContractsImage} alt={t('services.representation.locale.negociation.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Négociation et gestion contractuelle</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Expertise en négociation pour sécuriser vos meilleurs intérêts :</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('services.representation.locale.negociation.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('services.representation.locale.negociation.subtitle')}</p>
               <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Négociation d'accords commerciaux et partenariats</li>
-                <li>Rédaction et révision de contrats locaux</li>
-                <li>Médiation en cas de différends commerciaux</li>
-                <li>Suivi de l'exécution des contrats</li>
-                <li>Conseil en stratégie de négociation</li>
+                {renderBullets(t('services.representation.locale.negociation.bullets'))}
               </ul>
             </div>
           </motion.div>
@@ -121,17 +123,13 @@ const LocalePage: React.FC = () => {
             custom={3}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={localOfficeManagementImage} alt="Gestion de bureau local" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={localOfficeManagementImage} alt={t('services.representation.locale.bureau.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Gestion de présence physique</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Solutions complètes pour votre présence locale :</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('services.representation.locale.bureau.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('services.representation.locale.bureau.subtitle')}</p>
               <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Mise en place et gestion de bureau local</li>
-                <li>Recrutement et management d'équipe locale</li>
-                <li>Gestion logistique et administrative</li>
-                <li>Domiciliation commerciale et postale</li>
-                <li>Support technique et informatique</li>
+                {renderBullets(t('services.representation.locale.bureau.bullets'))}
               </ul>
             </div>
           </motion.div>
@@ -145,14 +143,14 @@ const LocalePage: React.FC = () => {
             variants={sectionVariants}
             custom={4}
           >
-            <p className="text-gray-600 mb-6 text-xl font-semibold">Prêt à établir votre présence locale ?</p>
+            <p className="text-gray-600 mb-6 text-xl font-semibold">{t('services.representation.locale.cta.title')}</p>
             <Link to="/#contact">
               <Button
                 variant="primary"
                 size="lg"
                 className="transition-transform duration-200 hover:scale-105 hover:shadow-lg"
               >
-                DEVENIR UN ACTEUR LOCAL
+                {t('services.representation.locale.cta.button')}
               </Button>
             </Link>
           </motion.div>

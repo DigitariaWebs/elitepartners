@@ -4,6 +4,7 @@ import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
+import { useLanguage } from '@/contexts/LanguageContext';
 import image11 from './11.png';
 import image12 from './12.png';
 import image13 from './13.png';
@@ -20,6 +21,14 @@ const sectionVariants = {
 };
 
 const FiscalPage: React.FC = () => {
+  const { t } = useLanguage();
+  
+  // Helper function to get translation as array
+  const getTranslationArray = (key: string): string[] => {
+    const translation = t(key);
+    return Array.isArray(translation) ? translation : [];
+  };
+
   useEffect(() => { window.scrollTo(0, 0); }, []);
   return (
     <div className="bg-gradient-to-br from-gray-50 to-white min-h-screen flex flex-col justify-between">
@@ -30,14 +39,14 @@ const FiscalPage: React.FC = () => {
           {/* Texte */}
           <div className="w-full md:w-1/2 text-white">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight font-montserrat">
-              Optimisez votre fiscalité et vos données<br />avec notre expertise !
+              {t('services.fiscal.hero.title')}
             </h1>
             <p className="mb-8 text-base md:text-lg font-normal">
-              Bénéficiez d’un accompagnement sur-mesure pour la conformité réglementaire, l’optimisation fiscale et la valorisation de vos données. Nos experts vous aident à transformer vos obligations en véritables leviers de performance.
+              {t('services.fiscal.hero.subtitle')}
             </p>
             <Link to="/#contact">
-              <Button size="lg" variant="primary" className="bg-white text-blue-800 font-bold px-8 py-3 shadow-md hover:bg-gray-100">
-                Demander un diagnostic gratuit
+              <Button size="lg" variant="outline" className="border-2 border-white text-white font-bold px-8 py-3 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 hover:bg-white hover:text-blue-900">
+                {t('services.fiscal.hero.cta')}
               </Button>
             </Link>
           </div>
@@ -70,21 +79,21 @@ const FiscalPage: React.FC = () => {
             custom={1}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={image11} alt="Conseil fiscal et conformité réglementaire" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={image11} alt={t('services.fiscal.fiscal.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Conseil fiscal et conformité réglementaire</h1>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Nous vous aidons à naviguer dans les complexités fiscales et réglementaires grâce à des solutions adaptées :</p>
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('services.fiscal.fiscal.title')}</h1>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('services.fiscal.fiscal.subtitle')}</p>
               <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Optimisation fiscale pour réduire vos charges tout en respectant les lois en vigueur.</li>
-                <li>Gestion de la conformité selon les normes locales et internationales.</li>
-                <li>Diagnostic fiscal pour identifier les risques et opportunités.</li>
+                {getTranslationArray('services.fiscal.fiscal.bullets').map((bullet: string, index: number) => (
+                  <li key={index}>{bullet}</li>
+                ))}
               </ul>
              
             </div>
           </motion.div>
 
-          {/* Conseil en Stratégie et Transformation d’Entreprise */}
+          {/* Conseil en Stratégie et Transformation d'Entreprise */}
           <motion.div
             className="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12 mb-16"
             initial="hidden"
@@ -94,16 +103,15 @@ const FiscalPage: React.FC = () => {
             custom={2}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={image12} alt="Conseil en Stratégie et Transformation d’Entreprise" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={image12} alt={t('services.fiscal.bi.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-            <h2 className="text-xl font-bold font-montserrat mt-8 mb-2">Business Intelligence et Data Analytics</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Nous exploitons vos données pour en faire un levier stratégique et améliorer votre prise de décision.</p>
+            <h2 className="text-xl font-bold font-montserrat mt-8 mb-2">{t('services.fiscal.bi.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('services.fiscal.bi.subtitle')}</p>
               <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Conception et automatisation de rapports interactifs : Création de tableaux de bord dynamiques avec Microsoft Power BI et Excel pour une analyse rapide et visuelle des données.</li>
-                <li>Reporting financier et analyse de performance : Suivi des indicateurs financiers et organisationnels pour une meilleure gestion.</li>
-                <li>Modélisation et exploration des données : Identification des tendances et réalisation de prévisions pour guider les décisions stratégiques.</li>
-                <li>Formation et accompagnement : Développement des compétences de vos équipes pour utiliser efficacement les outils d’analyse et de reporting.</li>
+                {getTranslationArray('services.fiscal.bi.bullets').map((bullet: string, index: number) => (
+                  <li key={index}>{bullet}</li>
+                ))}
               </ul> </div>
           </motion.div>
 
@@ -118,14 +126,14 @@ const FiscalPage: React.FC = () => {
             variants={sectionVariants}
             custom={4}
           >
-            <p className="text-gray-600 mb-6 text-xl font-semibold">Vous êtes intéressés par ce service ?</p>
+            <p className="text-gray-600 mb-6 text-xl font-semibold">{t('services.fiscal.cta.title')}</p>
             <Link to="/#contact">
               <Button
                 variant="primary"
                 size="lg"
                 className="transition-transform duration-200 hover:scale-105 hover:shadow-lg"
               >
-                CLIQUEZ ICI
+                {t('services.fiscal.cta.button')}
               </Button>
             </Link>
           </motion.div>

@@ -4,6 +4,7 @@ import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // Professional market penetration images from Unsplash
 const heroImage = 'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80';
@@ -20,7 +21,16 @@ const sectionVariants = {
   })
 };
 
+// Helper function to render bullet lists
+const renderBullets = (bullets: string[]) => {
+  return bullets.map((bullet, index) => (
+    <li key={index} className="text-gray-700 text-base md:text-lg">{bullet}</li>
+  ));
+};
+
 const PenetrationMarchePage: React.FC = () => {
+  const { t } = useLanguage();
+  
   useEffect(() => { window.scrollTo(0, 0); }, []);
   return (
     <div className="bg-gradient-to-br from-gray-50 to-white min-h-screen flex flex-col justify-between">
@@ -31,14 +41,14 @@ const PenetrationMarchePage: React.FC = () => {
           {/* Texte */}
           <div className="w-full md:w-1/2 text-white">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight font-montserrat">
-              Stratégies de Pénétration<br />de Marché
+              {t('services.representation.penetration.hero.title')}
             </h1>
             <p className="mb-8 text-base md:text-lg font-normal">
-              Convertissez le potentiel du marché congolais en succès commercial tangible. Notre approche basée sur les données et l'expertise locale vous garantit une entrée sur le marché optimisée et rentable.
+              {t('services.representation.penetration.hero.subtitle')}
             </p>
             <Link to="/#contact">
-              <Button size="lg" variant="primary" className="bg-white text-teal-800 font-bold px-8 py-3 shadow-md hover:bg-gray-100">
-                Définir votre stratégie
+              <Button size="lg" variant="outline" className="border-2 border-white text-white font-bold px-8 py-3 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 hover:bg-white hover:text-teal-900">
+                {t('services.representation.penetration.hero.cta')}
               </Button>
             </Link>
           </div>
@@ -46,7 +56,7 @@ const PenetrationMarchePage: React.FC = () => {
           <div className="w-full md:w-1/2 flex justify-center">
             <img
               src={heroImage}
-              alt="Stratégies de pénétration de marché"
+              alt={t('services.representation.penetration.hero.title')}
               className="rounded-2xl shadow-xl object-cover w-full max-w-md h-64 md:h-80 lg:h-96"
               style={{ background: '#e5e7eb' }}
             />
@@ -71,17 +81,13 @@ const PenetrationMarchePage: React.FC = () => {
             custom={1}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={marketResearchImage} alt="Études de marché approfondies" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={marketResearchImage} alt={t('services.representation.penetration.etudes.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Études de marché approfondies</h1>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Analyses rigoureuses pour identifier les opportunités et minimiser les risques :</p>
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('services.representation.penetration.etudes.title')}</h1>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('services.representation.penetration.etudes.subtitle')}</p>
               <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Analyse de la taille et du potentiel du marché</li>
-                <li>Cartographie de la concurrence directe et indirecte</li>
-                <li>Étude des comportements et préférences consommateurs</li>
-                <li>Identification des barrières à l'entrée</li>
-                <li>Évaluation des canaux de distribution optimaux</li>
+                {renderBullets(t('services.representation.penetration.etudes.bullets'))}
               </ul>
             </div>
           </motion.div>
@@ -96,17 +102,13 @@ const PenetrationMarchePage: React.FC = () => {
             custom={2}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={goToMarketStrategyImage} alt="Stratégie Go-to-Market" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={goToMarketStrategyImage} alt={t('services.representation.penetration.strategie.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Stratégie Go-to-Market personnalisée</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Plan d'action sur-mesure pour un lancement réussi :</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('services.representation.penetration.strategie.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('services.representation.penetration.strategie.subtitle')}</p>
               <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Positionnement optimal et proposition de valeur</li>
-                <li>Stratégie de prix adaptée au marché local</li>
-                <li>Plan de communication et marketing digital</li>
-                <li>Roadmap de lancement par phases</li>
-                <li>Définition des KPIs et métriques de succès</li>
+                {renderBullets(t('services.representation.penetration.strategie.bullets'))}
               </ul>
             </div>
           </motion.div>
@@ -121,17 +123,13 @@ const PenetrationMarchePage: React.FC = () => {
             custom={3}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={partnershipResearchImage} alt="Recherche de partenaires stratégiques" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={partnershipResearchImage} alt={t('services.representation.penetration.partenaires.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Recherche de partenaires stratégiques</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Identification et mise en relation avec les acteurs clés :</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('services.representation.penetration.partenaires.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('services.representation.penetration.partenaires.subtitle')}</p>
               <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Sourcing de distributeurs et agents commerciaux</li>
-                <li>Identification de partenaires technologiques</li>
-                <li>Mise en relation avec des investisseurs locaux</li>
-                <li>Facilitation des négociations et accords</li>
-                <li>Due diligence sur les partenaires potentiels</li>
+                {renderBullets(t('services.representation.penetration.partenaires.bullets'))}
               </ul>
             </div>
           </motion.div>
@@ -145,14 +143,14 @@ const PenetrationMarchePage: React.FC = () => {
             variants={sectionVariants}
             custom={4}
           >
-            <p className="text-gray-600 mb-6 text-xl font-semibold">Prêt à conquérir le marché congolais ?</p>
+            <p className="text-gray-600 mb-6 text-xl font-semibold">{t('services.representation.penetration.cta.title')}</p>
             <Link to="/#contact">
               <Button
                 variant="primary"
                 size="lg"
                 className="transition-transform duration-200 hover:scale-105 hover:shadow-lg"
               >
-                ÉVALUER MON POTENTIEL
+                {t('services.representation.penetration.cta.button')}
               </Button>
             </Link>
           </motion.div>

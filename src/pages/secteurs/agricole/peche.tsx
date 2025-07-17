@@ -4,6 +4,7 @@ import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // Professional African fishing and aquaculture images from Unsplash
 const heroImage = 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80';
@@ -21,7 +22,18 @@ const sectionVariants = {
 };
 
 const PechePage: React.FC = () => {
+  const { t } = useLanguage();
+  
   useEffect(() => { window.scrollTo(0, 0); }, []);
+  
+  const renderBulletList = (bullets: string[]) => (
+    <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
+      {bullets.map((bullet, index) => (
+        <li key={index}>{bullet}</li>
+      ))}
+    </ul>
+  );
+
   return (
     <div className="bg-gradient-to-br from-gray-50 to-white min-h-screen flex flex-col justify-between">
       <Navbar />
@@ -31,14 +43,14 @@ const PechePage: React.FC = () => {
           {/* Texte */}
           <div className="w-full md:w-1/2 text-white">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight font-montserrat">
-              Pêche et Aquaculture<br />en RDC
+              {t('sectors.agricole.peche.hero.title')}
             </h1>
             <p className="mb-8 text-base md:text-lg font-normal">
-              Exploitez durablement les immenses ressources halieutiques de la RDC. Nous accompagnons le développement de la pêche artisanale et industrielle ainsi que l'aquaculture moderne pour renforcer la sécurité alimentaire et créer des emplois.
+              {t('sectors.agricole.peche.hero.subtitle')}
             </p>
             <Link to="/#contact">
-              <Button size="lg" variant="primary" className="bg-white text-cyan-800 font-bold px-8 py-3 shadow-md hover:bg-gray-100">
-                Développer votre activité halieutique
+              <Button size="lg" variant="outline" className="border-2 border-white text-white font-bold px-8 py-3 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 hover:bg-white hover:text-cyan-900">
+                {t('sectors.agricole.peche.hero.cta')}
               </Button>
             </Link>
           </div>
@@ -46,7 +58,7 @@ const PechePage: React.FC = () => {
           <div className="w-full md:w-1/2 flex justify-center">
             <img
               src={heroImage}
-              alt="Pêche et aquaculture en RDC"
+              alt={t('sectors.agricole.peche.hero.title')}
               className="rounded-2xl shadow-xl object-cover w-full max-w-md h-64 md:h-80 lg:h-96"
               style={{ background: '#e5e7eb' }}
             />
@@ -71,18 +83,12 @@ const PechePage: React.FC = () => {
             custom={1}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={fishingTechniquesImage} alt="Techniques de pêche durables" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={fishingTechniquesImage} alt={t('sectors.agricole.peche.techniques.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Modernisation des techniques de pêche</h1>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Améliorez vos rendements tout en préservant l'écosystème :</p>
-              <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Introduction d'équipements de pêche modernes et sélectifs</li>
-                <li>Formation aux techniques de pêche responsable</li>
-                <li>Gestion durable des stocks halieutiques</li>
-                <li>Amélioration des embarcations et motorisation</li>
-                <li>Systèmes de géolocalisation et détection de bancs</li>
-              </ul>
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.agricole.peche.techniques.title')}</h1>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.agricole.peche.techniques.subtitle')}</p>
+              {renderBulletList(t('sectors.agricole.peche.techniques.bullets'))}
             </div>
           </motion.div>
 
@@ -96,18 +102,12 @@ const PechePage: React.FC = () => {
             custom={2}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={aquacultureImage} alt="Développement aquaculture" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={aquacultureImage} alt={t('sectors.agricole.peche.aquaculture.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Aquaculture intensive et extensive</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Développez une production piscicole rentable et durable :</p>
-              <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Conception et construction d'étangs d'aquaculture</li>
-                <li>Sélection d'espèces adaptées au climat local</li>
-                <li>Gestion de l'alimentation et nutrition piscicole</li>
-                <li>Contrôle sanitaire et prévention des maladies</li>
-                <li>Aquaculture intégrée (riz-poisson, maraîchage-pisciculture)</li>
-              </ul>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.agricole.peche.aquaculture.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.agricole.peche.aquaculture.subtitle')}</p>
+              {renderBulletList(t('sectors.agricole.peche.aquaculture.bullets'))}
             </div>
           </motion.div>
 
@@ -121,18 +121,12 @@ const PechePage: React.FC = () => {
             custom={3}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={fishProcessingImage} alt="Transformation du poisson" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={fishProcessingImage} alt={t('sectors.agricole.peche.transformation.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Transformation et commercialisation</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Valorisez vos captures et productions piscicoles :</p>
-              <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Techniques de conservation et transformation du poisson</li>
-                <li>Mise en place de chaînes de froid</li>
-                <li>Développement de produits à valeur ajoutée</li>
-                <li>Organisation de circuits de commercialisation</li>
-                <li>Certification qualité et normes sanitaires</li>
-              </ul>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.agricole.peche.transformation.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.agricole.peche.transformation.subtitle')}</p>
+              {renderBulletList(t('sectors.agricole.peche.transformation.bullets'))}
             </div>
           </motion.div>
 
@@ -145,14 +139,14 @@ const PechePage: React.FC = () => {
             variants={sectionVariants}
             custom={4}
           >
-            <p className="text-gray-600 mb-6 text-xl font-semibold">Prêt à développer votre activité halieutique ?</p>
+            <p className="text-gray-600 mb-6 text-xl font-semibold">{t('sectors.agricole.peche.cta.title')}</p>
             <Link to="/#contact">
               <Button
                 variant="primary"
                 size="lg"
                 className="transition-transform duration-200 hover:scale-105 hover:shadow-lg"
               >
-                LANCER VOTRE PROJET PÊCHE
+                {t('sectors.agricole.peche.cta.button')}
               </Button>
             </Link>
           </motion.div>

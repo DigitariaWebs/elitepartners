@@ -4,6 +4,7 @@ import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // Professional African investment images from Unsplash
 const heroImage = 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80';
@@ -21,7 +22,18 @@ const sectionVariants = {
 };
 
 const InvestissementPage: React.FC = () => {
+  const { t } = useLanguage();
+  
   useEffect(() => { window.scrollTo(0, 0); }, []);
+
+  const renderBulletList = (items: string[]) => (
+    <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
+      {items.map((item, index) => (
+        <li key={index}>{item}</li>
+      ))}
+    </ul>
+  );
+
   return (
     <div className="bg-gradient-to-br from-gray-50 to-white min-h-screen flex flex-col justify-between">
       <Navbar />
@@ -31,14 +43,14 @@ const InvestissementPage: React.FC = () => {
           {/* Texte */}
           <div className="w-full md:w-1/2 text-white">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight font-montserrat">
-              Investissement et<br />Gestion d'Actifs
+              {t('sectors.financier.investissement.hero.title')}
             </h1>
             <p className="mb-8 text-base md:text-lg font-normal">
-              Développez l'écosystème d'investissement et de gestion d'actifs en RDC. Nous accompagnons la création de fonds d'investissement, le développement des marchés de capitaux et la structuration de produits financiers innovants pour mobiliser l'épargne et financer la croissance.
+              {t('sectors.financier.investissement.hero.subtitle')}
             </p>
             <Link to="/#contact">
-              <Button size="lg" variant="primary" className="bg-white text-emerald-800 font-bold px-8 py-3 shadow-md hover:bg-gray-100">
-                Structurer vos investissements
+              <Button size="lg" variant="outline" className="border-2 border-white text-white font-bold px-8 py-3 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 hover:bg-white hover:text-blue-900">
+                {t('sectors.financier.investissement.hero.cta')}
               </Button>
             </Link>
           </div>
@@ -46,7 +58,7 @@ const InvestissementPage: React.FC = () => {
           <div className="w-full md:w-1/2 flex justify-center">
             <img
               src={heroImage}
-              alt="Investissement et gestion d'actifs en RDC"
+              alt={t('sectors.financier.investissement.hero.title')}
               className="rounded-2xl shadow-xl object-cover w-full max-w-md h-64 md:h-80 lg:h-96"
               style={{ background: '#e5e7eb' }}
             />
@@ -71,18 +83,12 @@ const InvestissementPage: React.FC = () => {
             custom={1}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={portfolioManagementImage} alt="Gestion de portefeuille" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={portfolioManagementImage} alt={t('sectors.financier.investissement.portfolio.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Gestion de portefeuille institutionnelle</h1>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Services de gestion d'actifs pour investisseurs institutionnels :</p>
-              <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Gestion discrétionnaire et mandats de gestion</li>
-                <li>Allocation d'actifs et construction de portefeuilles</li>
-                <li>Investissements alternatifs et produits structurés</li>
-                <li>Gestion quantitative et algorithmes de trading</li>
-                <li>Reporting de performance et analyse des risques</li>
-              </ul>
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.financier.investissement.portfolio.title')}</h1>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.financier.investissement.portfolio.subtitle')}</p>
+              {renderBulletList(t('sectors.financier.investissement.portfolio.items'))}
             </div>
           </motion.div>
 
@@ -96,18 +102,12 @@ const InvestissementPage: React.FC = () => {
             custom={2}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={privateEquityImage} alt="Private equity" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={privateEquityImage} alt={t('sectors.financier.investissement.private.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Private equity et capital-risque</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Financement en fonds propres pour entreprises en croissance :</p>
-              <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Structuration de fonds de private equity locaux</li>
-                <li>Due diligence et évaluation d'entreprises</li>
-                <li>Accompagnement post-investissement et création de valeur</li>
-                <li>Stratégies de sortie et optimisation des rendements</li>
-                <li>Levée de fonds auprès d'investisseurs internationaux</li>
-              </ul>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.financier.investissement.private.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.financier.investissement.private.subtitle')}</p>
+              {renderBulletList(t('sectors.financier.investissement.private.items'))}
             </div>
           </motion.div>
 
@@ -121,18 +121,12 @@ const InvestissementPage: React.FC = () => {
             custom={3}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={capitalMarketsImage} alt="Marchés de capitaux" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={capitalMarketsImage} alt={t('sectors.financier.investissement.capital.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Développement des marchés de capitaux</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Structuration et dynamisation des marchés financiers locaux :</p>
-              <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Introduction en bourse et émissions obligataires</li>
-                <li>Market making et animation des marchés</li>
-                <li>Développement de produits dérivés et commodités</li>
-                <li>Formation d'investisseurs institutionnels locaux</li>
-                <li>Harmonisation réglementaire avec standards internationaux</li>
-              </ul>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.financier.investissement.capital.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.financier.investissement.capital.subtitle')}</p>
+              {renderBulletList(t('sectors.financier.investissement.capital.items'))}
             </div>
           </motion.div>
 
@@ -145,14 +139,14 @@ const InvestissementPage: React.FC = () => {
             variants={sectionVariants}
             custom={4}
           >
-            <p className="text-gray-600 mb-6 text-xl font-semibold">Prêt à dynamiser l'investissement en RDC ?</p>
+            <p className="text-gray-600 mb-6 text-xl font-semibold">{t('sectors.financier.investissement.cta.subtitle')}</p>
             <Link to="/#contact">
               <Button
                 variant="primary"
                 size="lg"
                 className="transition-transform duration-200 hover:scale-105 hover:shadow-lg"
               >
-                MOBILISER LES CAPITAUX
+                {t('sectors.financier.investissement.cta.button')}
               </Button>
             </Link>
           </motion.div>

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '@/contexts/LanguageContext';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 
@@ -21,7 +22,16 @@ const sectionVariants = {
 };
 
 const AgroalimentairePage: React.FC = () => {
+  const { t } = useLanguage();
+  
   useEffect(() => { window.scrollTo(0, 0); }, []);
+
+  // Helper function to get translation as array
+  const getTranslationArray = (key: string): string[] => {
+    const translation = t(key);
+    return Array.isArray(translation) ? translation : [];
+  };
+
   return (
     <div className="bg-gradient-to-br from-gray-50 to-white min-h-screen flex flex-col justify-between">
       <Navbar />
@@ -31,14 +41,14 @@ const AgroalimentairePage: React.FC = () => {
           {/* Texte */}
           <div className="w-full md:w-1/2 text-white">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight font-montserrat">
-              Secteur Agroalimentaire<br />en RDC
+              {t('sectors.agroalimentaire.hero.title')}
             </h1>
             <p className="mb-8 text-base md:text-lg font-normal">
-              Transformez le potentiel agricole de la RDC en opportunités d'affaires durables. Nous accompagnons les entreprises agroalimentaires dans leur développement, de la production à la commercialisation, en respectant les standards internationaux.
+              {t('sectors.agroalimentaire.hero.subtitle')}
             </p>
             <Link to="/#contact">
-              <Button size="lg" variant="primary" className="bg-white text-green-800 font-bold px-8 py-3 shadow-md hover:bg-gray-100">
-                Développer votre projet agroalimentaire
+              <Button size="lg" variant="outline" className="border-2 border-white text-white font-bold px-8 py-3 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 hover:bg-white hover:text-green-900">
+                {t('sectors.agroalimentaire.hero.cta')}
               </Button>
             </Link>
           </div>
@@ -46,7 +56,7 @@ const AgroalimentairePage: React.FC = () => {
           <div className="w-full md:w-1/2 flex justify-center">
             <img
               src={heroImage}
-              alt="Secteur agroalimentaire en RDC"
+              alt={t('sectors.agroalimentaire.hero.title')}
               className="rounded-2xl shadow-xl object-cover w-full max-w-md h-64 md:h-80 lg:h-96"
               style={{ background: '#e5e7eb' }}
             />
@@ -71,17 +81,15 @@ const AgroalimentairePage: React.FC = () => {
             custom={1}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={foodProcessingImage} alt="Transformation agroalimentaire" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={foodProcessingImage} alt={t('sectors.agroalimentaire.transformation.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Transformation et valorisation des produits</h1>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Optimisez la chaîne de valeur de vos produits agricoles :</p>
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.agroalimentaire.transformation.title')}</h1>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.agroalimentaire.transformation.subtitle')}</p>
               <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Conseil en technologies de transformation alimentaire</li>
-                <li>Mise en place d'unités de transformation modernes</li>
-                <li>Développement de nouveaux produits alimentaires</li>
-                <li>Optimisation des procédés de conservation</li>
-                <li>Accompagnement vers l'agriculture biologique certifiée</li>
+                {getTranslationArray('sectors.agroalimentaire.transformation.items').map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
               </ul>
             </div>
           </motion.div>
@@ -96,17 +104,15 @@ const AgroalimentairePage: React.FC = () => {
             custom={2}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={qualityControlImage} alt="Contrôle qualité alimentaire" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={qualityControlImage} alt={t('sectors.agroalimentaire.quality.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Contrôle qualité et certifications</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Garantissez la conformité aux standards internationaux :</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.agroalimentaire.quality.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.agroalimentaire.quality.subtitle')}</p>
               <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Mise en place de systèmes HACCP et ISO 22000</li>
-                <li>Certification biologique et commerce équitable</li>
-                <li>Traçabilité complète des produits alimentaires</li>
-                <li>Formation du personnel aux bonnes pratiques</li>
-                <li>Audits qualité et accompagnement certification</li>
+                {getTranslationArray('sectors.agroalimentaire.quality.items').map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
               </ul>
             </div>
           </motion.div>
@@ -121,17 +127,15 @@ const AgroalimentairePage: React.FC = () => {
             custom={3}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={distributionImage} alt="Distribution agroalimentaire" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={distributionImage} alt={t('sectors.agroalimentaire.distribution.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Distribution et accès aux marchés</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Développez vos canaux de distribution :</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.agroalimentaire.distribution.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.agroalimentaire.distribution.subtitle')}</p>
               <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Stratégies de pénétration des marchés locaux et régionaux</li>
-                <li>Développement de réseaux de distribution</li>
-                <li>Négociation avec les grandes surfaces et distributeurs</li>
-                <li>Marketing et communication produits alimentaires</li>
-                <li>Export vers les marchés internationaux</li>
+                {getTranslationArray('sectors.agroalimentaire.distribution.items').map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
               </ul>
             </div>
           </motion.div>
@@ -145,14 +149,14 @@ const AgroalimentairePage: React.FC = () => {
             variants={sectionVariants}
             custom={4}
           >
-            <p className="text-gray-600 mb-6 text-xl font-semibold">Prêt à valoriser vos produits agroalimentaires ?</p>
+            <p className="text-gray-600 mb-6 text-xl font-semibold">{t('sectors.agroalimentaire.cta.subtitle')}</p>
             <Link to="/#contact">
               <Button
                 variant="primary"
                 size="lg"
                 className="transition-transform duration-200 hover:scale-105 hover:shadow-lg"
               >
-                DÉMARRER VOTRE PROJET
+                {t('sectors.agroalimentaire.cta.button')}
               </Button>
             </Link>
           </motion.div>

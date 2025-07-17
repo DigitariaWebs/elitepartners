@@ -4,6 +4,7 @@ import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // Professional African mining transformation images from Unsplash
 const heroImage = 'https://images.unsplash.com/photo-1606914469841-e3678b46db6a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2067&q=80';
@@ -21,7 +22,18 @@ const sectionVariants = {
 };
 
 const TransformationPage: React.FC = () => {
+  const { t } = useLanguage();
+  
   useEffect(() => { window.scrollTo(0, 0); }, []);
+  
+  const renderBulletList = (bullets: string[]) => (
+    <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
+      {bullets.map((bullet, index) => (
+        <li key={index}>{bullet}</li>
+      ))}
+    </ul>
+  );
+
   return (
     <div className="bg-gradient-to-br from-gray-50 to-white min-h-screen flex flex-col justify-between">
       <Navbar />
@@ -31,14 +43,14 @@ const TransformationPage: React.FC = () => {
           {/* Texte */}
           <div className="w-full md:w-1/2 text-white">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight font-montserrat">
-              Transformation Minière<br />et Métallurgie
+              {t('sectors.minier.transformation.hero.title')}
             </h1>
             <p className="mb-8 text-base md:text-lg font-normal">
-              Créez de la valeur ajoutée en transformant les minerais congolais en produits finis. Nous développons des chaînes de transformation modernes pour maximiser la rentabilité et créer des emplois qualifiés localement.
+              {t('sectors.minier.transformation.hero.subtitle')}
             </p>
             <Link to="/#contact">
-              <Button size="lg" variant="primary" className="bg-white text-indigo-800 font-bold px-8 py-3 shadow-md hover:bg-gray-100">
-                Valoriser vos minerais
+              <Button size="lg" variant="outline" className="border-2 border-white text-white font-bold px-8 py-3 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 hover:bg-white hover:text-orange-900">
+                {t('sectors.minier.transformation.hero.cta')}
               </Button>
             </Link>
           </div>
@@ -46,7 +58,7 @@ const TransformationPage: React.FC = () => {
           <div className="w-full md:w-1/2 flex justify-center">
             <img
               src={heroImage}
-              alt="Transformation minière en RDC"
+              alt={t('sectors.minier.transformation.hero.title')}
               className="rounded-2xl shadow-xl object-cover w-full max-w-md h-64 md:h-80 lg:h-96"
               style={{ background: '#e5e7eb' }}
             />
@@ -71,18 +83,12 @@ const TransformationPage: React.FC = () => {
             custom={1}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={refiningImage} alt="Raffinage des métaux" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={refiningImage} alt={t('sectors.minier.transformation.raffinage.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Raffinage et purification des métaux</h1>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Technologies avancées pour obtenir des métaux de haute pureté :</p>
-              <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Procédés hydrométallurgiques et pyrométallurgiques</li>
-                <li>Raffinage électrolytique du cuivre et cobalt</li>
-                <li>Purification des métaux précieux (or, argent)</li>
-                <li>Contrôle qualité et certification LME/COMEX</li>
-                <li>Optimisation énergétique des procédés</li>
-              </ul>
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.minier.transformation.raffinage.title')}</h1>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.minier.transformation.raffinage.subtitle')}</p>
+              {renderBulletList(t('sectors.minier.transformation.raffinage.bullets'))}
             </div>
           </motion.div>
 
@@ -96,18 +102,12 @@ const TransformationPage: React.FC = () => {
             custom={2}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={valueAddedImage} alt="Industries de transformation" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={valueAddedImage} alt={t('sectors.minier.transformation.valeur.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Industries à valeur ajoutée</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Développement d'industries manufacturières basées sur les ressources locales :</p>
-              <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Fabrication de câbles et fils électriques en cuivre</li>
-                <li>Production de batteries lithium-ion</li>
-                <li>Industrie des alliages spéciaux</li>
-                <li>Transformation en produits semi-finis</li>
-                <li>Développement de parcs industriels intégrés</li>
-              </ul>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.minier.transformation.valeur.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.minier.transformation.valeur.subtitle')}</p>
+              {renderBulletList(t('sectors.minier.transformation.valeur.bullets'))}
             </div>
           </motion.div>
 
@@ -121,18 +121,12 @@ const TransformationPage: React.FC = () => {
             custom={3}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={exportImage} alt="Commercialisation et export" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={exportImage} alt={t('sectors.minier.transformation.commercialisation.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Commercialisation et marchés export</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Accédez aux marchés internationaux avec vos produits transformés :</p>
-              <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Stratégies de pricing et négociation commerciale</li>
-                <li>Certification internationale et traçabilité</li>
-                <li>Logistique et chaînes d'approvisionnement</li>
-                <li>Développement de partenariats industriels</li>
-                <li>Marketing B2B et participation aux foires</li>
-              </ul>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.minier.transformation.commercialisation.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.minier.transformation.commercialisation.subtitle')}</p>
+              {renderBulletList(t('sectors.minier.transformation.commercialisation.bullets'))}
             </div>
           </motion.div>
 
@@ -145,14 +139,14 @@ const TransformationPage: React.FC = () => {
             variants={sectionVariants}
             custom={4}
           >
-            <p className="text-gray-600 mb-6 text-xl font-semibold">Prêt à transformer vos minerais en valeur ?</p>
+            <p className="text-gray-600 mb-6 text-xl font-semibold">{t('sectors.minier.transformation.cta.title')}</p>
             <Link to="/#contact">
               <Button
                 variant="primary"
                 size="lg"
                 className="transition-transform duration-200 hover:scale-105 hover:shadow-lg"
               >
-                DÉVELOPPER VOTRE INDUSTRIE
+                {t('sectors.minier.transformation.cta.button')}
               </Button>
             </Link>
           </motion.div>

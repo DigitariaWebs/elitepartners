@@ -4,6 +4,7 @@ import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // Professional African mining exploration images from Unsplash
 const heroImage = 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80';
@@ -21,7 +22,18 @@ const sectionVariants = {
 };
 
 const ExplorationPage: React.FC = () => {
+  const { t } = useLanguage();
+  
   useEffect(() => { window.scrollTo(0, 0); }, []);
+  
+  const renderBulletList = (bullets: string[]) => (
+    <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
+      {bullets.map((bullet, index) => (
+        <li key={index}>{bullet}</li>
+      ))}
+    </ul>
+  );
+
   return (
     <div className="bg-gradient-to-br from-gray-50 to-white min-h-screen flex flex-col justify-between">
       <Navbar />
@@ -31,14 +43,14 @@ const ExplorationPage: React.FC = () => {
           {/* Texte */}
           <div className="w-full md:w-1/2 text-white">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight font-montserrat">
-              Exploration Minière<br />en RDC
+              {t('sectors.minier.exploration.hero.title')}
             </h1>
             <p className="mb-8 text-base md:text-lg font-normal">
-              Maximisez le potentiel géologique exceptionnel de la RDC grâce à nos services d'exploration minière de pointe. Nous accompagnons vos projets depuis la prospection jusqu'aux études de faisabilité, en respectant les meilleures pratiques internationales.
+              {t('sectors.minier.exploration.hero.subtitle')}
             </p>
             <Link to="/#contact">
-              <Button size="lg" variant="primary" className="bg-white text-orange-800 font-bold px-8 py-3 shadow-md hover:bg-gray-100">
-                Explorer les opportunités
+              <Button size="lg" variant="outline" className="border-2 border-white text-white font-bold px-8 py-3 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 hover:bg-white hover:text-orange-900">
+                {t('sectors.minier.exploration.hero.cta')}
               </Button>
             </Link>
           </div>
@@ -46,7 +58,7 @@ const ExplorationPage: React.FC = () => {
           <div className="w-full md:w-1/2 flex justify-center">
             <img
               src={heroImage}
-              alt="Exploration minière en RDC"
+              alt={t('sectors.minier.exploration.hero.title')}
               className="rounded-2xl shadow-xl object-cover w-full max-w-md h-64 md:h-80 lg:h-96"
               style={{ background: '#e5e7eb' }}
             />
@@ -71,18 +83,12 @@ const ExplorationPage: React.FC = () => {
             custom={1}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={geologicalSurveyImage} alt="Études géologiques" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={geologicalSurveyImage} alt={t('sectors.minier.exploration.geologie.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Études géologiques et prospection</h1>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Identifiez et évaluez les gisements minéraux avec précision :</p>
-              <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Cartographie géologique détaillée et télédétection</li>
-                <li>Prospection géochimique et géophysique</li>
-                <li>Programmes de forage et échantillonnage</li>
-                <li>Analyses minéralogiques et géochimiques</li>
-                <li>Modélisation 3D des corps minéralisés</li>
-              </ul>
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.minier.exploration.geologie.title')}</h1>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.minier.exploration.geologie.subtitle')}</p>
+              {renderBulletList(t('sectors.minier.exploration.geologie.bullets'))}
             </div>
           </motion.div>
 
@@ -96,18 +102,12 @@ const ExplorationPage: React.FC = () => {
             custom={2}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={feasibilityStudyImage} alt="Études de faisabilité" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={feasibilityStudyImage} alt={t('sectors.minier.exploration.faisabilite.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Études de faisabilité et évaluation</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Validez la viabilité économique de vos projets miniers :</p>
-              <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Estimation des réserves selon standards JORC/NI 43-101</li>
-                <li>Études de préfaisabilité et faisabilité bancaire</li>
-                <li>Optimisation des méthodes d'extraction</li>
-                <li>Analyse technico-économique et modélisation financière</li>
-                <li>Évaluation des risques et stratégies d'atténuation</li>
-              </ul>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.minier.exploration.faisabilite.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.minier.exploration.faisabilite.subtitle')}</p>
+              {renderBulletList(t('sectors.minier.exploration.faisabilite.bullets'))}
             </div>
           </motion.div>
 
@@ -121,18 +121,12 @@ const ExplorationPage: React.FC = () => {
             custom={3}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={permittingImage} alt="Permis miniers" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={permittingImage} alt={t('sectors.minier.exploration.permis.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Permis et conformité réglementaire</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Sécurisez vos droits miniers et respectez la réglementation :</p>
-              <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Obtention de permis de recherche et d'exploitation</li>
-                <li>Due diligence réglementaire et compliance</li>
-                <li>Études d'impact environnemental et social</li>
-                <li>Négociation avec les autorités locales</li>
-                <li>Gestion des relations communautaires</li>
-              </ul>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.minier.exploration.permis.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.minier.exploration.permis.subtitle')}</p>
+              {renderBulletList(t('sectors.minier.exploration.permis.bullets'))}
             </div>
           </motion.div>
 
@@ -145,14 +139,14 @@ const ExplorationPage: React.FC = () => {
             variants={sectionVariants}
             custom={4}
           >
-            <p className="text-gray-600 mb-6 text-xl font-semibold">Prêt à découvrir le potentiel minier ?</p>
+            <p className="text-gray-600 mb-6 text-xl font-semibold">{t('sectors.minier.exploration.cta.title')}</p>
             <Link to="/#contact">
               <Button
                 variant="primary"
                 size="lg"
                 className="transition-transform duration-200 hover:scale-105 hover:shadow-lg"
               >
-                COMMENCER L'EXPLORATION
+                {t('sectors.minier.exploration.cta.button')}
               </Button>
             </Link>
           </motion.div>

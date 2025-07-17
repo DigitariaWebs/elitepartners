@@ -4,6 +4,7 @@ import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
+import { useLanguage } from '@/contexts/LanguageContext';
 import image13 from './13.png';
 // Hero image RH
 const heroImage = '/rh.jpg';
@@ -18,6 +19,14 @@ const sectionVariants = {
 };
 
 const RHPage: React.FC = () => {
+  const { t } = useLanguage();
+  
+  // Helper function to get translation as array
+  const getTranslationArray = (key: string): string[] => {
+    const translation = t(key);
+    return Array.isArray(translation) ? translation : [];
+  };
+
   useEffect(() => { window.scrollTo(0, 0); }, []);
   return (
     <div className="bg-gradient-to-br from-gray-50 to-white min-h-screen flex flex-col justify-between">
@@ -28,14 +37,14 @@ const RHPage: React.FC = () => {
           {/* Texte */}
           <div className="w-full md:w-1/2 text-white">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight font-montserrat">
-              Développez votre capital humain<br />avec notre expertise RH !
+              {t('services.rh.hero.title')}
             </h1>
             <p className="mb-8 text-base md:text-lg font-normal">
-              Attirez, fidélisez et faites grandir vos talents grâce à des stratégies RH innovantes et personnalisées. Nous accompagnons vos équipes pour une organisation agile, performante et résiliente.
+              {t('services.rh.hero.subtitle')}
             </p>
             <Link to="/#contact">
-              <Button size="lg" variant="primary" className="bg-white text-blue-800 font-bold px-8 py-3 shadow-md hover:bg-gray-100">
-                Demander un diagnostic RH gratuit
+              <Button size="lg" variant="outline" className="border-2 border-white text-white font-bold px-8 py-3 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 hover:bg-white hover:text-blue-900">
+                {t('services.rh.hero.cta')}
               </Button>
             </Link>
           </div>
@@ -68,16 +77,15 @@ const RHPage: React.FC = () => {
             custom={1}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={image13} alt="Conseil RH et gestion des talents" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={image13} alt={t('services.rh.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Conseil RH et gestion des talents</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Nous vous accompagnons dans la structuration et l’optimisation de votre politique RH :</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('services.rh.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('services.rh.subtitle')}</p>
               <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Stratégies d’attraction et de fidélisation des talents.</li>
-                <li>Développement des compétences et gestion des carrières.</li>
-                <li>Optimisation de l’organisation et de la performance RH.</li>
-                <li>Accompagnement au changement et transformation culturelle.</li>
+                {getTranslationArray('services.rh.bullets').map((bullet: string, index: number) => (
+                  <li key={index}>{bullet}</li>
+                ))}
               </ul>
             </div>
           </motion.div>
@@ -90,14 +98,14 @@ const RHPage: React.FC = () => {
             variants={sectionVariants}
             custom={2}
           >
-            <p className="text-gray-600 mb-6 text-xl font-semibold">Vous souhaitez booster votre capital humain ?</p>
+            <p className="text-gray-600 mb-6 text-xl font-semibold">{t('services.rh.cta.title')}</p>
             <Link to="/#contact">
               <Button
                 variant="primary"
                 size="lg"
                 className="transition-transform duration-200 hover:scale-105 hover:shadow-lg"
               >
-                Contactez-nous
+                {t('services.rh.cta.button')}
               </Button>
             </Link>
           </motion.div>

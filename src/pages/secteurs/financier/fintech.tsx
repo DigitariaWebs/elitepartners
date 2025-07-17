@@ -4,6 +4,7 @@ import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // Professional African fintech images from Unsplash
 const heroImage = 'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80';
@@ -21,7 +22,18 @@ const sectionVariants = {
 };
 
 const FintechPage: React.FC = () => {
+  const { t } = useLanguage();
+  
   useEffect(() => { window.scrollTo(0, 0); }, []);
+
+  const renderBulletList = (items: string[]) => (
+    <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
+      {items.map((item, index) => (
+        <li key={index}>{item}</li>
+      ))}
+    </ul>
+  );
+
   return (
     <div className="bg-gradient-to-br from-gray-50 to-white min-h-screen flex flex-col justify-between">
       <Navbar />
@@ -31,14 +43,14 @@ const FintechPage: React.FC = () => {
           {/* Texte */}
           <div className="w-full md:w-1/2 text-white">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight font-montserrat">
-              Fintech et Innovation<br />Financière
+              {t('sectors.financier.fintech.hero.title')}
             </h1>
             <p className="mb-8 text-base md:text-lg font-normal">
-              Révolutionnez les services financiers en RDC avec les technologies de pointe. Nous accompagnons le développement de solutions fintech innovantes pour démocratiser l'accès aux services financiers et créer un écosystème financier digital inclusif.
+              {t('sectors.financier.fintech.hero.subtitle')}
             </p>
             <Link to="/#contact">
-              <Button size="lg" variant="primary" className="bg-white text-cyan-800 font-bold px-8 py-3 shadow-md hover:bg-gray-100">
-                Innover dans la fintech
+              <Button size="lg" variant="outline" className="border-2 border-white text-white font-bold px-8 py-3 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 hover:bg-white hover:text-blue-900">
+                {t('sectors.financier.fintech.hero.cta')}
               </Button>
             </Link>
           </div>
@@ -46,7 +58,7 @@ const FintechPage: React.FC = () => {
           <div className="w-full md:w-1/2 flex justify-center">
             <img
               src={heroImage}
-              alt="Fintech et innovation financière en RDC"
+              alt={t('sectors.financier.fintech.hero.title')}
               className="rounded-2xl shadow-xl object-cover w-full max-w-md h-64 md:h-80 lg:h-96"
               style={{ background: '#e5e7eb' }}
             />
@@ -71,18 +83,12 @@ const FintechPage: React.FC = () => {
             custom={1}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={digitalPaymentsImage} alt="Paiements digitaux" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={digitalPaymentsImage} alt={t('sectors.financier.fintech.payments.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Paiements digitaux et mobile money</h1>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Solutions de paiement innovantes pour l'inclusion financière :</p>
-              <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Développement de plateformes de mobile money</li>
-                <li>Solutions de paiement sans contact (NFC, QR codes)</li>
-                <li>Passerelles de paiement pour e-commerce</li>
-                <li>Transferts d'argent transfrontaliers instantanés</li>
-                <li>Intégration avec les systèmes bancaires existants</li>
-              </ul>
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.financier.fintech.payments.title')}</h1>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.financier.fintech.payments.subtitle')}</p>
+              {renderBulletList(t('sectors.financier.fintech.payments.items'))}
             </div>
           </motion.div>
 
@@ -96,18 +102,12 @@ const FintechPage: React.FC = () => {
             custom={2}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={blockchainImage} alt="Blockchain et cryptomonnaies" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={blockchainImage} alt={t('sectors.financier.fintech.blockchain.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Blockchain et actifs numériques</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Technologies de registre distribué pour la transparence financière :</p>
-              <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Développement de monnaies digitales de banque centrale (CBDC)</li>
-                <li>Smart contracts pour l'automatisation financière</li>
-                <li>Tokenisation d'actifs et securities tokens</li>
-                <li>Traçabilité de la chaîne d'approvisionnement</li>
-                <li>Solutions DeFi adaptées au contexte local</li>
-              </ul>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.financier.fintech.blockchain.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.financier.fintech.blockchain.subtitle')}</p>
+              {renderBulletList(t('sectors.financier.fintech.blockchain.items'))}
             </div>
           </motion.div>
 
@@ -121,18 +121,12 @@ const FintechPage: React.FC = () => {
             custom={3}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={aiFinanceImage} alt="IA et analytics financiers" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={aiFinanceImage} alt={t('sectors.financier.fintech.ai.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">IA et analytics pour services financiers</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Technologies intelligentes pour optimiser les décisions financières :</p>
-              <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Scoring crédit basé sur l'IA et alternative data</li>
-                <li>Chatbots et assistants virtuels pour service client</li>
-                <li>Détection de fraude en temps réel</li>
-                <li>Robo-advisors pour conseil en investissement</li>
-                <li>Prédiction de comportements financiers et churn</li>
-              </ul>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.financier.fintech.ai.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.financier.fintech.ai.subtitle')}</p>
+              {renderBulletList(t('sectors.financier.fintech.ai.items'))}
             </div>
           </motion.div>
 
@@ -145,14 +139,14 @@ const FintechPage: React.FC = () => {
             variants={sectionVariants}
             custom={4}
           >
-            <p className="text-gray-600 mb-6 text-xl font-semibold">Prêt à révolutionner la finance en RDC ?</p>
+            <p className="text-gray-600 mb-6 text-xl font-semibold">{t('sectors.financier.fintech.cta.subtitle')}</p>
             <Link to="/#contact">
               <Button
                 variant="primary"
                 size="lg"
                 className="transition-transform duration-200 hover:scale-105 hover:shadow-lg"
               >
-                CRÉER L'AVENIR FINANCIER
+                {t('sectors.financier.fintech.cta.button')}
               </Button>
             </Link>
           </motion.div>

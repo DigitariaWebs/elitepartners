@@ -4,6 +4,8 @@ import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
+import { useLanguage } from '@/contexts/LanguageContext';
+
 // Professional market research images from Unsplash
 const heroImage = 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80';
 const marketAnalysisImage = 'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80';
@@ -19,7 +21,16 @@ const sectionVariants = {
   })
 };
 
+// Helper function to render bullet lists
+const renderBullets = (bullets: string[]) => {
+  return bullets.map((bullet, index) => (
+    <li key={index} className="text-gray-700 text-base md:text-lg">{bullet}</li>
+  ));
+};
+
 const MarchePage: React.FC = () => {
+  const { t } = useLanguage();
+  
   useEffect(() => { window.scrollTo(0, 0); }, []);
   return (
     <div className="bg-gradient-to-br from-gray-50 to-white min-h-screen flex flex-col justify-between">
@@ -30,14 +41,14 @@ const MarchePage: React.FC = () => {
           {/* Texte */}
           <div className="w-full md:w-1/2 text-white">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight font-montserrat">
-              Études de Marché<br />Stratégiques
+              {t('services.etudes.marche.hero.title')}
             </h1>
             <p className="mb-8 text-base md:text-lg font-normal">
-              Comprenez votre marché, identifiez les opportunités et prenez des décisions éclairées grâce à nos études de marché approfondies. Notre expertise vous aide à minimiser les risques et maximiser votre potentiel de croissance.
+              {t('services.etudes.marche.hero.subtitle')}
             </p>
             <Link to="/#contact">
-              <Button size="lg" variant="primary" className="bg-white text-blue-800 font-bold px-8 py-3 shadow-md hover:bg-gray-100">
-                Demander une étude personnalisée
+              <Button size="lg" variant="outline" className="border-2 border-white text-white font-bold px-8 py-3 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 hover:bg-white hover:text-blue-900">
+                {t('services.etudes.marche.hero.cta')}
               </Button>
             </Link>
           </div>
@@ -45,7 +56,7 @@ const MarchePage: React.FC = () => {
           <div className="w-full md:w-1/2 flex justify-center">
             <img
               src={heroImage}
-              alt="Études de marché stratégiques"
+              alt={t('services.etudes.marche.hero.title')}
               className="rounded-2xl shadow-xl object-cover w-full max-w-md h-64 md:h-80 lg:h-96"
               style={{ background: '#e5e7eb' }}
             />
@@ -70,17 +81,13 @@ const MarchePage: React.FC = () => {
             custom={1}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={marketAnalysisImage} alt="Analyse de marché approfondie" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={marketAnalysisImage} alt={t('services.etudes.marche.analyse.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Analyse de marché approfondie</h1>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Nous analysons votre marché cible pour vous fournir des insights précieux :</p>
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('services.etudes.marche.analyse.title')}</h1>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('services.etudes.marche.analyse.subtitle')}</p>
               <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Évaluation de la taille du marché et du potentiel de croissance</li>
-                <li>Analyse de la concurrence et positionnement stratégique</li>
-                <li>Identification des segments de clientèle les plus porteurs</li>
-                <li>Étude des tendances et évolutions du secteur</li>
-                <li>Analyse des barrières à l'entrée et facteurs de succès</li>
+                {renderBullets(t('services.etudes.marche.analyse.bullets'))}
               </ul>
             </div>
           </motion.div>
@@ -95,17 +102,13 @@ const MarchePage: React.FC = () => {
             custom={2}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={customerResearchImage} alt="Recherche comportementale client" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={customerResearchImage} alt={t('services.etudes.marche.comportementale.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Recherche comportementale client</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Comprenez les motivations et comportements de vos clients :</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('services.etudes.marche.comportementale.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('services.etudes.marche.comportementale.subtitle')}</p>
               <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Enquêtes et interviews approfondies avec les consommateurs</li>
-                <li>Analyse des habitudes d'achat et processus décisionnels</li>
-                <li>Étude de satisfaction et fidélisation client</li>
-                <li>Mapping du parcours client et points de contact</li>
-                <li>Tests de concept et validation d'idées produit/service</li>
+                {renderBullets(t('services.etudes.marche.comportementale.bullets'))}
               </ul>
             </div>
           </motion.div>
@@ -120,17 +123,13 @@ const MarchePage: React.FC = () => {
             custom={3}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={strategicRecommendationsImage} alt="Recommandations stratégiques" className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={strategicRecommendationsImage} alt={t('services.etudes.marche.recommandations.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">Recommandations stratégiques</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">Des insights transformés en actions concrètes :</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('services.etudes.marche.recommandations.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('services.etudes.marche.recommandations.subtitle')}</p>
               <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg mb-6">
-                <li>Stratégies d'entrée sur le marché et expansion</li>
-                <li>Positionnement optimal et proposition de valeur</li>
-                <li>Recommandations de prix et modèles économiques</li>
-                <li>Plans d'action marketing et communication</li>
-                <li>Feuille de route pour la mise en œuvre</li>
+                {renderBullets(t('services.etudes.marche.recommandations.bullets'))}
               </ul>
             </div>
           </motion.div>
@@ -144,14 +143,14 @@ const MarchePage: React.FC = () => {
             variants={sectionVariants}
             custom={4}
           >
-            <p className="text-gray-600 mb-6 text-xl font-semibold">Prêt à explorer votre marché ?</p>
+            <p className="text-gray-600 mb-6 text-xl font-semibold">{t('services.etudes.marche.cta.title')}</p>
             <Link to="/#contact">
               <Button
                 variant="primary"
                 size="lg"
                 className="transition-transform duration-200 hover:scale-105 hover:shadow-lg"
               >
-                CONTACTEZ-NOUS
+                {t('services.etudes.marche.cta.button')}
               </Button>
             </Link>
           </motion.div>
