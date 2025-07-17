@@ -83,12 +83,12 @@ const InvestissementPage: React.FC = () => {
             custom={1}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={portfolioManagementImage} alt={t('sectors.financier.investissement.portfolio.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={portfolioManagementImage} alt={t('sectors.financier.investissement.fonds.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.financier.investissement.portfolio.title')}</h1>
-              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.financier.investissement.portfolio.subtitle')}</p>
-              {renderBulletList(t('sectors.financier.investissement.portfolio.items'))}
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.financier.investissement.fonds.title')}</h1>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.financier.investissement.fonds.subtitle')}</p>
+              {renderBulletList(t('sectors.financier.investissement.fonds.bullets'))}
             </div>
           </motion.div>
 
@@ -102,12 +102,12 @@ const InvestissementPage: React.FC = () => {
             custom={2}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={privateEquityImage} alt={t('sectors.financier.investissement.private.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={privateEquityImage} alt={t('sectors.financier.investissement.startups.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.financier.investissement.private.title')}</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.financier.investissement.private.subtitle')}</p>
-              {renderBulletList(t('sectors.financier.investissement.private.items'))}
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.financier.investissement.startups.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.financier.investissement.startups.subtitle')}</p>
+              {renderBulletList(t('sectors.financier.investissement.startups.bullets'))}
             </div>
           </motion.div>
 
@@ -121,12 +121,12 @@ const InvestissementPage: React.FC = () => {
             custom={3}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={capitalMarketsImage} alt={t('sectors.financier.investissement.capital.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={capitalMarketsImage} alt={t('sectors.financier.investissement.marches.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.financier.investissement.capital.title')}</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.financier.investissement.capital.subtitle')}</p>
-              {renderBulletList(t('sectors.financier.investissement.capital.items'))}
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.financier.investissement.marches.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.financier.investissement.marches.subtitle')}</p>
+              {renderBulletList(t('sectors.financier.investissement.marches.bullets'))}
             </div>
           </motion.div>
 
@@ -139,7 +139,7 @@ const InvestissementPage: React.FC = () => {
             variants={sectionVariants}
             custom={4}
           >
-            <p className="text-gray-600 mb-6 text-xl font-semibold">{t('sectors.financier.investissement.cta.subtitle')}</p>
+            <p className="text-gray-600 mb-6 text-xl font-semibold">{t('sectors.financier.investissement.cta.title')}</p>
             <Link to="/#contact">
               <Button
                 variant="primary"

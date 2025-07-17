@@ -83,12 +83,12 @@ const FintechPage: React.FC = () => {
             custom={1}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={digitalPaymentsImage} alt={t('sectors.financier.fintech.payments.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={digitalPaymentsImage} alt={t('sectors.financier.fintech.paiements.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.financier.fintech.payments.title')}</h1>
-              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.financier.fintech.payments.subtitle')}</p>
-              {renderBulletList(t('sectors.financier.fintech.payments.items'))}
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.financier.fintech.paiements.title')}</h1>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.financier.fintech.paiements.subtitle')}</p>
+              {renderBulletList(t('sectors.financier.fintech.paiements.bullets'))}
             </div>
           </motion.div>
 
@@ -102,12 +102,12 @@ const FintechPage: React.FC = () => {
             custom={2}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={blockchainImage} alt={t('sectors.financier.fintech.blockchain.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={blockchainImage} alt={t('sectors.financier.fintech.credit.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.financier.fintech.blockchain.title')}</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.financier.fintech.blockchain.subtitle')}</p>
-              {renderBulletList(t('sectors.financier.fintech.blockchain.items'))}
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.financier.fintech.credit.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.financier.fintech.credit.subtitle')}</p>
+              {renderBulletList(t('sectors.financier.fintech.credit.bullets'))}
             </div>
           </motion.div>
 
@@ -121,12 +121,12 @@ const FintechPage: React.FC = () => {
             custom={3}
           >
             <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-              <img src={aiFinanceImage} alt={t('sectors.financier.fintech.ai.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
+              <img src={aiFinanceImage} alt={t('sectors.financier.fintech.ia.title')} className="rounded-2xl shadow-lg object-cover w-full max-w-md h-72 md:h-96 transition-transform duration-300 hover:scale-105" />
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.financier.fintech.ai.title')}</h2>
-              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.financier.fintech.ai.subtitle')}</p>
-              {renderBulletList(t('sectors.financier.fintech.ai.items'))}
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-montserrat">{t('sectors.financier.fintech.ia.title')}</h2>
+              <p className="text-gray-700 text-base md:text-lg mb-3">{t('sectors.financier.fintech.ia.subtitle')}</p>
+              {renderBulletList(t('sectors.financier.fintech.ia.bullets'))}
             </div>
           </motion.div>
 
@@ -139,7 +139,7 @@ const FintechPage: React.FC = () => {
             variants={sectionVariants}
             custom={4}
           >
-            <p className="text-gray-600 mb-6 text-xl font-semibold">{t('sectors.financier.fintech.cta.subtitle')}</p>
+            <p className="text-gray-600 mb-6 text-xl font-semibold">{t('sectors.financier.fintech.cta.title')}</p>
             <Link to="/#contact">
               <Button
                 variant="primary"
