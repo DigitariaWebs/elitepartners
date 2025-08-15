@@ -774,10 +774,18 @@
     "footer.quicklinks.title": "Liens Rapides",
     "footer.services.title": "Nos Services",
     "footer.services.list": [
-        "Conseil en stratégie",
-        "Transformation digitale",
-        "Gestion de projet",
-    "Formation professionnelle"
+        {
+            "name": "Services-Conseils",
+            "path": "/services/conseil"
+        },
+        {
+            "name": "Représentation & Accompagnement",
+            "path": "/services/representation"
+        },
+        {
+            "name": "Études & Recherches",
+            "path": "/services/etudes"
+        }
     ],
     "footer.contact.title": "Contact",
     "footer.copyright": "© {year} OrionPartners Group SARL. Tous droits réservés.",

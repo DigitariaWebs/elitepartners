@@ -12,7 +12,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Utiliser le fichier logo local
-const LOCAL_LOGO_PATH = path.join(__dirname, '../public/home images/LogoEle-1024x724.webp');
+const LOCAL_LOGO_PATH = path.join(__dirname, '../public/Vector 1.png');
 const PUBLIC_DIR = path.join(__dirname, '../public');
 
 async function generateFavicons() {
@@ -48,8 +48,8 @@ async function generateFavicons() {
     }
     
     // Sauvegarder aussi une copie du logo dans le dossier public
-    await fs.copy(LOCAL_LOGO_PATH, path.join(PUBLIC_DIR, 'logo.webp'));
-    console.log('Logo sauvegardé dans public/logo.webp');
+await fs.copy(LOCAL_LOGO_PATH, path.join(PUBLIC_DIR, 'logo.png'));
+console.log('Logo sauvegardé dans public/logo.png');
     
     console.log('Tous les favicons ont été générés avec succès!');
   } catch (error) {

@@ -47,7 +47,7 @@ export const CONTACT_INFO = {
   x: 'https://x.com/elitepartners_rdc', // Update handle when rebranded
   instagram: 'https://instagram.com/elitepartners_rdc', // Update handle when rebranded
   whatsapp: 'https://wa.me/243991222231',
-  logo: '/home images/LogoEle-1024x724.webp',
+  logo: '/home images/LogoEle-1024x724.png',
 };
 
 export const COLORS = {
