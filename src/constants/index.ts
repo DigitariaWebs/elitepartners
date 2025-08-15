@@ -1,8 +1,8 @@
 export const SITE_CONFIG = {
-  name: 'Elite Partners RDC',
+  name: 'Eliteparners RDC',
   description: 'Votre partenaire de confiance pour l\'excellence et l\'innovation en République Démocratique du Congo',
   url: 'https://elitepartners-rdc.com',
-  author: 'Elite Partners RDC',
+  author: 'Eliteparners RDC',
 };
 
 // Note: NAVIGATION_ITEMS will be handled by the LanguageContext

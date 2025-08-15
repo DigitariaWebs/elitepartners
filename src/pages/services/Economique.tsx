@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import DefaultLayout from '@/layouts/DefaultLayout';
 import { useLanguage } from '@/contexts/LanguageContext';
-import image32 from '/public/32.png';
+import image32 from '/32.png?url';
 import { BarChart, DollarSign, TrendingUp, Briefcase, PieChart, Users, Shield, Lightbulb, Info } from 'lucide-react';
 
 const icons = [

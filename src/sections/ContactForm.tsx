@@ -35,33 +35,49 @@ const ContactForm: React.FC = () => {
   const contactItems = [
     {
       icon: <Phone className="w-5 h-5" />,
-      title: t('contact.info.phone'),
+      title: t("contact.info.phone"),
       content: CONTACT_INFO.phones.map((phone, index) => (
-        <a key={index} href={`tel:${phone}`} className="block text-slate-600 hover:text-blue-600 transition-colors duration-200 font-medium">
+        <a
+          key={index}
+          href={`tel:${phone}`}
+          className="block text-slate-600 hover:text-blue-600 transition-colors duration-200 font-medium"
+        >
           {phone}
         </a>
       )),
     },
     {
       icon: <Mail className="w-5 h-5" />,
-      title: t('contact.info.email'),
+      title: t("contact.info.email"),
       content: (
-        <a href={`mailto:${CONTACT_INFO.email}`} className="text-slate-600 hover:text-blue-600 transition-colors duration-200 font-medium">
+        <a
+          href={`mailto:${CONTACT_INFO.email}`}
+          className="text-slate-600 hover:text-blue-600 transition-colors duration-200 font-medium"
+        >
           {CONTACT_INFO.email}
         </a>
       ),
     },
     {
       icon: <MapPin className="w-5 h-5" />,
-      title: t('contact.info.address'),
-      content: <span className="text-slate-600 leading-relaxed">{CONTACT_INFO.address}</span>,
+      title: t("contact.info.address"),
+      content: (
+        <span className="text-slate-600 leading-relaxed">
+          {CONTACT_INFO.address}
+        </span>
+      ),
     },
     {
       icon: <Linkedin className="w-5 h-5" />,
-      title: t('contact.info.linkedin'),
+      title: t("contact.info.linkedin"),
       content: (
-        <a href={CONTACT_INFO.linkedin} target="_blank" rel="noopener noreferrer" className="text-slate-600 hover:text-blue-600 transition-colors duration-200 font-medium">
-          Elite Partners Group
+        <a
+          href={CONTACT_INFO.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-slate-600 hover:text-blue-600 transition-colors duration-200 font-medium"
+        >
+          Eliteparners Group
         </a>
       ),
     },

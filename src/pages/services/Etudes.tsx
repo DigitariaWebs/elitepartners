@@ -3,9 +3,9 @@ import { motion } from 'framer-motion';
 import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
-import image31 from '/public/31.png';
-import image32 from '/public/32.png';
-import image33 from '/public/33.png';
+import image31 from '/31.png?url';
+import image32 from '/32.png?url';
+import image33 from '/33.png?url';
 
 const EtudesPage: React.FC = () => {
   const { t } = useLanguage();
