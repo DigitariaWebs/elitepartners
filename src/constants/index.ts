@@ -1,8 +1,8 @@
 export const SITE_CONFIG = {
-  name: 'ElitePartners Group SARL',
+  name: 'OrionPartners Group SARL',
   description: 'Votre partenaire de confiance pour l\'excellence et l\'innovation en République Démocratique du Congo',
-  url: 'https://elitepartners-rdc.com',
-  author: 'ElitePartners Group SARL',
+  url: 'https://elitepartners-rdc.com', // TODO: update domain when new domain is available
+  author: 'OrionPartners Group SARL',
 };
 
 // Note: NAVIGATION_ITEMS will be handled by the LanguageContext
@@ -37,15 +37,15 @@ export const SERVICES = [
 ];
 
 export const CONTACT_INFO = {
-  legalName: 'ElitePartners Group SARL',
+  legalName: 'OrionPartners Group SARL',
   legalFormLongFr: 'Société à Responsabilité Limitée',
   legalFormLongEn: 'Limited Liability Company',
   address: 'No. 1 Avenue Tombalbaye, Local 307, Kinshasa-Gombe, DRC',
-  email: 'contact@elitepartners-rdc.com',
+  email: 'contact@elitepartners-rdc.com', // TODO: update email domain when changed
   phones: ['+243 991 222 231', '+243 819 740 681'],
-  linkedin: 'https://www.linkedin.com/company/elitepartnersgroup12/about/',
-  x: 'https://x.com/elitepartners_rdc',
-  instagram: 'https://instagram.com/elitepartners_rdc',
+  linkedin: 'https://www.linkedin.com/company/elitepartnersgroup12/about/', // Update once new LinkedIn page exists
+  x: 'https://x.com/elitepartners_rdc', // Update handle when rebranded
+  instagram: 'https://instagram.com/elitepartners_rdc', // Update handle when rebranded
   whatsapp: 'https://wa.me/243991222231',
   logo: '/home images/LogoEle-1024x724.webp',
 };

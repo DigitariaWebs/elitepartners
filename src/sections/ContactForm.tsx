@@ -69,9 +69,9 @@ const ContactForm: React.FC = () => {
       title: t("contact.info.linkedin"),
       href: CONTACT_INFO.linkedin,
       target: "_blank",
-      content: (
-  <span className="text-slate-600 font-medium">ElitePartners Group SARL</span>
-      ),
+    content: (
+  <span className="text-slate-600 font-medium">OrionPartners Group SARL</span>
+    ),
     },
   ];
 

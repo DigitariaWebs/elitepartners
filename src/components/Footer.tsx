@@ -46,11 +46,11 @@ const Footer: React.FC = () => {
                 <div className="flex items-center space-x-2 mb-4">
                   <img
                     src={CONTACT_INFO.logo}
-                    alt="ElitePartners Group SARL Logo"
+                    alt="OrionPartners Group SARL Logo"
                     className="h-14 w-auto"
                   />
                   <span className="font-semibold text-sm leading-tight hidden md:inline-block">
-                    ElitePartners Group <abbr title={t('footer.legal.sarl') || (CONTACT_INFO.legalFormLongFr + ' / ' + CONTACT_INFO.legalFormLongEn)} className="no-underline border-b border-dotted cursor-help">SARL</abbr>
+                    OrionPartners Group <abbr title={t('footer.legal.sarl') || (CONTACT_INFO.legalFormLongFr + ' / ' + CONTACT_INFO.legalFormLongEn)} className="no-underline border-b border-dotted cursor-help">SARL</abbr>
                   </span>
                 </div>
                 <p className="text-gray-300 text-sm leading-relaxed">

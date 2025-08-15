@@ -45,15 +45,16 @@ const AboutSection: React.FC = () => {
   };
 
   const valeurs = [
-    {
-      icon: <Star className="w-6 h-6" />,
-      title: t('about.values.leadership.title'),
-      description: t('about.values.leadership.description')
-    },
+    // Order updated: Excellence before Leadership per client request
     {
       icon: <Award className="w-6 h-6" />,
       title: t('about.values.excellence.title'),
       description: t('about.values.excellence.description')
+    },
+    {
+      icon: <Star className="w-6 h-6" />,
+      title: t('about.values.leadership.title'),
+      description: t('about.values.leadership.description')
     },
     {
       icon: <Shield className="w-6 h-6" />,

@@ -39,7 +39,7 @@ const StrategiquesPage: React.FC = () => {
               Vision et positionnement
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              ElitePartners Group SARL se positionne comme une entreprise innovante, dédiée à offrir des solutions haut de gamme et personnalisées
+              OrionPartners Group SARL se positionne comme une entreprise innovante, dédiée à offrir des solutions haut de gamme et personnalisées
             </p>
           </div>
 
@@ -49,7 +49,7 @@ const StrategiquesPage: React.FC = () => {
                 <div className="bg-white bg-opacity-20 p-3 rounded-lg mr-4">
                   <Users className="w-8 h-8" />
                 </div>
-                <h3 className="text-2xl font-bold">ElitePartners Group SARL</h3>
+                <h3 className="text-2xl font-bold">OrionPartners Group SARL</h3>
               </div>
               <p className="text-blue-100 leading-relaxed">
                 Notre expertise approfondie vous guide vers l'excellence opérationnelle et la croissance durable 
@@ -94,7 +94,7 @@ const StrategiquesPage: React.FC = () => {
               </div>
               <h3 className="text-2xl font-bold text-blue-900 mb-4">Alignement stratégique</h3>
               <p className="text-gray-600 leading-relaxed">
-                Chaque initiative d'ElitePartners Group SARL s'inscrit dans une logique cohérente 
+                Chaque initiative d'OrionPartners Group SARL s'inscrit dans une logique cohérente 
                 avec nos objectifs de croissance, de performance et d'image. Cette cohérence assure 
                 une <strong>exécution fluide de la stratégie</strong> et une capacité d'adaptation renforcée.
               </p>
@@ -204,7 +204,7 @@ const StrategiquesPage: React.FC = () => {
             <div className="bg-white p-8 rounded-2xl shadow-lg border-l-4 border-blue-600">
               <h3 className="text-xl font-bold text-blue-900 mb-4">Développement de la notoriété</h3>
               <p className="text-gray-600">
-                Accroître la <strong>notoriété</strong> de la marque ElitePartners Group SARL 
+                Accroître la <strong>notoriété</strong> de la marque OrionPartners Group SARL 
                 et son image de référence sur le marché.
               </p>
             </div>
@@ -244,7 +244,7 @@ const StrategiquesPage: React.FC = () => {
               Adaptabilité au changement
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              ElitePartners Group SARL se distingue par sa <strong>capacité de pivot, 
+              OrionPartners Group SARL se distingue par sa <strong>capacité de pivot, 
               de réorientation ou d'évolution rapide</strong> face aux transformations du marché, 
               grâce à une organisation agile et une veille active.
             </p>

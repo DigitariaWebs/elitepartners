@@ -27,15 +27,16 @@ const AboutPage: React.FC = () => {
 
   // Company values with icons from AboutSection
   const valeurs = [
-    {
-      icon: <Star className="w-6 h-6" />,
-      title: t("about.values.leadership.title"),
-      description: t("about.values.leadership.description"),
-    },
+    // Order updated: Excellence before Leadership per client request
     {
       icon: <Award className="w-6 h-6" />,
       title: t("about.values.excellence.title"),
       description: t("about.values.excellence.description"),
+    },
+    {
+      icon: <Star className="w-6 h-6" />,
+      title: t("about.values.leadership.title"),
+      description: t("about.values.leadership.description"),
     },
     {
       icon: <Shield className="w-6 h-6" />,
@@ -115,7 +116,7 @@ const AboutPage: React.FC = () => {
               {t("about.content.title")}
             </h1>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-              Découvrez ElitePartners Group SARL et Transformez vos ambitions en
+              Découvrez OrionPartners Group SARL et Transformez vos ambitions en
               résultats durable
             </p>
           </div>
@@ -136,7 +137,7 @@ const AboutPage: React.FC = () => {
                   Qui sommes-nous ?
                 </h3>
                 <p className="text-xl text-gray-700 leading-relaxed mb-6">
-                  ElitePartners Group est un cabinet de conseil en stratégie et
+                  OrionPartners Group est un cabinet de conseil en stratégie et
                   performance, nous intervenons pour le compte d'entreprises et
                   d'organisations pour des missions de conseil stratégique,
                   opérationnel et financier. Nous capitalisons sur notre
