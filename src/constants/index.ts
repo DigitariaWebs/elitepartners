@@ -39,8 +39,11 @@ export const SERVICES = [
 export const CONTACT_INFO = {
   address: 'No. 1 Avenue Tombalbaye, Local 307, Kinshasa-Gombe, DRC',
   email: 'contact@elitepartners-rdc.com',
-  phones: ['+243 991 222 231', '0819 740 681'],
+  phones: ['+243 991 222 231', '+243 819 740 681'],
   linkedin: 'https://www.linkedin.com/company/elitepartnersgroup12/about/',
+  x: 'https://x.com/elitepartners_rdc',
+  instagram: 'https://instagram.com/elitepartners_rdc',
+  whatsapp: 'https://wa.me/243991222231',
   logo: '/home images/LogoEle-1024x724.webp',
 };
 

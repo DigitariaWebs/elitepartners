@@ -2,7 +2,15 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="/home images/LogoEle-1024x724 (1).png" type="image/png" />
+  <!-- Favicon: .ico fallback (exists in public/) -->
+  <link rel="icon" href="/favicon.ico" />
+  <!-- Use the supplied high-resolution logo for modern browsers -->
+  <link rel="icon" type="image/webp" href="/home%20images/LogoEle-1024x724.webp" />
+  <!-- PNG fallback (original filename contains spaces/parentheses — URL-encoded) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/home%20images/LogoEle-1024x724%20(1).png" />
+  <link rel="apple-touch-icon" href="/home%20images/LogoEle-1024x724%20(1).png" />
+  <!-- PWA manifest -->
+  <link rel="manifest" href="/site.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Eliteparners Group</title>
     <meta name="description" content="Votre partenaire de confiance pour l'excellence et l'innovation en République Démocratique du Congo" />

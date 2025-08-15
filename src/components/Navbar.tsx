@@ -149,13 +149,15 @@ const Navbar: React.FC = () => {
     { name: t('nav.services'), path: '/services' },
     { name: t('nav.sectors'), path: '/secteurs' },
     { name: t('nav.about'), path: '/about' },
+    { name: t('nav.academy'), path: '/#academy' },
     { name: t('nav.contact'), path: '/#contact' },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.pageYOffset;
-      setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
+      // Keep navbar always visible (fixed)
+      setVisible(true);
       setPrevScrollPos(currentScrollPos);
       setIsScrolled(currentScrollPos > 20);
     };

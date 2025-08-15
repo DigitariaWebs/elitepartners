@@ -1,10 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { Star, Award, Shield, Heart, ArrowRight, Target, Eye, Compass } from 'lucide-react';
+import { Star, Award, Shield, Heart, Target, Eye } from 'lucide-react';
 import SectionTitle from '@/components/SectionTitle';
-import Button from '@/components/Button';
-import { CONTACT_INFO } from '@/constants';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const AboutSection: React.FC = () => {
