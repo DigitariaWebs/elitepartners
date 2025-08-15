@@ -143,8 +143,8 @@ const ServicesGrid: React.FC = () => {
                   }}
                     className="group bg-white rounded-xl p-6 sm:p-8 shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-opacity-50 relative overflow-hidden h-full cursor-pointer"
                 >
-                  {/* Gradient overlay on hover */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-xl`}></div>
+                  {/* Subtle solid overlay on hover (replacing gradient) */}
+                  <div className="absolute inset-0 bg-blue-50 opacity-0 group-hover:opacity-40 transition-opacity duration-300 rounded-xl"></div>
                   
                   <div className="relative z-10">
                     {/* Icon */}
@@ -165,7 +165,7 @@ const ServicesGrid: React.FC = () => {
                       </p>
                       <Link to={service.path} className="block">
                         <button
-                          className="mt-2 mb-4 flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold shadow-md hover:from-purple-600 hover:to-blue-600 hover:scale-105 transition-all duration-200 px-5 py-2 text-sm sm:text-base border-0"
+                          className="mt-2 mb-4 flex items-center justify-center gap-2 rounded-full bg-blue-600 text-white font-semibold shadow-md hover:bg-blue-700 hover:scale-105 transition-all duration-200 px-5 py-2 text-sm sm:text-base border-0"
                           type="button"
                         >
                           <span>{t('common.learnMore')}</span>
@@ -216,7 +216,7 @@ const ServicesGrid: React.FC = () => {
           {/* CTA Section */}
           <motion.div 
             variants={cardVariants}
-            className="text-center mt-12 sm:mt-16 p-6 sm:p-8 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl border border-gray-100"
+            className="text-center mt-12 sm:mt-16 p-6 sm:p-8 bg-gray-50 rounded-2xl border border-gray-100"
           >
             <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
               {t('services.grid.cta.title')}
@@ -228,7 +228,7 @@ const ServicesGrid: React.FC = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-                className="w-full sm:w-auto bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 sm:px-8 py-2 sm:py-3 rounded-lg text-sm sm:text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center justify-center gap-2"
+                className="w-full sm:w-auto bg-blue-600 text-white px-6 sm:px-8 py-2 sm:py-3 rounded-lg text-sm sm:text-base font-semibold shadow-lg hover:bg-blue-700 hover:shadow-xl transition-all duration-300 inline-flex items-center justify-center gap-2"
             >
                 <Users className="w-4 h-4 sm:w-5 sm:h-5" />
               {t('services.grid.cta.button')}

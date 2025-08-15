@@ -129,13 +129,22 @@ const AboutPage: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="lg:col-span-2 space-y-8"
+              id="whoweare"
             >
               <div className="prose prose-lg max-w-none">
                 <h3 className="text-3xl font-bold text-gray-900 mb-6 leading-tight font-montserrat">
                   Qui sommes-nous ?
                 </h3>
                 <p className="text-xl text-gray-700 leading-relaxed mb-6">
-                  ElitePartners Group est un cabinet de conseil en stratégie et performance, nous intervenons pour le compte d'entreprises et d'organisations pour des missions de conseil stratégique, opérationnel et financier. Nous capitalisons sur notre signature unique : une connaissance intime des enjeux et des écosystèmes locaux, combinée à la maîtrise des standards internationaux les plus exigeants, garantissant ainsi des solutions à haute valeur ajoutée, pertinentes et immédiatement opérationnelles.
+                  ElitePartners Group est un cabinet de conseil en stratégie et
+                  performance, nous intervenons pour le compte d'entreprises et
+                  d'organisations pour des missions de conseil stratégique,
+                  opérationnel et financier. Nous capitalisons sur notre
+                  signature unique : une connaissance intime des enjeux et des
+                  écosystèmes locaux, combinée à la maîtrise des standards
+                  internationaux les plus exigeants, garantissant ainsi des
+                  solutions à haute valeur ajoutée, pertinentes et immédiatement
+                  opérationnelles.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
                   <div className="border-l-4 border-blue-600 pl-6">
@@ -207,6 +216,98 @@ const AboutPage: React.FC = () => {
             </motion.div>
           </div>
 
+          {/* Notre Équipe Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="mb-20"
+            id="team"
+          >
+            <div className="text-center mb-16">
+              <h3 className="text-3xl font-bold text-gray-900 mb-4 font-montserrat">
+                Notre Équipe
+              </h3>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Une équipe d'experts passionnés, unis par la même vision : votre
+                réussite
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {/* Team Member 1 */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300"
+              >
+                <div className="w-24 h-24 bg-gradient-to-br from-violet-500 to-violet-700 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-white text-2xl font-bold">EP</span>
+                </div>
+                <h4 className="text-xl font-bold text-gray-900 mb-2 font-montserrat">
+                  Direction Générale
+                </h4>
+                <p className="text-blue-600 font-semibold mb-3">
+                  Stratégie & Leadership
+                </p>
+                <p className="text-gray-600 text-sm">
+                  Expertise en développement stratégique et accompagnement des
+                  entreprises vers l'excellence opérationnelle.
+                </p>
+              </motion.div>
+
+              {/* Team Member 2 */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
+                className="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300"
+              >
+                <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-white text-2xl font-bold">EC</span>
+                </div>
+                <h4 className="text-xl font-bold text-gray-900 mb-2 font-montserrat">
+                  Équipe Conseil
+                </h4>
+                <p className="text-blue-600 font-semibold mb-3">
+                  Experts Sectoriels
+                </p>
+                <p className="text-gray-600 text-sm">
+                  Spécialistes en conseil fiscal, RH, stratégie et
+                  transformation d'entreprise avec une expertise locale
+                  approfondie.
+                </p>
+              </motion.div>
+
+              {/* Team Member 3 */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+                className="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300"
+              >
+                <div className="w-24 h-24 bg-gradient-to-br from-green-500 to-green-700 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-white text-2xl font-bold">ER</span>
+                </div>
+                <h4 className="text-xl font-bold text-gray-900 mb-2 font-montserrat">
+                  Équipe Recherche
+                </h4>
+                <p className="text-blue-600 font-semibold mb-3">
+                  Analyses & Études
+                </p>
+                <p className="text-gray-600 text-sm">
+                  Analystes spécialisés dans les études de marché, recherches
+                  économiques et stratégiques pour éclairer vos décisions.
+                </p>
+              </motion.div>
+            </div>
+          </motion.div>
+
           {/* Mission & Vision Section */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
             {/* Mission */}
@@ -216,6 +317,7 @@ const AboutPage: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, ease: "easeOut" }}
               className="border-l-4 border-blue-600 pl-8"
+              id="mission"
             >
               <div className="flex items-start mb-6">
                 <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
@@ -240,6 +342,7 @@ const AboutPage: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, ease: "easeOut" }}
               className="border-l-4 border-blue-600 pl-8"
+              id="vision"
             >
               <div className="flex items-start mb-6">
                 <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
@@ -264,6 +367,7 @@ const AboutPage: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: "easeOut" }}
+            id="valeurs"
           >
             <div className="text-center mb-16">
               <h3 className="text-3xl font-bold text-gray-900 mb-4 font-montserrat">

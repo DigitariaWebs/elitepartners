@@ -70,7 +70,7 @@ const ContactForm: React.FC = () => {
       href: CONTACT_INFO.linkedin,
       target: "_blank",
       content: (
-        <span className="text-slate-600 font-medium">Eliteparners Group</span>
+  <span className="text-slate-600 font-medium">ElitePartners Group SARL</span>
       ),
     },
   ];

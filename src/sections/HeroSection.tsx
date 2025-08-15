@@ -99,7 +99,7 @@ const HeroSection: React.FC = () => {
       >
         <motion.div variants={itemVariants} className="mb-6 sm:mb-8">
           <motion.h1
-            className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight"
+            className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 leading-[1.15]"
             style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}
           >
             <motion.span
@@ -111,7 +111,8 @@ const HeroSection: React.FC = () => {
               {t('hero.title.part1')}
             </motion.span>
             <motion.span
-              className="block bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+              // Replaced dated gradient with solid modern accent color
+              className="block text-blue-400 pb-1 leading-normal drop-shadow-sm"
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -152,7 +153,7 @@ const HeroSection: React.FC = () => {
           >
             <Button 
               size="lg" 
-              className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 text-white border-0 shadow-xl hover:from-blue-700 hover:to-purple-700 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold"
+              className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white border-0 shadow-xl px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold transition-colors"
               onClick={() => {
                 const contactSection = document.getElementById('contact');
                 if (contactSection) {

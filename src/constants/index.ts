@@ -1,8 +1,8 @@
 export const SITE_CONFIG = {
-  name: 'Eliteparners RDC',
+  name: 'ElitePartners Group SARL',
   description: 'Votre partenaire de confiance pour l\'excellence et l\'innovation en République Démocratique du Congo',
   url: 'https://elitepartners-rdc.com',
-  author: 'Eliteparners RDC',
+  author: 'ElitePartners Group SARL',
 };
 
 // Note: NAVIGATION_ITEMS will be handled by the LanguageContext
@@ -37,6 +37,9 @@ export const SERVICES = [
 ];
 
 export const CONTACT_INFO = {
+  legalName: 'ElitePartners Group SARL',
+  legalFormLongFr: 'Société à Responsabilité Limitée',
+  legalFormLongEn: 'Limited Liability Company',
   address: 'No. 1 Avenue Tombalbaye, Local 307, Kinshasa-Gombe, DRC',
   email: 'contact@elitepartners-rdc.com',
   phones: ['+243 991 222 231', '+243 819 740 681'],

@@ -123,34 +123,36 @@ const Navbar: React.FC = () => {
 
   const aboutSubmenus = [
     {
-      title: t('nav.about.about.title'),
-      color: 'text-purple-300',
-      border: 'border-purple-300',
+      title: t("nav.about.about.title"),
+      color: "text-purple-300",
+      border: "border-purple-300",
       items: [
-        { label: t('nav.about.mission'), path: '/about#mission' },
-        { label: t('nav.about.vision'), path: '/about#vision' },
-        { label: t('nav.about.valeurs'), path: '/about#valeurs' },
-      ],
-    },
-    {
-      title: t('nav.about.projets.title'),
-      color: 'text-purple-300',
-      border: 'border-purple-300',
-      items: [
-                    { label: t('nav.about.projets.agrobusiness'), path: '/projects/agrobusiness' },
-            { label: t('nav.about.projets.bi'), path: '/projects/business-intelligence' },
-            { label: t('nav.about.projets.banques'), path: '/projects/specialized-investment-banks' },
+        {
+          label:
+            t("nav.about.whoweare") ||
+            (language === "fr" ? "Qui sommes-nous" : "Who we are"),
+          path: "/about#whoweare",
+        },
+        {
+          label:
+            t("nav.about.team") ||
+            (language === "fr" ? "Notre équipe" : "Our team"),
+          path: "/about#team",
+        },
+        { label: t("nav.about.mission"), path: "/about#mission" },
+        { label: t("nav.about.vision"), path: "/about#vision" },
+        { label: t("nav.about.valeurs"), path: "/about#valeurs" },
       ],
     },
   ];
 
   const navigationItems = [
-    { name: t('nav.home'), path: '/' },
-    { name: t('nav.services'), path: '/services' },
-    { name: t('nav.sectors'), path: '/secteurs' },
-    { name: t('nav.about'), path: '/about' },
-    { name: t('nav.academy'), path: '/#academy' },
-    { name: t('nav.contact'), path: '/#contact' },
+    { name: t("nav.home"), path: "/" },
+    { name: t("nav.services"), path: "/services" },
+    { name: t("nav.sectors"), path: "/secteurs" },
+    { name: t("nav.about"), path: "/about" },
+    { name: t("nav.academy"), path: "/#academy" },
+    { name: t("nav.contact"), path: "/#contact" },
   ];
 
   useEffect(() => {
@@ -162,8 +164,8 @@ const Navbar: React.FC = () => {
       setIsScrolled(currentScrollPos > 20);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [prevScrollPos]);
 
   const scrollToSection = (sectionId: string) => {
@@ -171,26 +173,36 @@ const Navbar: React.FC = () => {
     if (element) {
       const navbarHeight = 80;
       const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+      const offsetPosition =
+        elementPosition + window.pageYOffset - navbarHeight;
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
   };
 
   const handleNavigation = (path: string) => {
     setIsOpen(false);
-    
-    if (path.startsWith('/#')) {
+
+    if (path.startsWith("/#")) {
       const sectionId = path.substring(2);
       if (isHomePage) {
         // Si on est sur la page d'accueil, on défile vers la section
         scrollToSection(sectionId);
       } else {
         // Si on n'est pas sur la page d'accueil, on navigue vers la page d'accueil puis on défile
-        navigate('/', { state: { scrollTo: sectionId } });
+        navigate("/", { state: { scrollTo: sectionId } });
+      }
+    } else if (path.startsWith("/about#")) {
+      const sectionId = path.substring(7); // Remove '/about#' to get section ID
+      if (isAboutPage) {
+        // Si on est déjà sur la page About, on défile vers la section
+        scrollToSection(sectionId);
+      } else {
+        // Si on n'est pas sur la page About, on navigue vers la page About puis on défile
+        navigate("/about", { state: { scrollTo: sectionId } });
       }
     } else {
       // Pour les autres liens (comme /services), on utilise simplement la navigation
@@ -202,21 +214,44 @@ const Navbar: React.FC = () => {
     // Gestion du défilement après la navigation
     if (isHomePage) {
       const state = location.state as { scrollTo?: string };
-      const scrollTarget = state?.scrollTo || sessionStorage.getItem('scrollTarget');
-      
+      const scrollTarget =
+        state?.scrollTo || sessionStorage.getItem("scrollTarget");
+
       if (scrollTarget) {
         setTimeout(() => {
           scrollToSection(scrollTarget);
-          sessionStorage.removeItem('scrollTarget');
+          sessionStorage.removeItem("scrollTarget");
           // Nettoyer l'état de navigation
           window.history.replaceState({}, document.title);
         }, 100);
       }
+    } else if (isAboutPage) {
+      // Gestion du défilement pour la page About
+      const state = location.state as { scrollTo?: string };
+      const scrollTarget =
+        state?.scrollTo || sessionStorage.getItem("scrollTarget");
+
+      if (scrollTarget) {
+        setTimeout(() => {
+          scrollToSection(scrollTarget);
+          sessionStorage.removeItem("scrollTarget");
+          // Nettoyer l'état de navigation
+          window.history.replaceState({}, document.title);
+        }, 100);
+      }
+
+      // Gérer les ancres directes dans l'URL (comme /about#whoweare)
+      if (location.hash) {
+        const sectionId = location.hash.substring(1); // Remove '#' from hash
+        setTimeout(() => {
+          scrollToSection(sectionId);
+        }, 100);
+      }
     }
-  }, [isHomePage, location.state]);
+  }, [isHomePage, isAboutPage, location.state, location.hash]);
 
   const isActive = (path: string) => {
-    if (path.startsWith('/#')) {
+    if (path.startsWith("/#")) {
       if (!isHomePage) return false;
       const sectionId = path.substring(2);
       const section = document.getElementById(sectionId);
@@ -225,8 +260,19 @@ const Navbar: React.FC = () => {
         return rect.top <= 100 && rect.bottom >= 100;
       }
       return false;
+    } else if (path.startsWith("/about#")) {
+      if (!isAboutPage) return false;
+      const sectionId = path.substring(7); // Remove '/about#'
+      const section = document.getElementById(sectionId);
+      if (section) {
+        const rect = section.getBoundingClientRect();
+        return rect.top <= 100 && rect.bottom >= 100;
+      }
+      return false;
     }
-    return location.pathname === path;
+    return (
+      location.pathname === path || location.pathname + location.hash === path
+    );
   };
 
   // Determine background styles based on page and scroll state
@@ -754,22 +800,7 @@ const Navbar: React.FC = () => {
                 onClick={() => setLanguage(language === "fr" ? "en" : "fr")}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className={`px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-200 font-montserrat flex items-center space-x-1 ${
-                  isAboutPage
-                    ? "text-white hover:bg-white/10 hover:text-white" // always white on about
-                    : isServicesPage ||
-                      isSectorsPage ||
-                      isRepresentationServicePage ||
-                      isSubsectorPage
-                    ? !isScrolled
-                      ? "text-white/90 hover:bg-white/10 hover:text-white"
-                      : "text-gray-900 hover:bg-gray-100 hover:text-blue-700"
-                    : isGradientPage
-                    ? "text-white/90 hover:bg-white/10 hover:text-white"
-                    : isHomePage && !isScrolled
-                    ? "text-white/90 hover:bg-white/10 hover:text-white"
-                    : "text-gray-700 hover:bg-blue-50/50 hover:text-blue-600"
-                }`}
+                className="px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-200 font-montserrat flex items-center space-x-1 text-white hover:bg-white/10 hover:text-white"
               >
                 <Globe size={16} />
                 <span>{language === "fr" ? "EN" : "FR"}</span>

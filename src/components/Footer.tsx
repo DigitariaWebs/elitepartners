@@ -43,13 +43,21 @@ const Footer: React.FC = () => {
               className="lg:col-span-1"
             >
               <div className="mb-6">
-                <img
-                  src={CONTACT_INFO.logo}
-                  alt="Eliteparners Logo"
-                  className="h-16 w-auto mb-4"
-                />
+                <div className="flex items-center space-x-2 mb-4">
+                  <img
+                    src={CONTACT_INFO.logo}
+                    alt="ElitePartners Group SARL Logo"
+                    className="h-14 w-auto"
+                  />
+                  <span className="font-semibold text-sm leading-tight hidden md:inline-block">
+                    ElitePartners Group <abbr title={t('footer.legal.sarl') || (CONTACT_INFO.legalFormLongFr + ' / ' + CONTACT_INFO.legalFormLongEn)} className="no-underline border-b border-dotted cursor-help">SARL</abbr>
+                  </span>
+                </div>
                 <p className="text-gray-300 text-sm leading-relaxed">
                   {t("footer.company.description")}
+                </p>
+                <p className="text-gray-500 text-xs mt-2">
+                  {t('footer.legal.full')}
                 </p>
               </div>
 

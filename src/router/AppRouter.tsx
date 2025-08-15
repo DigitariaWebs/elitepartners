@@ -59,41 +59,92 @@ const AppRouter: React.FC = () => {
           <Route path="/secteurs/financier" element={<FinancierSubsectors />} />
           <Route path="/services/conseil" element={<ConseilPage />} />
           <Route path="/services/conseil/fiscal" element={<FiscalPage />} />
-          <Route path="/services/conseil/strategie" element={<StrategiePage />} />
+          <Route
+            path="/services/conseil/strategie"
+            element={<StrategiePage />}
+          />
           <Route path="/services/conseil/rh" element={<RHPage />} />
-          <Route path="/services/representation" element={<RepresentationPage />} />
-          <Route path="/services/representation/administratif" element={<AdministratifPage />} />
-          <Route path="/services/representation/locale" element={<LocalePage />} />
-          <Route path="/services/representation/penetration-marche" element={<PenetrationMarchePage />} />
+          <Route
+            path="/services/representation"
+            element={<RepresentationPage />}
+          />
+          <Route
+            path="/services/representation/administratif"
+            element={<AdministratifPage />}
+          />
+          <Route
+            path="/services/representation/locale"
+            element={<LocalePage />}
+          />
+          <Route
+            path="/services/representation/penetration-marche"
+            element={<PenetrationMarchePage />}
+          />
           <Route path="/services/etudes" element={<EtudesPage />} />
           <Route path="/services/etudes/marche" element={<MarchePage />} />
-          <Route path="/services/etudes/economique" element={<EtudesEconomiquePage />} />
-          <Route path="/services/etudes/strategique" element={<StrategiquePage />} />
+          <Route
+            path="/services/etudes/economique"
+            element={<EtudesEconomiquePage />}
+          />
+          <Route
+            path="/services/etudes/strategique"
+            element={<StrategiquePage />}
+          />
           <Route path="/services/economique" element={<EconomiquePage />} />
           <Route path="/services/strategiques" element={<StrategiquesPage />} />
-          
+
           {/* Agriculture subsector routes */}
-          <Route path="/secteurs/agricole/agroalimentaire" element={<AgroalimentairePage />} />
-          <Route path="/secteurs/agricole/vivriere" element={<VivrierePage />} />
+          <Route
+            path="/secteurs/agricole/agroalimentaire"
+            element={<AgroalimentairePage />}
+          />
+          <Route
+            path="/secteurs/agricole/vivriere"
+            element={<VivrierePage />}
+          />
           <Route path="/secteurs/agricole/peche" element={<PechePage />} />
-          <Route path="/secteurs/agricole/industrielle" element={<IndustriellePage />} />
-          
+          <Route
+            path="/secteurs/agricole/industrielle"
+            element={<IndustriellePage />}
+          />
+
           {/* Mining subsector routes */}
-          <Route path="/secteurs/minier/exploration" element={<ExplorationPage />} />
-          <Route path="/secteurs/minier/exploitation" element={<ExploitationPage />} />
-          <Route path="/secteurs/minier/transformation" element={<TransformationPage />} />
+          <Route
+            path="/secteurs/minier/exploration"
+            element={<ExplorationPage />}
+          />
+          <Route
+            path="/secteurs/minier/exploitation"
+            element={<ExploitationPage />}
+          />
+          <Route
+            path="/secteurs/minier/transformation"
+            element={<TransformationPage />}
+          />
           <Route path="/secteurs/minier/commerce" element={<CommercePage />} />
-          
+
           {/* Financial subsector routes */}
           <Route path="/secteurs/financier/banques" element={<BanquesPage />} />
-          <Route path="/secteurs/financier/assurance" element={<AssurancePage />} />
-          <Route path="/secteurs/financier/investissement" element={<InvestissementPage />} />
+          <Route
+            path="/secteurs/financier/assurance"
+            element={<AssurancePage />}
+          />
+          <Route
+            path="/secteurs/financier/investissement"
+            element={<InvestissementPage />}
+          />
           <Route path="/secteurs/financier/fintech" element={<FintechPage />} />
-          
-          {/* Project routes */}
+
+          {/* Project routes - keeping for direct access even though removed from navbar */}
           <Route path="/projects/agrobusiness" element={<AgroBusinessPage />} />
-          <Route path="/projects/business-intelligence" element={<BusinessIntelligencePage />} />
-          <Route path="/projects/specialized-investment-banks" element={<SpecializedInvestmentBanksPage />} />
+          <Route
+            path="/projects/business-intelligence"
+            element={<BusinessIntelligencePage />}
+          />
+          <Route
+            path="/projects/specialized-investment-banks"
+            element={<SpecializedInvestmentBanksPage />}
+          />
           <Route path="/projects/:projectSlug" element={<ProjectPage />} />
         </Routes>
       </Router>

@@ -52,24 +52,24 @@ const AcademySection: React.FC = () => {
       icon: <Target className="w-8 h-8" />,
       title: t('academy.programs.entrepreneurship.title'),
       description: t('academy.programs.entrepreneurship.description'),
-      color: 'from-blue-500 to-blue-600'
+      color: 'bg-blue-600'
     },
     {
       icon: <Users className="w-8 h-8" />,
       title: t('academy.programs.leadership.title'),
       description: t('academy.programs.leadership.description'),
-      color: 'from-purple-500 to-purple-600'
+      color: 'bg-purple-600'
     },
     {
       icon: <BookOpen className="w-8 h-8" />,
       title: t('academy.programs.business.title'),
       description: t('academy.programs.business.description'),
-      color: 'from-green-500 to-green-600'
+      color: 'bg-green-600'
     }
   ];
 
   return (
-    <section id="academy" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+    <section id="academy" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -80,19 +80,10 @@ const AcademySection: React.FC = () => {
           className="text-center mb-16"
         >
           <div className="flex justify-center mb-6">
-            <div className="bg-gradient-to-r from-blue-500 to-purple-600 p-4 rounded-full">
+            <div className="bg-blue-600 p-4 rounded-full">
               <GraduationCap className="w-12 h-12 text-white" />
             </div>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            {t('academy.hero.title')}
-          </h2>
-          <p className="text-xl text-blue-600 font-semibold mb-4">
-            {t('academy.hero.subtitle')}
-          </p>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            {t('academy.hero.description')}
-          </p>
         </motion.div>
 
         {/* About */}
@@ -133,16 +124,14 @@ const AcademySection: React.FC = () => {
                 viewport={{ once: true }}
                 className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
               >
-                <div className={`bg-gradient-to-r ${program.color} p-6 text-white`}>
+                <div className={`${program.color} p-6 text-white`}>
                   <div className="text-center">
                     {program.icon}
                     <h4 className="text-xl font-bold mt-4">{program.title}</h4>
                   </div>
                 </div>
                 <div className="p-6">
-                  <p className="text-gray-600 leading-relaxed">
-                    {program.description}
-                  </p>
+                  <p className="text-gray-600 leading-relaxed">{program.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -155,7 +144,7 @@ const AcademySection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
-          className="bg-gradient-to-br from-blue-900 to-purple-900 rounded-2xl p-8 text-white"
+          className="bg-blue-900 rounded-2xl p-8 text-white"
         >
           <div className="text-center mb-8">
             <h3 className="text-3xl md:text-4xl font-bold mb-4">
@@ -287,7 +276,7 @@ const AcademySection: React.FC = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed px-8 py-4 rounded-full text-white font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl inline-flex items-center"
+                className="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed px-8 py-4 rounded-full text-white font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl inline-flex items-center"
               >
                 {isSubmitting ? (
                   <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
