@@ -1430,5 +1430,9 @@
     "academy.application.form.motivation": "Lettre de motivation",
     "academy.application.form.submit": "Soumettre ma candidature",
     "academy.application.success": "Candidature envoyée avec succès !",
-    "academy.application.error": "Erreur lors de l'envoi de la candidature"
+    "academy.application.error": "Erreur lors de l'envoi de la candidature",
+    "team.preview.title": "Notre équipe",
+    "team.preview.subtitle": "Des talents complémentaires unis par une même exigence : votre réussite durable",
+    "team.preview.overview": "OrionPartners capitalise sur une équipe d’associés et de consultants expérimentés aux expertises complémentaires. En unissant nos forces, nous créons davantage de valeur pour nos clients : analyses rigoureuses, accompagnement sur mesure et exécution disciplinée. Notre rigueur et notre esprit d’équipe font de nous une organisation dynamique et avant‑gardiste qui se distingue.",
+    "team.preview.button": "En savoir plus"
 }

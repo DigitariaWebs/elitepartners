@@ -1420,5 +1420,9 @@
     "academy.application.form.motivation": "Cover Letter",
     "academy.application.form.submit": "Submit My Application",
     "academy.application.success": "Application sent successfully!",
-    "academy.application.error": "Error sending application"
+    "academy.application.error": "Error sending application",
+    "team.preview.title": "Our Team",
+    "team.preview.subtitle": "Complementary talents united by one standard: your sustainable success",
+    "team.preview.overview": "OrionPartners brings together partners and seasoned consultants with complementary expertise. By combining our strengths we create more value for clients: rigorous analysis, tailored support and disciplined execution. Our rigor and team spirit make us a dynamic, forward‑thinking organization that stands out.",
+    "team.preview.button": "Learn More"
 }
