@@ -70,7 +70,7 @@ const EconomiquePage: React.FC = () => {
       <section className="py-16 bg-white text-center">
         <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-8 font-montserrat">{t('services.economique.why.title')}</h2>
         <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-          {avantages.map((a, i) => {
+          {avantages.map((a) => {
             const Icon = a.icon;
             return (
               <div key={a.translationKey} className="flex flex-col items-center bg-blue-50 rounded-2xl shadow p-6 h-full">
@@ -98,7 +98,7 @@ const EconomiquePage: React.FC = () => {
                 className="flex flex-col items-start bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 border-t-4 border-blue-200 group"
               >
                 <div className="flex items-center mb-4">
-                  <span className="inline-block mr-3 text-white bg-blue-700 rounded-full w-10 h-10 flex items-center justify-center text-lg font-bold shadow-md">{idx + 1}</span>
+                  <span className="mr-3 text-white bg-blue-700 rounded-full w-10 h-10 flex items-center justify-center text-lg font-bold shadow-md">{idx + 1}</span>
                   <Icon className="w-8 h-8 text-blue-700 group-hover:text-purple-700 transition-colors duration-300" />
                 </div>
                 <h3 className="text-xl md:text-2xl font-bold text-blue-900 mb-2 font-montserrat">{t(`${sec.translationKey}.title`)}</h3>

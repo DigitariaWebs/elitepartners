@@ -12,7 +12,6 @@ const Footer: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const currentYear = new Date().getFullYear();
 
   const services = t('footer.services.list');
 
